@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Діаграми";
+}
+
+<div class="container mt-4 p-4 bg-light shadow rounded">
+    <h1 class="mb-4 text-black">Діаграми</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Кількість товарів за категоріями</h3>
+            <div id="productsByCategoryChart" style="width: 100%; height: 400px;"></div>
+        </div>
+        <div class="col-md-6">
+            <h3>Кількість одиниць товарів</h3>
+            <div id="productQuantitiesChart" style="width: 100%; height: 400px;"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            // Перша діаграма: Кількість товарів за категоріями
+            fetch('/api/charts/productsByCategory')
+                .then(response => response.json())
+                .then(data => {
+                    const dataTable = new google.visualization.DataTable();
+                    dataTable.addColumn('string', 'Категорія');
+                    dataTable.addColumn('number', 'Кількість товарів');
+
+                    data.forEach(item => {
+                        dataTable.addRow([item.categoryName, item.productCount]);
+                    });
+
+                    const options = {
+                        title: 'Кількість товарів за категоріями',
+                        width: '100%',
+                        height: 400,
+                        legend: { position: 'none' },
+                        hAxis: { title: 'Категорія' },
+                        vAxis: { title: 'Кількість товарів', minValue: 0 }
+                    };
+
+                    const chart = new google.visualization.ColumnChart(document.getElementById('productsByCategoryChart'));
+                    chart.draw(dataTable, options);
+                })
+                .catch(error => console.error('Помилка завантаження даних для категорій:', error));
+
+            // Друга діаграма: Кількість одиниць товарів
+            fetch('/api/charts/productQuantities')
+                .then(response => response.json())
+                .then(data => {
+                    const dataTable = new google.visualization.DataTable();
+                    dataTable.addColumn('string', 'Товар');
+                    dataTable.addColumn('number', 'Кількість одиниць');
+
+                    data.forEach(item => {
+                        dataTable.addRow([item.productName, item.quantity]);
+                    });
+
+                    const options = {
+                        title: 'Кількість одиниць товарів',
+                        width: '100%',
+                        height: 400,
+                        legend: { position: 'none' },
+                        hAxis: { title: 'Товар', slantedText: true, slantedTextAngle: 45 },
+                        vAxis: { title: 'Кількість одиниць', minValue: 0 }
+                    };
+
+                    const chart = new google.visualization.ColumnChart(document.getElementById('productQuantitiesChart'));
+                    chart.draw(dataTable, options);
+                })
+                .catch(error => console.error('Помилка завантаження даних для кількості:', error));
+        }
+    </script>
+}

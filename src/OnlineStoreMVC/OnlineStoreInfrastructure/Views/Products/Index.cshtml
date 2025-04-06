@@ -1,0 +1,56 @@
+﻿@model IEnumerable<OnlineStoreDomain.Model.Product>
+
+@{
+    ViewData["Title"] = "Товар за категорією";
+}
+
+<div class="container mt-4">
+    @if (ViewBag.CategoryId != null)
+    {
+        <h1 class="mb-4 text-black">Товар за категорією @ViewBag.CategoryName</h1>
+    }
+    else
+    {
+        <h1 class="mb-4 text-black">Усі товари</h1>
+    }
+
+    @if (ViewBag.CategoryId == null)
+    {
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Додати новий товар</a>
+        </p>
+    }
+
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th style="width: 49%;">@Html.DisplayNameFor(model => model.Name)</th>
+                <th style="width: 30%;">@Html.DisplayNameFor(model => model.Category)</th>
+                <th style="width: 21%;">Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="table-light">
+                    <td style="width: 49%;">@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td style="width: 30%;">@Html.DisplayFor(modelItem => item.Category.Name)</td>
+					<td style="width: 21%;">
+                        @if (ViewBag.CategoryId == null)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-primary me-1">Редагувати</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-danger me-1">Видалити</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-info">Деталі</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-primary me-1">Редагувати</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-danger me-1">Видалити</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-info">Деталі</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

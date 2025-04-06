@@ -1,0 +1,11 @@
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\bin\Debug\net9.0\OnlineStoreDomain.deps.json
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\bin\Debug\net9.0\OnlineStoreDomain.dll
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\bin\Debug\net9.0\OnlineStoreDomain.pdb
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\OnlineStoreDomain.GeneratedMSBuildEditorConfig.editorconfig
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\OnlineStoreDomain.AssemblyInfoInputs.cache
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\OnlineStoreDomain.AssemblyInfo.cs
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\OnlineStoreDomain.csproj.CoreCompileInputs.cache
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\OnlineStoreDomain.dll
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\refint\OnlineStoreDomain.dll
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\OnlineStoreDomain.pdb
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\ref\OnlineStoreDomain.dll

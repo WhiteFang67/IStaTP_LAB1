@@ -1,0 +1,36 @@
+﻿@model OnlineStoreDomain.Model.Product
+
+@{
+    ViewData["Title"] = "Деталі товару";
+}
+
+<div class="container mt-4 p-4 bg-light shadow rounded">
+    <h1 class="mb-4 text-black">Деталі товару</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Name)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.GeneralInfo)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.GeneralInfo)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Characteristics)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Characteristics)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Ratings)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Ratings)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Quantity)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Quantity)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Category)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Category.Name)</dd>
+    </dl>
+    <div class="mt-3">
+        @if (ViewBag.ReturnAll)
+        {
+            <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnAll="true" class="btn btn-primary me-2">Редагувати</a>
+            <a asp-action="Index" asp-controller="Products" asp-route-all="true" class="btn btn-secondary">Повернутись до списку</a>
+        }
+        else
+        {
+            <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnId="@ViewBag.ReturnId" asp-route-returnName="@ViewBag.ReturnName" class="btn btn-primary me-2">Редагувати</a>
+            <a asp-action="Index" asp-controller="Products" asp-route-id="@ViewBag.ReturnId" asp-route-name="@ViewBag.ReturnName" class="btn btn-secondary">Повернутись до списку</a>
+        }
+    </div>
+</div>

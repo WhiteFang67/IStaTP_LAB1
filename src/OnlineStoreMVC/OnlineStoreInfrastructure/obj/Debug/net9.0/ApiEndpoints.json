@@ -1,0 +1,22 @@
+[
+  {
+    "ContainingType": "OnlineStoreInfrastructure.Controllers.ChartsController",
+    "Method": "GetProductQuantitiesAsync",
+    "RelativePath": "api/Charts/productQuantities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineStoreInfrastructure.Controllers.ChartsController",
+    "Method": "GetProductsByCategoryAsync",
+    "RelativePath": "api/Charts/productsByCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
