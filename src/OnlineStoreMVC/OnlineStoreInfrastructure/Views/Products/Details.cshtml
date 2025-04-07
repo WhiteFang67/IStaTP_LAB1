@@ -25,12 +25,53 @@
         @if (ViewBag.ReturnAll)
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnAll="true" class="btn btn-primary me-2">Редагувати</a>
+            <button type="button" class="btn btn-success me-2" onclick="showAddToCartModal('@Model.Id', '@Model.Name', @Model.Quantity)">У кошик</button>
             <a asp-action="Index" asp-controller="Products" asp-route-all="true" class="btn btn-secondary">Повернутись до списку</a>
         }
         else
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnId="@ViewBag.ReturnId" asp-route-returnName="@ViewBag.ReturnName" class="btn btn-primary me-2">Редагувати</a>
+            <button type="button" class="btn btn-success me-2" onclick="showAddToCartModal('@Model.Id', '@Model.Name', @Model.Quantity)">У кошик</button>
             <a asp-action="Index" asp-controller="Products" asp-route-id="@ViewBag.ReturnId" asp-route-name="@ViewBag.ReturnName" class="btn btn-secondary">Повернутись до списку</a>
         }
     </div>
+
+    <!-- Модальне вікно -->
+    <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addToCartModalLabel">Додати до кошика</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Товар: <span id="modalProductName"></span></p>
+                    <form id="addToCartForm" asp-controller="Cart" asp-action="AddToCart" method="post">
+                        <input type="hidden" id="modalProductId" name="productId" />
+                        <div class="mb-3">
+                            <label for="modalQuantity" class="form-label">Кількість:</label>
+                            <input type="number" id="modalQuantity" name="quantity" class="form-control" min="1" value="1" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                    <button type="submit" form="addToCartForm" class="btn btn-success">Додати</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        function showAddToCartModal(productId, productName, maxQuantity) {
+            document.getElementById('modalProductId').value = productId;
+            document.getElementById('modalProductName').innerText = productName;
+            document.getElementById('modalQuantity').max = maxQuantity;
+            document.getElementById('modalQuantity').value = 1; // Скидаємо до 1 за замовчуванням
+            var modal = new bootstrap.Modal(document.getElementById('addToCartModal'));
+            modal.show();
+        }
+    </script>
+}
