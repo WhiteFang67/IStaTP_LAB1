@@ -133,14 +133,14 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<short>("Quantity")
-                        .HasColumnType("smallint");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -265,7 +265,6 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.HasOne("OnlineStoreDomain.Model.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
-                        .IsRequired()
                         .HasConstraintName("FK_OrderItems_Orders");
 
                     b.HasOne("OnlineStoreDomain.Model.Product", "Product")

@@ -9,3 +9,4 @@ D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\
 D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\refint\OnlineStoreDomain.dll
 D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\OnlineStoreDomain.pdb
 D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\ref\OnlineStoreDomain.dll
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreDomain\obj\Debug\net9.0\OnlineStoreDomain.sourcelink.json

@@ -24,29 +24,39 @@
     <table class="table table-dark table-hover">
         <thead>
             <tr>
-                <th style="width: 49%;">@Html.DisplayNameFor(model => model.Name)</th>
-                <th style="width: 30%;">@Html.DisplayNameFor(model => model.Category)</th>
-                <th style="width: 21%;">Дії</th>
+                <th style="width: 40%;">@Html.DisplayNameFor(model => model.Name)</th>
+                <th style="width: 25%;">@Html.DisplayNameFor(model => model.Category)</th>
+                <th style="width: 35%;">Дії</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr class="table-light">
-                    <td style="width: 49%;">@Html.DisplayFor(modelItem => item.Name)</td>
-                    <td style="width: 30%;">@Html.DisplayFor(modelItem => item.Category.Name)</td>
-					<td style="width: 21%;">
+                    <td style="width: 40%;">@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td style="width: 25%;">@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                    <td style="width: 35%;">
                         @if (ViewBag.CategoryId == null)
                         {
                             <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-primary me-1">Редагувати</a>
                             <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-danger me-1">Видалити</a>
-                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-info">Деталі</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-info me-1">Деталі</a>
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline">
+                                <input type="hidden" name="productId" value="@item.Id" />
+                                <input type="number" name="quantity" value="1" min="1" class="form-control d-inline" style="width: 60px;" />
+                                <button type="submit" class="btn btn-sm btn-success">У кошик</button>
+                            </form>
                         }
                         else
                         {
                             <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-primary me-1">Редагувати</a>
                             <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-danger me-1">Видалити</a>
-                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-info">Деталі</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-info me-1">Деталі</a>
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-inline">
+                                <input type="hidden" name="productId" value="@item.Id" />
+                                <input type="number" name="quantity" value="1" min="1" class="form-control d-inline" style="width: 60px;" />
+                                <button type="submit" class="btn btn-sm btn-success">У кошик</button>
+                            </form>
                         }
                     </td>
                 </tr>

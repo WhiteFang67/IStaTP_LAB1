@@ -323,3 +323,4 @@ D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreInfrast
 D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreInfrastructure\obj\Debug\net9.0\compressed\erc7y10lg1-fejvoydc8b.gz
 D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreInfrastructure\obj\Debug\net9.0\compressed\3hhvrun6g5-s35ty4nyc5.gz
 D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreInfrastructure\obj\Debug\net9.0\compressed\wio12juehr-46ein0sx1k.gz
+D:\КНУ\Курс2\ІСтаТП\Лаба1\src\OnlineStoreMVC\OnlineStoreInfrastructure\obj\Debug\net9.0\OnlineStoreInfrastructure.sourcelink.json
