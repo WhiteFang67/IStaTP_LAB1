@@ -1,0 +1,87 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OnlineStoreInfrastructure;
+using OnlineStoreDomain.Model;
+
+namespace OnlineStoreInfrastructure.Controllers
+{
+    public class CartController : Controller
+    {
+        private readonly OnlineStoreContext _context;
+
+        public CartController(OnlineStoreContext context)
+        {
+            _context = context;
+        }
+
+        // Перегляд кошика
+        public IActionResult Index()
+        {
+            var cartItems = _context.OrderItems
+                .Include(oi => oi.Product)
+                .Where(oi => oi.OrderId == null)
+                .ToList();
+            return View(cartItems);
+        }
+
+        // Додавання товару до кошика
+        [HttpPost]
+        public IActionResult AddToCart(int productId, int quantity)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            // Перевірка наявної кількості
+            if (quantity > product.Quantity)
+            {
+                TempData["ErrorMessage"] = $"Неможливо додати {quantity} одиниць товару {product.Name}. Доступно лише {product.Quantity}.";
+                return RedirectToAction("Index", "Products", new { all = true });
+            }
+
+            var cartItem = _context.OrderItems
+                .FirstOrDefault(oi => oi.ProductId == productId && oi.OrderId == null);
+            if (cartItem != null)
+            {
+                // Перевірка, чи нова кількість не перевищить доступну
+                if (cartItem.Quantity + quantity > product.Quantity)
+                {
+                    TempData["ErrorMessage"] = $"Неможливо додати ще {quantity} одиниць товару {product.Name}. Доступно лише {product.Quantity - cartItem.Quantity}.";
+                    return RedirectToAction("Index", "Products", new { all = true });
+                }
+                cartItem.Quantity += quantity;
+            }
+            else
+            {
+                cartItem = new OrderItem
+                {
+                    ProductId = productId,
+                    Quantity = quantity,
+                    OrderId = null
+                };
+                _context.OrderItems.Add(cartItem);
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // Видалення товару з кошика
+        [HttpPost]
+        public IActionResult RemoveFromCart(int id)
+        {
+            var cartItem = _context.OrderItems
+                .FirstOrDefault(oi => oi.Id == id && oi.OrderId == null);
+            if (cartItem == null)
+            {
+                return NotFound();
+            }
+
+            _context.OrderItems.Remove(cartItem);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+}

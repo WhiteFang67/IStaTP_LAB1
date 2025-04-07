@@ -1,0 +1,43 @@
+﻿@model List<OnlineStoreDomain.Model.OrderItem>
+
+@{
+    ViewData["Title"] = "Кошик";
+}
+
+<div class="container mt-4 p-4 bg-light shadow rounded">
+    <h1 class="mb-4 text-black">Кошик</h1>
+
+    @if (Model.Count == 0)
+    {
+        <p>Ваш кошик порожній.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Кількість</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>
+                            <form asp-action="RemoveFromCart" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-sm btn-danger">Видалити</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <a asp-action="Index" asp-controller="Products" class="btn btn-secondary">Повернутися до товарів</a>
+</div>
