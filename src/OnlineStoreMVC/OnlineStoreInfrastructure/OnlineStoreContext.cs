@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using OnlineStoreDomain.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,24 +16,21 @@ public partial class OnlineStoreContext : DbContext
     }
 
     public virtual DbSet<Category> Categories { get; set; }
-
     public virtual DbSet<Customer> Customers { get; set; }
-
     public virtual DbSet<DeliveryService> DeliveryServices { get; set; }
-
     public virtual DbSet<Order> Orders { get; set; }
-
     public virtual DbSet<OrderItem> OrderItems { get; set; }
-
     public virtual DbSet<Product> Products { get; set; }
-
     public virtual DbSet<Review> Reviews { get; set; }
-
     public virtual DbSet<StatuseType> StatuseTypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-E520EAM\\SQLEXPRESS; Database=OnlineStore; Trusted_Connection=True; TrustServerCertificate=True; ");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Server=DESKTOP-E520EAM\\SQLEXPRESS; Database=OnlineStore; Trusted_Connection=True; TrustServerCertificate=True;");
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -105,18 +101,18 @@ public partial class OnlineStoreContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => new { e.CustomerId, e.ProductId }).HasName("PK_Reviews_1");
+            entity.HasKey(e => e.Id); // Використовуємо Id як первинний ключ
 
             entity.Property(e => e.Text).HasMaxLength(1000);
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.CustomerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.SetNull) // Дозволяємо null при видаленні Customer
                 .HasConstraintName("FK_Reviews_Customers");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.ProductId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade) // Видаляємо відгуки при видаленні продукту
                 .HasConstraintName("FK_Reviews_Products");
         });
 

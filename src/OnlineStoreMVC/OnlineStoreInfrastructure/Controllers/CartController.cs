@@ -26,7 +26,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
         // Додавання товару до кошика
         [HttpPost]
-        public IActionResult AddToCart(int productId, int quantity)
+        public IActionResult AddToCart(int productId, int quantity, string returnUrl)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == productId);
             if (product == null)
@@ -38,7 +38,7 @@ namespace OnlineStoreInfrastructure.Controllers
             if (quantity > product.Quantity)
             {
                 TempData["ErrorMessage"] = $"Неможливо додати {quantity} одиниць товару {product.Name}. Доступно лише {product.Quantity}.";
-                return RedirectToAction("Index", "Products", new { all = true });
+                return Redirect(returnUrl ?? Url.Action("Index", "Products", new { all = true }));
             }
 
             var cartItem = _context.OrderItems
@@ -49,7 +49,7 @@ namespace OnlineStoreInfrastructure.Controllers
                 if (cartItem.Quantity + quantity > product.Quantity)
                 {
                     TempData["ErrorMessage"] = $"Неможливо додати ще {quantity} одиниць товару {product.Name}. Доступно лише {product.Quantity - cartItem.Quantity}.";
-                    return RedirectToAction("Index", "Products", new { all = true });
+                    return Redirect(returnUrl ?? Url.Action("Index", "Products", new { all = true }));
                 }
                 cartItem.Quantity += quantity;
             }
@@ -65,7 +65,7 @@ namespace OnlineStoreInfrastructure.Controllers
             }
 
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(returnUrl ?? Url.Action("Index", "Products", new { all = true }));
         }
 
         // Видалення товару з кошика

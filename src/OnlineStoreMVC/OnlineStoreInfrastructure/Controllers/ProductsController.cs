@@ -45,8 +45,10 @@ namespace OnlineStoreInfrastructure.Controllers
             }
 
             var product = await _context.Products
-                .Include(p => p.Category)
+                .Include(p => p.Category) // Завантажуємо категорію
+                .Include(p => p.Reviews)  // Завантажуємо відгуки
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (product == null)
             {
                 return NotFound();

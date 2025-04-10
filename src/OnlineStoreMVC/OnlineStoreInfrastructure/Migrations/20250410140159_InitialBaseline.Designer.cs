@@ -12,8 +12,8 @@ using OnlineStoreInfrastructure;
 namespace OnlineStoreInfrastructure.Migrations
 {
     [DbContext(typeof(OnlineStoreContext))]
-    [Migration("20250403160351_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250410140159_InitialBaseline")]
+    partial class InitialBaseline
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,14 +136,14 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<short>("Quantity")
-                        .HasColumnType("smallint");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -178,6 +178,9 @@ namespace OnlineStoreInfrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<short?>("Ratings")
                         .HasColumnType("smallint");
 
@@ -190,16 +193,19 @@ namespace OnlineStoreInfrastructure.Migrations
 
             modelBuilder.Entity("OnlineStoreDomain.Model.Review", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -207,8 +213,17 @@ namespace OnlineStoreInfrastructure.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.HasKey("CustomerId", "ProductId")
-                        .HasName("PK_Reviews_1");
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ProductId");
 
@@ -265,7 +280,6 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.HasOne("OnlineStoreDomain.Model.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
-                        .IsRequired()
                         .HasConstraintName("FK_OrderItems_Orders");
 
                     b.HasOne("OnlineStoreDomain.Model.Product", "Product")
@@ -295,12 +309,13 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.HasOne("OnlineStoreDomain.Model.Customer", "Customer")
                         .WithMany("Reviews")
                         .HasForeignKey("CustomerId")
-                        .IsRequired()
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_Reviews_Customers");
 
                     b.HasOne("OnlineStoreDomain.Model.Product", "Product")
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Reviews_Products");
 

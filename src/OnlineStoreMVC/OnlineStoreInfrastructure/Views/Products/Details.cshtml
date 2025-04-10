@@ -21,22 +21,60 @@
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Category)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Category.Name)</dd>
     </dl>
+
+    <!-- Кнопки дій -->
     <div class="mt-3">
         @if (ViewBag.ReturnAll)
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnAll="true" class="btn btn-primary me-2">Редагувати</a>
-            <button type="button" class="btn btn-success me-2" onclick="showAddToCartModal('@Model.Id', '@Model.Name', @Model.Quantity)">У кошик</button>
+            <button type="button" class="btn btn-success me-2" onclick="showAddToCartModal('@Model.Id', '@Model.Name', @Model.Quantity, '@Url.Action("Details", "Products", new { id = Model.Id, returnAll = true })')">У кошик</button>
             <a asp-action="Index" asp-controller="Products" asp-route-all="true" class="btn btn-secondary">Повернутись до списку</a>
         }
         else
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnId="@ViewBag.ReturnId" asp-route-returnName="@ViewBag.ReturnName" class="btn btn-primary me-2">Редагувати</a>
-            <button type="button" class="btn btn-success me-2" onclick="showAddToCartModal('@Model.Id', '@Model.Name', @Model.Quantity)">У кошик</button>
+            <button type="button" class="btn btn-success me-2" onclick="showAddToCartModal('@Model.Id', '@Model.Name', @Model.Quantity, '@Url.Action("Details", "Products", new { id = Model.Id, returnId = ViewBag.ReturnId, returnName = ViewBag.ReturnName })')">У кошик</button>
             <a asp-action="Index" asp-controller="Products" asp-route-id="@ViewBag.ReturnId" asp-route-name="@ViewBag.ReturnName" class="btn btn-secondary">Повернутись до списку</a>
         }
     </div>
 
-    <!-- Модальне вікно -->
+    <!-- Список відгуків -->
+    <hr />
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Відгуки</h3>
+        <button type="button" class="btn btn-primary" onclick="showReviewModal()">Написати відгук</button>
+    </div>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success mb-3">@TempData["SuccessMessage"]</div>
+    }
+    @if (Model.Reviews.Count == 0)
+    {
+        <p>Відгуків поки немає.</p>
+    }
+    else
+    {
+        <div class="reviews-list">
+            @foreach (var review in Model.Reviews)
+            {
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title d-inline mb-0">@review.UserName</h5>
+                                <span class="text-muted ms-2">@review.UserEmail</span>
+                            </div>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="showDeleteReviewModal(@review.Id, @Model.Id)">Видалити</button>
+                        </div>
+                        <small class="text-muted d-block mt-1">@review.Date.ToString("dd.MM.yyyy")</small>
+                        <p class="card-text mt-2">@review.Text</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- Модальне вікно для кошика -->
     <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -48,6 +86,7 @@
                     <p>Товар: <span id="modalProductName"></span></p>
                     <form id="addToCartForm" asp-controller="Cart" asp-action="AddToCart" method="post">
                         <input type="hidden" id="modalProductId" name="productId" />
+                        <input type="hidden" id="modalReturnUrl" name="returnUrl" />
                         <div class="mb-3">
                             <label for="modalQuantity" class="form-label">Кількість:</label>
                             <input type="number" id="modalQuantity" name="quantity" class="form-control" min="1" value="1" />
@@ -61,16 +100,92 @@
             </div>
         </div>
     </div>
+
+    <!-- Модальне вікно для відгуку -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Написати відгук</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+                    }
+                    <form id="reviewForm" asp-controller="Reviews" asp-action="Create" method="post">
+                        <input type="hidden" name="productId" value="@Model.Id" />
+                        <div class="mb-3">
+                            <label for="userName" class="form-label">Ім’я:</label>
+                            <input type="text" id="userName" name="userName" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="userEmail" class="form-label">Email:</label>
+                            <input type="email" id="userEmail" name="userEmail" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Відгук:</label>
+                            <textarea id="text" name="text" class="form-control" rows="4" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                    <button type="submit" form="reviewForm" class="btn btn-primary">Додати</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальне вікно для підтвердження видалення відгуку -->
+    <div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteReviewModalLabel">Підтвердження видалення</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ви впевнені, що хочете видалити цей відгук?</p>
+                </div>
+                <div class="modal-footer">
+                    <form id="deleteReviewForm" asp-controller="Reviews" asp-action="Delete" method="post">
+                        <input type="hidden" id="deleteReviewId" name="id" />
+                        <input type="hidden" id="deleteProductId" name="productId" />
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                        <button type="submit" class="btn btn-danger">Видалити</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
     <script>
-        function showAddToCartModal(productId, productName, maxQuantity) {
+        function showAddToCartModal(productId, productName, maxQuantity, returnUrl) {
             document.getElementById('modalProductId').value = productId;
             document.getElementById('modalProductName').innerText = productName;
             document.getElementById('modalQuantity').max = maxQuantity;
-            document.getElementById('modalQuantity').value = 1; // Скидаємо до 1 за замовчуванням
+            document.getElementById('modalQuantity').value = 1;
+            document.getElementById('modalReturnUrl').value = returnUrl;
             var modal = new bootstrap.Modal(document.getElementById('addToCartModal'));
+            modal.show();
+        }
+
+        function showReviewModal() {
+            document.getElementById('userName').value = '';
+            document.getElementById('userEmail').value = '';
+            document.getElementById('text').value = '';
+            var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
+            modal.show();
+        }
+
+        function showDeleteReviewModal(reviewId, productId) {
+            document.getElementById('deleteReviewId').value = reviewId;
+            document.getElementById('deleteProductId').value = productId;
+            var modal = new bootstrap.Modal(document.getElementById('deleteReviewModal'));
             modal.show();
         }
     </script>

@@ -38,7 +38,7 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.Customer", b =>
@@ -68,7 +68,7 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.DeliveryService", b =>
@@ -91,7 +91,7 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DeliveryServices");
+                    b.ToTable("DeliveryServices", (string)null);
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.Order", b =>
@@ -122,7 +122,7 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     b.HasIndex("StatusTypeId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.OrderItem", b =>
@@ -148,7 +148,7 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.Product", b =>
@@ -185,21 +185,24 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.Review", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -207,12 +210,21 @@ namespace OnlineStoreInfrastructure.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.HasKey("CustomerId", "ProductId")
-                        .HasName("PK_Reviews_1");
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.StatuseType", b =>
@@ -230,7 +242,7 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("StatuseTypes");
+                    b.ToTable("StatuseTypes", (string)null);
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.Order", b =>
@@ -294,12 +306,13 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.HasOne("OnlineStoreDomain.Model.Customer", "Customer")
                         .WithMany("Reviews")
                         .HasForeignKey("CustomerId")
-                        .IsRequired()
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_Reviews_Customers");
 
                     b.HasOne("OnlineStoreDomain.Model.Product", "Product")
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Reviews_Products");
 
