@@ -30,13 +30,13 @@
         </dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Quantity)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Quantity)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Price)</dt>
+        <dd class="col-sm-10">@Model.Price.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Category)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Category.Name)</dd>
     </dl>
 
-    <!-- Кнопки дій -->
     <div class="mt-3">
-        <!-- У блоці кнопок дій -->
         @if (ViewBag.ReturnAll)
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnTo="Details" asp-route-returnAll="true" class="btn btn-primary me-2">Редагувати</a>
@@ -51,7 +51,6 @@
         }
     </div>
 
-    <!-- Список відгуків -->
     <hr />
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h3 class="mb-0">Відгуки</h3>
@@ -87,7 +86,6 @@
         </div>
     }
 
-    <!-- Модальне вікно для кошика -->
     <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -114,7 +112,6 @@
         </div>
     </div>
 
-    <!-- Модальне вікно для відгуку -->
     <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -151,7 +148,6 @@
         </div>
     </div>
 
-    <!-- Модальне вікно для оцінки -->
     <div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -205,7 +201,6 @@
         </div>
     </div>
 
-    <!-- Модальне вікно для видалення відгуку -->
     <div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

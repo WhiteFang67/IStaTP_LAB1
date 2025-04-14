@@ -29,18 +29,20 @@
     <table class="table table-dark table-hover">
         <thead>
             <tr>
-                <th style="width: 47%;">@Html.DisplayNameFor(model => model.Name)</th>
-                <th style="width: 25%;">@Html.DisplayNameFor(model => model.Category)</th>
-                <th style="width: 28%;">Дії</th>
+                <th style="width: 35%;">@Html.DisplayNameFor(model => model.Name)</th>
+                <th style="width: 23%;">@Html.DisplayNameFor(model => model.Category)</th>
+                <th style="width: 15%;">@Html.DisplayNameFor(model => model.Price)</th>
+                <th style="width: 27%;">Дії</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr class="table-light">
-                    <td style="width: 47%;">@Html.DisplayFor(modelItem => item.Name)</td>
-                    <td style="width: 25%;">@Html.DisplayFor(modelItem => item.Category.Name)</td>
-                    <td style="width: 28%;">
+                    <td style="width: 35%;">@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td style="width: 23%;">@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                    <td style="width: 15%;">@item.Price.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
+                    <td style="width: 27%;">
                         @if (ViewBag.CategoryId == null)
                         {
                             <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnTo="Index" asp-route-returnAll="true" class="btn btn-sm btn-primary me-1">Редагувати</a>
@@ -61,7 +63,6 @@
         </tbody>
     </table>
 
-    <!-- Модальне вікно -->
     <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -95,7 +96,7 @@
             document.getElementById('modalProductId').value = productId;
             document.getElementById('modalProductName').innerText = productName;
             document.getElementById('modalQuantity').max = maxQuantity;
-            document.getElementById('modalQuantity').value = 1; // Скидаємо до 1 за замовчуванням
+            document.getElementById('modalQuantity').value = 1;
             document.getElementById('modalReturnUrl').value = returnUrl;
             var modal = new bootstrap.Modal(document.getElementById('addToCartModal'));
             modal.show();

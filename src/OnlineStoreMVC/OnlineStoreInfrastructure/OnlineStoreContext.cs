@@ -51,7 +51,7 @@ public partial class OnlineStoreContext : DbContext
 
         modelBuilder.Entity<DeliveryService>(entity =>
         {
-            entity.Property(e => e.Departmets).HasMaxLength(500);
+            entity.Property(e => e.Departments).HasMaxLength(500); // Виправлено
             entity.Property(e => e.Name).HasMaxLength(30);
         });
 
@@ -93,6 +93,7 @@ public partial class OnlineStoreContext : DbContext
             entity.Property(e => e.Characteristics).HasMaxLength(1000);
             entity.Property(e => e.GeneralInfo).HasMaxLength(400);
             entity.Property(e => e.Name).HasMaxLength(50);
+            entity.Property(e => e.Price).HasColumnType("decimal(18,2)"); // Nullable за замовчуванням
 
             entity.HasOne(d => d.Category).WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)
@@ -102,18 +103,18 @@ public partial class OnlineStoreContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.Id); 
+            entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Text).HasMaxLength(1000);
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.CustomerId)
-                .OnDelete(DeleteBehavior.SetNull) 
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_Reviews_Customers");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.ProductId)
-                .OnDelete(DeleteBehavior.Cascade) 
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Reviews_Products");
         });
 
@@ -129,7 +130,7 @@ public partial class OnlineStoreContext : DbContext
             entity.HasOne(d => d.Customer)
                 .WithMany(p => p.ProductRatings)
                 .HasForeignKey(d => d.CustomerId)
-                .OnDelete(DeleteBehavior.Cascade) // Видалення покупця видаляє його оцінки
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_ProductRatings_Customers");
 
             entity.HasOne(d => d.Product)
@@ -138,9 +139,21 @@ public partial class OnlineStoreContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_ProductRatings_Products");
 
-            // Унікальність: один користувач може оцінити товар лише раз
             entity.HasIndex(e => new { e.CustomerId, e.ProductId }).IsUnique();
         });
+
+        // Початкові дані
+        modelBuilder.Entity<StatuseType>().HasData(
+            new StatuseType { Id = 1, Name = "В обробці" },
+            new StatuseType { Id = 2, Name = "Відправлено" },
+            new StatuseType { Id = 3, Name = "Доставлено" },
+            new StatuseType { Id = 4, Name = "Скасовано" }
+        );
+
+        modelBuilder.Entity<DeliveryService>().HasData(
+            new DeliveryService { Id = 1, Name = "Нова Пошта", Departments = "Усі відділення" },
+            new DeliveryService { Id = 2, Name = "Укрпошта", Departments = "Усі відділення" }
+        );
 
         OnModelCreatingPartial(modelBuilder);
     }

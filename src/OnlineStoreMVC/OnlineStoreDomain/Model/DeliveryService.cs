@@ -5,7 +5,7 @@ namespace OnlineStoreDomain.Model;
 
 public partial class DeliveryService : Entity
 {
-    public string Departmets { get; set; } = null!;
+    public string Departments { get; set; } = null!;
 
     public string Name { get; set; } = null!;
 

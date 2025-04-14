@@ -21,11 +21,16 @@ public partial class Product : Entity
     public string? Characteristics { get; set; }
 
     [Display(Name = "Рейтинг")]
-    public float? Ratings { get; set; } // Середній рейтинг, обчислюється на основі ProductRatings
+    public float? Ratings { get; set; }
 
     [Range(0, int.MaxValue, ErrorMessage = "Кількість не може бути від’ємною")]
     [Display(Name = "Кількість")]
     public int Quantity { get; set; }
+
+    [Required(ErrorMessage = "Ціна є обов’язковою")]
+    [Range(0.01, double.MaxValue, ErrorMessage = "Ціна повинна бути більшою за 0")]
+    [Display(Name = "Ціна")]
+    public decimal Price { get; set; }
 
     [Display(Name = "Категорія")]
     public virtual Category Category { get; set; } = null!;

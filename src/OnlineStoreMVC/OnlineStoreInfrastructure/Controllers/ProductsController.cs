@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +18,6 @@ namespace OnlineStoreInfrastructure.Controllers
             _context = context;
         }
 
-        // GET: Products
         public async Task<IActionResult> Index(int? id, string? name, bool all = false)
         {
             var products = _context.Products.Include(p => p.Category).AsQueryable();
@@ -45,8 +43,8 @@ namespace OnlineStoreInfrastructure.Controllers
             }
 
             var product = await _context.Products
-                .Include(p => p.Category) // Завантажуємо категорію
-                .Include(p => p.Reviews)  // Завантажуємо відгуки
+                .Include(p => p.Category)
+                .Include(p => p.Reviews)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (product == null)
@@ -61,24 +59,22 @@ namespace OnlineStoreInfrastructure.Controllers
             return View(product);
         }
 
-        // GET: Products/Create
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
-        // POST: Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,Name,GeneralInfo,Characteristics,Quantity")] Product product)
+        public async Task<IActionResult> Create([Bind("CategoryId,Name,GeneralInfo,Characteristics,Quantity,Price")] Product product)
         {
             Console.WriteLine("Сирі дані з форми:");
             foreach (var key in Request.Form.Keys)
             {
                 Console.WriteLine($"{key}: {Request.Form[key]}");
             }
-            Console.WriteLine($"Product: CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Quantity={product.Quantity}");
+            Console.WriteLine($"Product: CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Quantity={product.Quantity}, Price={product.Price}");
 
             ModelState.Clear();
 
@@ -101,6 +97,11 @@ namespace OnlineStoreInfrastructure.Controllers
                 ModelState.AddModelError("Quantity", "Кількість не може бути від’ємною.");
             }
 
+            if (product.Price <= 0)
+            {
+                ModelState.AddModelError("Price", "Ціна повинна бути більшою за 0.");
+            }
+
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.SelectMany(x => x.Value.Errors).Select(x => x.ErrorMessage);
@@ -112,7 +113,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
             try
             {
-                product.Ratings = null; // Явно задаємо Ratings як null при створенні
+                product.Ratings = null;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 Console.WriteLine("Товар успішно створено");
@@ -127,7 +128,6 @@ namespace OnlineStoreInfrastructure.Controllers
             }
         }
 
-        // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id, string returnTo = "Index", bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (id == null)
@@ -141,7 +141,7 @@ namespace OnlineStoreInfrastructure.Controllers
                 return NotFound();
             }
 
-            Console.WriteLine($"Завантажено продукт: Id={product.Id}, Quantity={product.Quantity}");
+            Console.WriteLine($"Завантажено продукт: Id={product.Id}, Quantity={product.Quantity}, Price={product.Price}");
 
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             ViewBag.ReturnTo = returnTo;
@@ -153,10 +153,9 @@ namespace OnlineStoreInfrastructure.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,GeneralInfo,Characteristics,Quantity,Id")] Product product, string returnTo = "Index", bool returnAll = false, int? returnId = null, string returnName = null)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,GeneralInfo,Characteristics,Quantity,Price,Id")] Product product, string returnTo = "Index", bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (id != product.Id)
             {
@@ -168,7 +167,7 @@ namespace OnlineStoreInfrastructure.Controllers
             {
                 Console.WriteLine($"{key}: {Request.Form[key]}");
             }
-            Console.WriteLine($"Product: Id={product.Id}, CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Quantity={product.Quantity}");
+            Console.WriteLine($"Product: Id={product.Id}, CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Quantity={product.Quantity}, Price={product.Price}");
 
             ModelState.Clear();
 
@@ -189,6 +188,11 @@ namespace OnlineStoreInfrastructure.Controllers
             if (product.Quantity < 0)
             {
                 ModelState.AddModelError("Quantity", "Кількість не може бути від’ємною.");
+            }
+
+            if (product.Price <= 0)
+            {
+                ModelState.AddModelError("Price", "Ціна повинна бути більшою за 0.");
             }
 
             if (!ModelState.IsValid)
@@ -213,12 +217,12 @@ namespace OnlineStoreInfrastructure.Controllers
                     return NotFound();
                 }
 
-                // Оновлюємо тільки дозволені поля, Ratings залишаємо недоторканим
                 existingProduct.CategoryId = product.CategoryId;
                 existingProduct.Name = product.Name;
                 existingProduct.GeneralInfo = product.GeneralInfo;
                 existingProduct.Characteristics = product.Characteristics;
                 existingProduct.Quantity = product.Quantity;
+                existingProduct.Price = product.Price;
 
                 _context.Update(existingProduct);
                 await _context.SaveChangesAsync();
@@ -252,7 +256,6 @@ namespace OnlineStoreInfrastructure.Controllers
             }
         }
 
-        // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id, bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (id == null)
@@ -268,7 +271,7 @@ namespace OnlineStoreInfrastructure.Controllers
                 return NotFound();
             }
 
-            Console.WriteLine($"Завантажено продукт для видалення: Id={product.Id}, Quantity={product.Quantity}"); // Додано для дебагу
+            Console.WriteLine($"Завантажено продукт для видалення: Id={product.Id}, Quantity={product.Quantity}, Price={product.Price}");
 
             ViewBag.ReturnAll = returnAll;
             ViewBag.ReturnId = returnId;
@@ -277,7 +280,6 @@ namespace OnlineStoreInfrastructure.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, bool returnAll = false, int? returnId = null, string returnName = null)
