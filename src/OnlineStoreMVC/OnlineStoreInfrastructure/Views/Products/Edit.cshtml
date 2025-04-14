@@ -43,38 +43,42 @@
             </div>
 
             <div class="mb-3">
-                <label asp-for="Ratings" class="form-label">Рейтинг</label>
-                <input asp-for="Ratings" class="form-control" type="number" min="1" max="10" step="1" />
-                <span asp-validation-for="Ratings" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
                 <label asp-for="Quantity" class="form-label">Кількість</label>
                 <input asp-for="Quantity" class="form-control" type="number" min="0" step="1" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
 
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" name="returnTo" value="@ViewBag.ReturnTo" />
             <input type="hidden" name="returnAll" value="@(ViewBag.ReturnAll?.ToString().ToLower() ?? "false")" />
             <input type="hidden" name="returnId" value="@ViewBag.ReturnId" />
             <input type="hidden" name="returnName" value="@ViewBag.ReturnName" />
 
             <div class="d-flex">
                 <button type="submit" class="btn btn-primary me-2">Зберегти</button>
-                @if (ViewBag.ReturnAll)
+                @if (ViewBag.ReturnTo == "Details")
                 {
-                    <a asp-action="Index" asp-controller="Products" asp-route-all="true" class="btn btn-secondary">Скасувати</a>
+                    @if (ViewBag.ReturnAll)
+                    {
+                        <a asp-action="Details" asp-controller="Products" asp-route-id="@ViewBag.ProductId" asp-route-returnAll="true" class="btn btn-secondary">Скасувати</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Details" asp-controller="Products" asp-route-id="@ViewBag.ProductId" asp-route-returnId="@ViewBag.ReturnId" asp-route-returnName="@ViewBag.ReturnName" class="btn btn-secondary">Скасувати</a>
+                    }
                 }
                 else
                 {
-                    <a asp-action="Index" asp-controller="Products" asp-route-id="@ViewBag.ReturnId" asp-route-name="@ViewBag.ReturnName" class="btn btn-secondary">Скасувати</a>
+                    @if (ViewBag.ReturnAll)
+                    {
+                        <a asp-action="Index" asp-controller="Products" asp-route-all="true" class="btn btn-secondary">Скасувати</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Index" asp-controller="Products" asp-route-id="@ViewBag.ReturnId" asp-route-name="@ViewBag.ReturnName" class="btn btn-secondary">Скасувати</a>
+                    }
                 }
             </div>
         </form>
     </div>
 </div>
-
-@* Клієнтська валідація відключена *@
-@* @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-} *@

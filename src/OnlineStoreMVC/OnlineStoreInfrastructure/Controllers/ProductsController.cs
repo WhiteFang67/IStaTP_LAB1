@@ -71,25 +71,22 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,Name,GeneralInfo,Characteristics,Ratings,Quantity")] Product product)
+        public async Task<IActionResult> Create([Bind("CategoryId,Name,GeneralInfo,Characteristics,Quantity")] Product product)
         {
             Console.WriteLine("Сирі дані з форми:");
             foreach (var key in Request.Form.Keys)
             {
                 Console.WriteLine($"{key}: {Request.Form[key]}");
             }
-            Console.WriteLine($"Product: CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Ratings={product.Ratings}, Quantity={product.Quantity}");
+            Console.WriteLine($"Product: CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Quantity={product.Quantity}");
 
-            // Очищаємо ModelState і додаємо ручну валідацію
             ModelState.Clear();
 
-            // Валідація CategoryId
             if (product.CategoryId <= 0 || !_context.Categories.Any(c => c.Id == product.CategoryId))
             {
                 ModelState.AddModelError("CategoryId", "Обрана категорія не існує або не вибрана.");
             }
 
-            // Валідація Name
             if (string.IsNullOrEmpty(product.Name))
             {
                 ModelState.AddModelError("Name", "Назва продукту обов’язкова.");
@@ -99,13 +96,6 @@ namespace OnlineStoreInfrastructure.Controllers
                 ModelState.AddModelError("Name", "Товар із такою назвою уже існує в цій категорії.");
             }
 
-            // Валідація Ratings
-            if (product.Ratings.HasValue && (product.Ratings < 1 || product.Ratings > 10))
-            {
-                ModelState.AddModelError("Ratings", "Рейтинг має бути від 1 до 10.");
-            }
-
-            // Валідація Quantity
             if (product.Quantity < 0)
             {
                 ModelState.AddModelError("Quantity", "Кількість не може бути від’ємною.");
@@ -122,6 +112,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
             try
             {
+                product.Ratings = null; // Явно задаємо Ratings як null при створенні
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 Console.WriteLine("Товар успішно створено");
@@ -137,7 +128,7 @@ namespace OnlineStoreInfrastructure.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id, bool returnAll = false, int? returnId = null, string returnName = null)
+        public async Task<IActionResult> Edit(int? id, string returnTo = "Index", bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (id == null)
             {
@@ -150,12 +141,14 @@ namespace OnlineStoreInfrastructure.Controllers
                 return NotFound();
             }
 
-            Console.WriteLine($"Завантажено продукт: Id={product.Id}, Quantity={product.Quantity}"); // Додано для дебагу
+            Console.WriteLine($"Завантажено продукт: Id={product.Id}, Quantity={product.Quantity}");
 
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.ReturnTo = returnTo;
             ViewBag.ReturnAll = returnAll;
             ViewBag.ReturnId = returnId;
             ViewBag.ReturnName = returnName;
+            ViewBag.ProductId = id;
 
             return View(product);
         }
@@ -163,7 +156,7 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,GeneralInfo,Characteristics,Ratings,Quantity,Id")] Product product, bool returnAll = false, int? returnId = null, string returnName = null)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,GeneralInfo,Characteristics,Quantity,Id")] Product product, string returnTo = "Index", bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (id != product.Id)
             {
@@ -175,10 +168,8 @@ namespace OnlineStoreInfrastructure.Controllers
             {
                 Console.WriteLine($"{key}: {Request.Form[key]}");
             }
-            Console.WriteLine($"Product: Id={product.Id}, CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Ratings={product.Ratings}, Quantity={product.Quantity}");
-            Console.WriteLine($"returnAll: {returnAll}, returnId: {returnId}, returnName: {returnName}");
+            Console.WriteLine($"Product: Id={product.Id}, CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Quantity={product.Quantity}");
 
-            // Очищаємо ModelState і додаємо ручну валідацію
             ModelState.Clear();
 
             if (product.CategoryId <= 0 || !_context.Categories.Any(c => c.Id == product.CategoryId))
@@ -195,12 +186,6 @@ namespace OnlineStoreInfrastructure.Controllers
                 ModelState.AddModelError("Name", "Товар із такою назвою уже існує в цій категорії.");
             }
 
-            if (product.Ratings.HasValue && (product.Ratings < 1 || product.Ratings > 10))
-            {
-                ModelState.AddModelError("Ratings", "Рейтинг має бути від 1 до 10.");
-            }
-
-            // Валідація Quantity
             if (product.Quantity < 0)
             {
                 ModelState.AddModelError("Quantity", "Кількість не може бути від’ємною.");
@@ -212,9 +197,11 @@ namespace OnlineStoreInfrastructure.Controllers
                 TempData["ValidationErrors"] = string.Join("; ", errors);
                 Console.WriteLine("Помилки валідації: " + TempData["ValidationErrors"]);
                 ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+                ViewBag.ReturnTo = returnTo;
                 ViewBag.ReturnAll = returnAll;
                 ViewBag.ReturnId = returnId;
                 ViewBag.ReturnName = returnName;
+                ViewBag.ProductId = id;
                 return View(product);
             }
 
@@ -226,17 +213,25 @@ namespace OnlineStoreInfrastructure.Controllers
                     return NotFound();
                 }
 
+                // Оновлюємо тільки дозволені поля, Ratings залишаємо недоторканим
                 existingProduct.CategoryId = product.CategoryId;
                 existingProduct.Name = product.Name;
                 existingProduct.GeneralInfo = product.GeneralInfo;
                 existingProduct.Characteristics = product.Characteristics;
-                existingProduct.Ratings = product.Ratings;
-                existingProduct.Quantity = product.Quantity; // Оновлюємо Quantity
+                existingProduct.Quantity = product.Quantity;
 
                 _context.Update(existingProduct);
                 await _context.SaveChangesAsync();
                 Console.WriteLine("Збереження виконано");
 
+                if (returnTo == "Details")
+                {
+                    if (returnAll)
+                    {
+                        return RedirectToAction("Details", new { id = product.Id, returnAll = true });
+                    }
+                    return RedirectToAction("Details", new { id = product.Id, returnId = returnId, returnName = returnName });
+                }
                 if (returnAll)
                 {
                     return RedirectToAction(nameof(Index), new { all = true });
@@ -248,9 +243,11 @@ namespace OnlineStoreInfrastructure.Controllers
                 ModelState.AddModelError("", $"Помилка при збереженні: {ex.Message}");
                 Console.WriteLine($"Виняток: {ex.Message}");
                 ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+                ViewBag.ReturnTo = returnTo;
                 ViewBag.ReturnAll = returnAll;
                 ViewBag.ReturnId = returnId;
                 ViewBag.ReturnName = returnName;
+                ViewBag.ProductId = id;
                 return View(product);
             }
         }

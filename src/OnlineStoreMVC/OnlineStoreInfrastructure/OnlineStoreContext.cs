@@ -23,6 +23,7 @@ public partial class OnlineStoreContext : DbContext
     public virtual DbSet<Product> Products { get; set; }
     public virtual DbSet<Review> Reviews { get; set; }
     public virtual DbSet<StatuseType> StatuseTypes { get; set; }
+    public virtual DbSet<ProductRating> ProductRatings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -101,24 +102,44 @@ public partial class OnlineStoreContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.Id); // Використовуємо Id як первинний ключ
+            entity.HasKey(e => e.Id); 
 
             entity.Property(e => e.Text).HasMaxLength(1000);
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.CustomerId)
-                .OnDelete(DeleteBehavior.SetNull) // Дозволяємо null при видаленні Customer
+                .OnDelete(DeleteBehavior.SetNull) 
                 .HasConstraintName("FK_Reviews_Customers");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.ProductId)
-                .OnDelete(DeleteBehavior.Cascade) // Видаляємо відгуки при видаленні продукту
+                .OnDelete(DeleteBehavior.Cascade) 
                 .HasConstraintName("FK_Reviews_Products");
         });
 
         modelBuilder.Entity<StatuseType>(entity =>
         {
             entity.Property(e => e.Name).HasMaxLength(20);
+        });
+
+        modelBuilder.Entity<ProductRating>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.HasOne(d => d.Customer)
+                .WithMany(p => p.ProductRatings)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade) // Видалення покупця видаляє його оцінки
+                .HasConstraintName("FK_ProductRatings_Customers");
+
+            entity.HasOne(d => d.Product)
+                .WithMany(p => p.ProductRatings)
+                .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ProductRatings_Products");
+
+            // Унікальність: один користувач може оцінити товар лише раз
+            entity.HasIndex(e => new { e.CustomerId, e.ProductId }).IsUnique();
         });
 
         OnModelCreatingPartial(modelBuilder);

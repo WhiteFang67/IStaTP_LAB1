@@ -5,7 +5,10 @@
 }
 
 <div class="container mt-4 p-4 bg-light shadow rounded">
-    <h1 class="mb-4 text-black">Деталі товару</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-black">Деталі товару</h1>
+        <button type="button" class="btn btn-primary btn-sm" onclick="showRatingModal()">Оцінити</button>
+    </div>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
@@ -15,7 +18,16 @@
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Characteristics)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Characteristics)</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Ratings)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Ratings)</dd>
+        <dd class="col-sm-10">
+            @if (Model.Ratings.HasValue)
+            {
+                @Model.Ratings.Value.ToString("F2")
+            }
+            else
+            {
+                <span>Без оцінки</span>
+            }
+        </dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Quantity)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Quantity)</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Category)</dt>
@@ -24,15 +36,16 @@
 
     <!-- Кнопки дій -->
     <div class="mt-3">
+        <!-- У блоці кнопок дій -->
         @if (ViewBag.ReturnAll)
         {
-            <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnAll="true" class="btn btn-primary me-2">Редагувати</a>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnTo="Details" asp-route-returnAll="true" class="btn btn-primary me-2">Редагувати</a>
             <button type="button" class="btn btn-success me-2" onclick="showAddToCartModal('@Model.Id', '@Model.Name', @Model.Quantity, '@Url.Action("Details", "Products", new { id = Model.Id, returnAll = true })')">У кошик</button>
             <a asp-action="Index" asp-controller="Products" asp-route-all="true" class="btn btn-secondary">Повернутись до списку</a>
         }
         else
         {
-            <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnId="@ViewBag.ReturnId" asp-route-returnName="@ViewBag.ReturnName" class="btn btn-primary me-2">Редагувати</a>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnTo="Details" asp-route-returnId="@ViewBag.ReturnId" asp-route-returnName="@ViewBag.ReturnName" class="btn btn-primary me-2">Редагувати</a>
             <button type="button" class="btn btn-success me-2" onclick="showAddToCartModal('@Model.Id', '@Model.Name', @Model.Quantity, '@Url.Action("Details", "Products", new { id = Model.Id, returnId = ViewBag.ReturnId, returnName = ViewBag.ReturnName })')">У кошик</button>
             <a asp-action="Index" asp-controller="Products" asp-route-id="@ViewBag.ReturnId" asp-route-name="@ViewBag.ReturnName" class="btn btn-secondary">Повернутись до списку</a>
         }
@@ -138,7 +151,61 @@
         </div>
     </div>
 
-    <!-- Модальне вікно для підтвердження видалення відгуку -->
+    <!-- Модальне вікно для оцінки -->
+    <div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ratingModalLabel">Оцінити товар</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if (TempData["RatingError"] != null)
+                    {
+                        <div class="alert alert-danger">@TempData["RatingError"]</div>
+                    }
+                    else if (!User.Identity.IsAuthenticated)
+                    {
+                        <p>Будь ласка, увійдіть, щоб оцінити товар.</p>
+                    }
+                    else
+                    {
+                        var customerId = User.Identity.IsAuthenticated ? int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value) : 0;
+                        var hasRated = Model.ProductRatings.Any(r => r.CustomerId == customerId);
+                        if (hasRated)
+                        {
+                            <p>Ви вже оцінили цей товар.</p>
+                            <form id="deleteRatingForm" asp-controller="ProductRatings" asp-action="Delete" method="post">
+                                <input type="hidden" name="productId" value="@Model.Id" />
+                                <button type="submit" class="btn btn-danger">Видалити оцінку</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form id="ratingForm" asp-controller="ProductRatings" asp-action="Rate" method="post">
+                                <input type="hidden" name="productId" value="@Model.Id" />
+                                <div class="mb-3">
+                                    <label for="rating" class="form-label">Оцінка (0–5):</label>
+                                    <select id="rating" name="rating" class="form-select">
+                                        @for (float i = 0; i <= 5; i += 0.5f)
+                                        {
+                                            <option value="@i">@i.ToString("F1")</option>
+                                        }
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Оцінити</button>
+                            </form>
+                        }
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальне вікно для видалення відгуку -->
     <div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -186,6 +253,11 @@
             document.getElementById('deleteReviewId').value = reviewId;
             document.getElementById('deleteProductId').value = productId;
             var modal = new bootstrap.Modal(document.getElementById('deleteReviewModal'));
+            modal.show();
+        }
+
+        function showRatingModal() {
+            var modal = new bootstrap.Modal(document.getElementById('ratingModal'));
             modal.show();
         }
     </script>

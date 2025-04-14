@@ -20,9 +20,8 @@ public partial class Product : Entity
     [Display(Name = "Характеристики")]
     public string? Characteristics { get; set; }
 
-    [Range(1, 10, ErrorMessage = "Рейтинг має бути від 1 до 10")]
     [Display(Name = "Рейтинг")]
-    public short? Ratings { get; set; }
+    public float? Ratings { get; set; } // Середній рейтинг, обчислюється на основі ProductRatings
 
     [Range(0, int.MaxValue, ErrorMessage = "Кількість не може бути від’ємною")]
     [Display(Name = "Кількість")]
@@ -34,4 +33,6 @@ public partial class Product : Entity
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+
+    public virtual ICollection<ProductRating> ProductRatings { get; set; } = new List<ProductRating>();
 }
