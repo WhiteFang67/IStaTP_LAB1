@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Кошик";
+    decimal totalCost = Model.Sum(item => item.Quantity * item.Product.Price);
 }
 
 <div class="container mt-4 p-4 bg-light shadow rounded">
@@ -13,11 +14,12 @@
     }
     else
     {
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Товар</th>
                     <th>Кількість</th>
+                    <th>Вартість</th>
                     <th>Дії</th>
                 </tr>
             </thead>
@@ -27,6 +29,7 @@
                     <tr>
                         <td>@item.Product.Name</td>
                         <td>@item.Quantity</td>
+                        <td>@((item.Quantity * item.Product.Price).ToString("C", new System.Globalization.CultureInfo("uk-UA")))</td>
                         <td>
                             <form asp-action="RemoveFromCart" method="post" class="d-inline">
                                 <input type="hidden" name="id" value="@item.Id" />
@@ -39,5 +42,12 @@
         </table>
     }
 
-    <a asp-action="Index" asp-controller="Products" class="btn btn-secondary">Повернутися до товарів</a>
+    <div class="d-flex align-items-center mt-3">
+        @if (Model.Count > 0)
+        {
+            <span class="me-3">Загальна вартість: @totalCost.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</span>
+            <a asp-action="Create" asp-controller="Orders" class="btn btn-primary me-2">Оформити замовлення</a>
+        }
+        <a asp-action="Index" asp-controller="Products" class="btn btn-secondary">Список товарів</a>
+    </div>
 </div>
