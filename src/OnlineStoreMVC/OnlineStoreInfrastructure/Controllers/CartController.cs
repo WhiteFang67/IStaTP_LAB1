@@ -52,6 +52,7 @@ namespace OnlineStoreInfrastructure.Controllers
                     return Redirect(returnUrl ?? Url.Action("Index", "Products", new { all = true }));
                 }
                 cartItem.Quantity += quantity;
+                cartItem.TotalPrice = cartItem.Quantity * product.Price; // Оновлення TotalPrice
             }
             else
             {
@@ -59,6 +60,7 @@ namespace OnlineStoreInfrastructure.Controllers
                 {
                     ProductId = productId,
                     Quantity = quantity,
+                    TotalPrice = quantity * product.Price, // Встановлення TotalPrice
                     OrderId = null
                 };
                 _context.OrderItems.Add(cartItem);

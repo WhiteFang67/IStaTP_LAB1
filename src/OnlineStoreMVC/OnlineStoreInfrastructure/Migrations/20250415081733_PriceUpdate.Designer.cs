@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineStoreInfrastructure;
 
@@ -11,9 +12,11 @@ using OnlineStoreInfrastructure;
 namespace OnlineStoreInfrastructure.Migrations
 {
     [DbContext(typeof(OnlineStoreContext))]
-    partial class OnlineStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20250415081733_PriceUpdate")]
+    partial class PriceUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,29 +74,6 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("OnlineStoreDomain.Model.DeliveryDepartment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DeliveryServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DeliveryServiceId");
-
-                    b.ToTable("DeliveryDepartments");
-                });
-
             modelBuilder.Entity("OnlineStoreDomain.Model.DeliveryService", b =>
                 {
                     b.Property<int>("Id")
@@ -101,6 +81,11 @@ namespace OnlineStoreInfrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Departments")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -110,6 +95,20 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DeliveryServices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Departments = "Усі відділення",
+                            Name = "Нова Пошта"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Departments = "Усі відділення",
+                            Name = "Укрпошта"
+                        });
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.Order", b =>
@@ -120,38 +119,15 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DeliveryDepartmentId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("DeliveryServiceId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<decimal>("OrderPrice")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("RegistrationDate")
                         .HasColumnType("datetime");
@@ -162,8 +138,6 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("DeliveryDepartmentId");
 
                     b.HasIndex("DeliveryServiceId");
 
@@ -308,7 +282,7 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.ToTable("Reviews");
                 });
 
-            modelBuilder.Entity("OnlineStoreDomain.Model.StatusType", b =>
+            modelBuilder.Entity("OnlineStoreDomain.Model.StatuseType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -323,19 +297,29 @@ namespace OnlineStoreInfrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("StatusTypes");
-                });
+                    b.ToTable("StatuseTypes");
 
-            modelBuilder.Entity("OnlineStoreDomain.Model.DeliveryDepartment", b =>
-                {
-                    b.HasOne("OnlineStoreDomain.Model.DeliveryService", "DeliveryService")
-                        .WithMany("DeliveryDepartments")
-                        .HasForeignKey("DeliveryServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_DeliveryDepartments_DeliveryServices");
-
-                    b.Navigation("DeliveryService");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "В обробці"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Відправлено"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Доставлено"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Скасовано"
+                        });
                 });
 
             modelBuilder.Entity("OnlineStoreDomain.Model.Order", b =>
@@ -343,15 +327,8 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.HasOne("OnlineStoreDomain.Model.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .HasConstraintName("FK_Orders_Customers");
-
-                    b.HasOne("OnlineStoreDomain.Model.DeliveryDepartment", "DeliveryDepartment")
-                        .WithMany()
-                        .HasForeignKey("DeliveryDepartmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
-                        .HasConstraintName("FK_Orders_DeliveryDepartments");
+                        .HasConstraintName("FK_Orders_Customers");
 
                     b.HasOne("OnlineStoreDomain.Model.DeliveryService", "DeliveryService")
                         .WithMany("Orders")
@@ -359,15 +336,13 @@ namespace OnlineStoreInfrastructure.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Orders_DeliveryServices");
 
-                    b.HasOne("OnlineStoreDomain.Model.StatusType", "StatusType")
+                    b.HasOne("OnlineStoreDomain.Model.StatuseType", "StatusType")
                         .WithMany("Orders")
                         .HasForeignKey("StatusTypeId")
                         .IsRequired()
-                        .HasConstraintName("FK_Orders_StatusTypes");
+                        .HasConstraintName("FK_Orders_StatuseTypes");
 
                     b.Navigation("Customer");
-
-                    b.Navigation("DeliveryDepartment");
 
                     b.Navigation("DeliveryService");
 
@@ -379,7 +354,6 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.HasOne("OnlineStoreDomain.Model.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("FK_OrderItems_Orders");
 
                     b.HasOne("OnlineStoreDomain.Model.Product", "Product")
@@ -461,8 +435,6 @@ namespace OnlineStoreInfrastructure.Migrations
 
             modelBuilder.Entity("OnlineStoreDomain.Model.DeliveryService", b =>
                 {
-                    b.Navigation("DeliveryDepartments");
-
                     b.Navigation("Orders");
                 });
 
@@ -480,7 +452,7 @@ namespace OnlineStoreInfrastructure.Migrations
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("OnlineStoreDomain.Model.StatusType", b =>
+            modelBuilder.Entity("OnlineStoreDomain.Model.StatuseType", b =>
                 {
                     b.Navigation("Orders");
                 });

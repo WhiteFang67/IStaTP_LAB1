@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OnlineStoreDomain.Model;
 
-public partial class StatuseType : Entity
+public partial class StatusType : Entity
 {
     public string Name { get; set; } = null!;
 

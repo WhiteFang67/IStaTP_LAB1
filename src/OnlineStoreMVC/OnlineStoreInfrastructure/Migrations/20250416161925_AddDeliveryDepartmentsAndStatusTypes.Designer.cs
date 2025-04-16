@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineStoreInfrastructure;
 
@@ -11,9 +12,11 @@ using OnlineStoreInfrastructure;
 namespace OnlineStoreInfrastructure.Migrations
 {
     [DbContext(typeof(OnlineStoreContext))]
-    partial class OnlineStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20250416161925_AddDeliveryDepartmentsAndStatusTypes")]
+    partial class AddDeliveryDepartmentsAndStatusTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,6 +104,11 @@ namespace OnlineStoreInfrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Departments")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
                         .IsRequired()

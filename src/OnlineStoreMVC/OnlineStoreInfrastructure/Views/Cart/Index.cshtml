@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Кошик";
-    decimal totalCost = Model.Sum(item => item.Quantity * item.Product.Price);
+    decimal totalCost = Model.Sum(item => item.TotalPrice);
 }
 
 <div class="container mt-4 p-4 bg-light shadow rounded">
@@ -29,7 +29,7 @@
                     <tr>
                         <td>@item.Product.Name</td>
                         <td>@item.Quantity</td>
-                        <td>@((item.Quantity * item.Product.Price).ToString("C", new System.Globalization.CultureInfo("uk-UA")))</td>
+                        <td>@item.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
                         <td>
                             <form asp-action="RemoveFromCart" method="post" class="d-inline">
                                 <input type="hidden" name="id" value="@item.Id" />
@@ -48,6 +48,6 @@
             <span class="me-3">Загальна вартість: @totalCost.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</span>
             <a asp-action="Create" asp-controller="Orders" class="btn btn-primary me-2">Оформити замовлення</a>
         }
-        <a asp-action="Index" asp-controller="Products" class="btn btn-secondary">Список товарів</a>
+        <a asp-action="Index" asp-controller="Products" class="btn btn-secondary">Повернутися до товарів</a>
     </div>
 </div>

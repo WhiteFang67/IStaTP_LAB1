@@ -1,0 +1,104 @@
+﻿@model OnlineStoreInfrastructure.Controllers.OrderCreateViewModel
+
+@{
+    ViewData["Title"] = "Оформлення замовлення";
+}
+
+<div class="container mt-4 p-4 bg-light shadow rounded">
+    <h1 class="mb-4 text-black">Оформлення замовлення</h1>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <form asp-action="Create" method="post">
+        <div class="row">
+            <!-- Контактні дані -->
+            <div class="col-md-6">
+                <h4>Контактні дані</h4>
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Ім’я</label>
+                    <input asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label">Прізвище</label>
+                    <input asp-for="LastName" class="form-control" required />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" type="email" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label">Телефон</label>
+                    <input asp-for="Phone" class="form-control" required />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DeliveryServiceId" class="form-label">Служба доставки</label>
+                    <select asp-for="DeliveryServiceId" class="form-select" asp-items="Model.DeliveryServices" required>
+                        <option value="">Оберіть службу доставки</option>
+                    </select>
+                    <span asp-validation-for="DeliveryServiceId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Список товарів -->
+            <div class="col-md-6">
+                <h4>Товари в замовленні</h4>
+                @if (Model.CartItems != null && Model.CartItems.Any())
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Товар</th>
+                                <th>Кількість</th>
+                                <th>Вартість</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <tr>
+                                    <td>@item.Product.Name</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <h5>Загальна вартість: @Model.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</h5>
+                }
+                else
+                {
+                    <p>Немає товарів для замовлення.</p>
+                }
+            </div>
+        </div>
+
+        <!-- Кнопки -->
+        <div class="mt-4 d-flex">
+            <button type="submit" class="btn btn-primary me-2">Замовити</button>
+            <a asp-action="Index" asp-controller="Cart" class="btn btn-secondary">Скасувати</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

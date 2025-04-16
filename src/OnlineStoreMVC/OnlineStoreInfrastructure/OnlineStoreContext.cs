@@ -18,11 +18,12 @@ public partial class OnlineStoreContext : DbContext
     public virtual DbSet<Category> Categories { get; set; }
     public virtual DbSet<Customer> Customers { get; set; }
     public virtual DbSet<DeliveryService> DeliveryServices { get; set; }
+    public virtual DbSet<DeliveryDepartment> DeliveryDepartments { get; set; }
     public virtual DbSet<Order> Orders { get; set; }
     public virtual DbSet<OrderItem> OrderItems { get; set; }
     public virtual DbSet<Product> Products { get; set; }
     public virtual DbSet<Review> Reviews { get; set; }
-    public virtual DbSet<StatuseType> StatuseTypes { get; set; }
+    public virtual DbSet<StatusType> StatusTypes { get; set; }
     public virtual DbSet<ProductRating> ProductRatings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -51,38 +52,65 @@ public partial class OnlineStoreContext : DbContext
 
         modelBuilder.Entity<DeliveryService>(entity =>
         {
-            entity.Property(e => e.Departments).HasMaxLength(500); // Виправлено
             entity.Property(e => e.Name).HasMaxLength(30);
+        });
+
+        modelBuilder.Entity<DeliveryDepartment>(entity =>
+        {
+            entity.Property(e => e.Name).HasMaxLength(50);
+            entity.HasOne(dd => dd.DeliveryService)
+                .WithMany(ds => ds.DeliveryDepartments)
+                .HasForeignKey(dd => dd.DeliveryServiceId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_DeliveryDepartments_DeliveryServices");
         });
 
         modelBuilder.Entity<Order>(entity =>
         {
             entity.Property(e => e.RegistrationDate).HasColumnType("datetime");
+            entity.Property(e => e.OrderPrice).HasPrecision(18, 2);
+            entity.Property(e => e.Name).HasMaxLength(50);
+            entity.Property(e => e.LastName).HasMaxLength(50);
+            entity.Property(e => e.Email).HasMaxLength(255);
+            entity.Property(e => e.Phone).HasMaxLength(20);
 
-            entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
+            entity.HasOne(d => d.Customer)
+                .WithMany(c => c.Orders)
                 .HasForeignKey(d => d.CustomerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_Orders_Customers");
 
-            entity.HasOne(d => d.DeliveryService).WithMany(p => p.Orders)
+            entity.HasOne(d => d.DeliveryService)
+                .WithMany(ds => ds.Orders)
                 .HasForeignKey(d => d.DeliveryServiceId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Orders_DeliveryServices");
 
-            entity.HasOne(d => d.StatusType).WithMany(p => p.Orders)
+            entity.HasOne(d => d.StatusType)
+                .WithMany(st => st.Orders)
                 .HasForeignKey(d => d.StatusTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Orders_StatuseTypes");
+                .HasConstraintName("FK_Orders_StatusTypes");
+
+            entity.HasOne(d => d.DeliveryDepartment)
+                .WithMany()
+                .HasForeignKey(d => d.DeliveryDepartmentId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("FK_Orders_DeliveryDepartments");
         });
 
         modelBuilder.Entity<OrderItem>(entity =>
         {
-            entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
+            entity.Property(e => e.TotalPrice).HasPrecision(18, 2);
+
+            entity.HasOne(d => d.Order)
+                .WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.OrderId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade) // Змінено на Cascade
                 .HasConstraintName("FK_OrderItems_Orders");
 
-            entity.HasOne(d => d.Product).WithMany(p => p.OrderItems)
+            entity.HasOne(d => d.Product)
+                .WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_OrderItems_Products");
@@ -93,9 +121,10 @@ public partial class OnlineStoreContext : DbContext
             entity.Property(e => e.Characteristics).HasMaxLength(1000);
             entity.Property(e => e.GeneralInfo).HasMaxLength(400);
             entity.Property(e => e.Name).HasMaxLength(50);
-            entity.Property(e => e.Price).HasColumnType("decimal(18,2)"); // Nullable за замовчуванням
+            entity.Property(e => e.Price).HasColumnType("decimal(18,2)");
 
-            entity.HasOne(d => d.Category).WithMany(p => p.Products)
+            entity.HasOne(d => d.Category)
+                .WithMany(p => p.Products)
                 .HasForeignKey(d => d.CategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Products_Categories");
@@ -103,30 +132,28 @@ public partial class OnlineStoreContext : DbContext
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.Id);
-
             entity.Property(e => e.Text).HasMaxLength(1000);
 
-            entity.HasOne(d => d.Customer).WithMany(p => p.Reviews)
+            entity.HasOne(d => d.Customer)
+                .WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_Reviews_Customers");
 
-            entity.HasOne(d => d.Product).WithMany(p => p.Reviews)
+            entity.HasOne(d => d.Product)
+                .WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Reviews_Products");
         });
 
-        modelBuilder.Entity<StatuseType>(entity =>
+        modelBuilder.Entity<StatusType>(entity =>
         {
             entity.Property(e => e.Name).HasMaxLength(20);
         });
 
         modelBuilder.Entity<ProductRating>(entity =>
         {
-            entity.HasKey(e => e.Id);
-
             entity.HasOne(d => d.Customer)
                 .WithMany(p => p.ProductRatings)
                 .HasForeignKey(d => d.CustomerId)
@@ -141,19 +168,6 @@ public partial class OnlineStoreContext : DbContext
 
             entity.HasIndex(e => new { e.CustomerId, e.ProductId }).IsUnique();
         });
-
-        // Початкові дані
-        modelBuilder.Entity<StatuseType>().HasData(
-            new StatuseType { Id = 1, Name = "В обробці" },
-            new StatuseType { Id = 2, Name = "Відправлено" },
-            new StatuseType { Id = 3, Name = "Доставлено" },
-            new StatuseType { Id = 4, Name = "Скасовано" }
-        );
-
-        modelBuilder.Entity<DeliveryService>().HasData(
-            new DeliveryService { Id = 1, Name = "Нова Пошта", Departments = "Усі відділення" },
-            new DeliveryService { Id = 2, Name = "Укрпошта", Departments = "Усі відділення" }
-        );
 
         OnModelCreatingPartial(modelBuilder);
     }
