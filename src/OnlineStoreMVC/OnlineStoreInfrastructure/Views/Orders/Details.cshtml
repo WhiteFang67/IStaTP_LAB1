@@ -1,0 +1,72 @@
+﻿@model OnlineStoreInfrastructure.Controllers.OrderDetailsViewModel
+
+@{
+    ViewData["Title"] = "Деталі замовлення";
+}
+
+<div class="container mt-4 p-4 bg-light shadow rounded">
+    <h1 class="mb-4 text-black">Деталі замовлення</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Контактні дані</h4>
+            <dl class="row">
+                <dt class="col-sm-4">Ім’я</dt>
+                <dd class="col-sm-8">@Model.Name</dd>
+                <dt class="col-sm-4">Прізвище</dt>
+                <dd class="col-sm-8">@Model.LastName</dd>
+                <dt class="col-sm-4">Email</dt>
+                <dd class="col-sm-8">@Model.Email</dd>
+                <dt class="col-sm-4">Телефон</dt>
+                <dd class="col-sm-8">@Model.Phone</dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <h4>Інформація про замовлення</h4>
+            <dl class="row">
+                <dt class="col-sm-4">Дата реєстрації</dt>
+                <dd class="col-sm-8">@Model.RegistrationDate.ToString("dd.MM.yyyy HH:mm")</dd>
+                <dt class="col-sm-4">Сума</dt>
+                <dd class="col-sm-8">@Model.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
+                <dt class="col-sm-4">Статус</dt>
+                <dd class="col-sm-8">@Model.StatusTypeName</dd>
+                <dt class="col-sm-4">Служба доставки</dt>
+                <dd class="col-sm-8">@Model.DeliveryServiceName</dd>
+                <dt class="col-sm-4">Відділення</dt>
+                <dd class="col-sm-8">@Model.DeliveryDepartmentName</dd>
+            </dl>
+        </div>
+    </div>
+
+    <h4 class="mt-4">Товари в замовленні</h4>
+    @if (Model.OrderItems != null && Model.OrderItems.Any())
+    {
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Кількість</th>
+                    <th>Вартість</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-muted">Товари відсутні.</p>
+    }
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Назад до списку</a>
+    </div>
+</div>

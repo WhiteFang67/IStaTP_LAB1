@@ -1,0 +1,59 @@
+﻿@model IEnumerable<OnlineStoreInfrastructure.Controllers.OrderViewModel>
+
+@{
+    ViewData["Title"] = "Список замовлень";
+}
+
+<div class="container mt-4 p-4 bg-light shadow rounded">
+    <h1 class="mb-4 text-black">Список замовлень</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    @if (Model.Any())
+    {
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ім’я</th>
+                    <th>Прізвище</th>
+                    <th>Дата реєстрації</th>
+                    <th>Сума</th>
+                    <th>Статус</th>
+                    <th>Служба доставки</th>
+                    <th>Відділення</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.Name</td>
+                        <td>@order.LastName</td>
+                        <td>@order.RegistrationDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@order.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
+                        <td>@order.StatusTypeName</td>
+                        <td>@order.DeliveryServiceName</td>
+                        <td>@order.DeliveryDepartmentName</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-primary me-2">Деталі</a>
+                            <a asp-action="Delete" asp-route-id="@order.Id" class="btn btn-sm btn-danger">Видалити</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-muted">Замовлення відсутні.</p>
+    }
+</div>

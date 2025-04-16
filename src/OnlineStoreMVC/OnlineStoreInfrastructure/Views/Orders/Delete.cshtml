@@ -1,0 +1,39 @@
+﻿@model OnlineStoreInfrastructure.Controllers.OrderViewModel
+
+@{
+    ViewData["Title"] = "Видалення замовлення";
+}
+
+<div class="container mt-4 p-4 bg-light shadow rounded">
+    <h1 class="mb-4 text-black">Видалення замовлення</h1>
+
+    <h4>Ви впевнені, що хочете видалити це замовлення?</h4>
+    <div class="alert alert-warning">
+        <p>Ця дія незворотна.</p>
+    </div>
+
+    <dl class="row">
+        <dt class="col-sm-3">Ім’я</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+        <dt class="col-sm-3">Прізвище</dt>
+        <dd class="col-sm-9">@Model.LastName</dd>
+        <dt class="col-sm-3">Дата реєстрації</dt>
+        <dd class="col-sm-9">@Model.RegistrationDate.ToString("dd.MM.yyyy HH:mm")</dd>
+        <dt class="col-sm-3">Сума</dt>
+        <dd class="col-sm-9">@Model.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
+        <dt class="col-sm-3">Статус</dt>
+        <dd class="col-sm-9">@Model.StatusTypeName</dd>
+        <dt class="col-sm-3">Служба доставки</dt>
+        <dd class="col-sm-9">@Model.DeliveryServiceName</dd>
+        <dt class="col-sm-3">Відділення</dt>
+        <dd class="col-sm-9">@Model.DeliveryDepartmentName</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <div class="mt-4 d-flex">
+            <button type="submit" class="btn btn-danger me-2">Видалити</button>
+            <a asp-action="Index" class="btn btn-secondary">Скасувати</a>
+        </div>
+    </form>
+</div>
