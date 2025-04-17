@@ -1,15 +1,15 @@
-﻿@model OnlineStoreInfrastructure.Controllers.OrderViewModel
+﻿@model OnlineStoreInfrastructure.Controllers.OrdersController.OrderViewModel
 
 @{
     ViewData["Title"] = "Видалення замовлення";
 }
 
 <div class="container mt-4 p-4 bg-light shadow rounded">
-    <h1 class="mb-4 text-black">Видалення замовлення</h1>
+    <h1 class="mb-4 text-black">Видалення замовлення #@Model.Id</h1>
 
     <h4>Ви впевнені, що хочете видалити це замовлення?</h4>
     <div class="alert alert-warning">
-        <p>Ця дія незворотна.</p>
+        <p>Ця дія незворотна. Замовлення та пов’язані товари будуть видалені.</p>
     </div>
 
     <dl class="row">
@@ -19,6 +19,8 @@
         <dd class="col-sm-9">@Model.LastName</dd>
         <dt class="col-sm-3">Дата реєстрації</dt>
         <dd class="col-sm-9">@Model.RegistrationDate.ToString("dd.MM.yyyy HH:mm")</dd>
+        <dt class="col-sm-3">Дата доставки</dt>
+        <dd class="col-sm-9">@Model.DeliveryDate.ToString("dd.MM.yyyy HH:mm")</dd>
         <dt class="col-sm-3">Сума</dt>
         <dd class="col-sm-9">@Model.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
         <dt class="col-sm-3">Статус</dt>

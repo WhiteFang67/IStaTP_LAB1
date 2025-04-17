@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Редагувати замовлення</title>
+</head>
+<body>
+    <h1>Редагувати замовлення</h1>
+
+    @model OnlineStoreInfrastructure.Controllers.OrdersController.OrderEditViewModel
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="DeliveryServiceId" class="control-label"></label>
+                    <select asp-for="DeliveryServiceId" asp-items="Model.DeliveryServices" class="form-control" id="DeliveryServiceId"></select>
+                    <span asp-validation-for="DeliveryServiceId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="DeliveryDepartmentId" class="control-label"></label>
+                    <select asp-for="DeliveryDepartmentId" asp-items="Model.DeliveryDepartments" class="form-control" id="DeliveryDepartmentId"></select>
+                    <span asp-validation-for="DeliveryDepartmentId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="StatusTypeId" class="control-label"></label>
+                    <select asp-for="StatusTypeId" asp-items="Model.StatusTypes" class="form-control"></select>
+                    <span asp-validation-for="StatusTypeId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="DeliveryDate" class="control-label"></label>
+                    <input asp-for="DeliveryDate" class="form-control" type="date" />
+                    <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="DeliveryTimeSlot" class="control-label"></label>
+                    <select asp-for="DeliveryTimeSlot" asp-items="Model.DeliveryTimeSlots" class="form-control"></select>
+                    <span asp-validation-for="DeliveryTimeSlot" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <input type="submit" value="Зберегти" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Назад до списку</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                // Обмеження дати доставки (не раніше ніж завтра)
+                var tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                var minDate = tomorrow.toISOString().split('T')[0];
+                $("#DeliveryDate").attr("min", minDate);
+
+                // Динамічне завантаження відділень
+                $("#DeliveryServiceId").change(function () {
+                    var deliveryServiceId = $(this).val();
+                    $.ajax({
+                        url: '@Url.Action("GetDeliveryDepartments", "Orders")',
+                        type: 'GET',
+                        data: { deliveryServiceId: deliveryServiceId },
+                        success: function (data) {
+                            var deliveryDepartmentSelect = $("#DeliveryDepartmentId");
+                            deliveryDepartmentSelect.empty();
+                            deliveryDepartmentSelect.append('<option value="">Оберіть відділення</option>');
+                            $.each(data, function (index, item) {
+                                deliveryDepartmentSelect.append('<option value="' + item.id + '">' + item.name + '</option>');
+                            });
+                        },
+                        error: function () {
+                            alert("Помилка при завантаженні відділень.");
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+</body>
+</html>

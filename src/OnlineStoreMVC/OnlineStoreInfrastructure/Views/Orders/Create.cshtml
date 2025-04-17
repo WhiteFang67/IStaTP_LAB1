@@ -1,4 +1,4 @@
-﻿@model OnlineStoreInfrastructure.Controllers.OrderCreateViewModel
+﻿@model OnlineStoreInfrastructure.Controllers.OrdersController.OrderCreateViewModel
 
 @{
     ViewData["Title"] = "Оформлення замовлення";
@@ -62,6 +62,18 @@
                         <option value="">Оберіть відділення</option>
                     </select>
                     <span asp-validation-for="DeliveryDepartmentId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DeliveryDate" class="form-label">Дата доставки</label>
+                    <input asp-for="DeliveryDate" class="form-control" type="date" required />
+                    <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DeliveryTimeSlot" class="form-label">Час доставки</label>
+                    <select asp-for="DeliveryTimeSlot" class="form-select" asp-items="Model.DeliveryTimeSlots" required>
+                        <option value="">Оберіть час доставки</option>
+                    </select>
+                    <span asp-validation-for="DeliveryTimeSlot" class="text-danger"></span>
                 </div>
             </div>
 
@@ -142,6 +154,12 @@
                     });
                 }
             });
+
+            // Обмежуємо вибір дати доставки (мін. завтра)
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            var minDate = tomorrow.toISOString().split('T')[0];
+            $("#DeliveryDate").attr("min", minDate);
         });
     </script>
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnlineStoreInfrastructure.Controllers.OrderViewModel>
+﻿@model IEnumerable<OnlineStoreInfrastructure.Controllers.OrdersController.OrderViewModel>
 
 @{
     ViewData["Title"] = "Список замовлень";
@@ -25,10 +25,9 @@
                     <th>Ім’я</th>
                     <th>Прізвище</th>
                     <th>Дата реєстрації</th>
+                    <th>Дата доставки</th>
                     <th>Сума</th>
                     <th>Статус</th>
-                    <th>Служба доставки</th>
-                    <th>Відділення</th>
                     <th>Дії</th>
                 </tr>
             </thead>
@@ -39,12 +38,12 @@
                         <td>@order.Name</td>
                         <td>@order.LastName</td>
                         <td>@order.RegistrationDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@order.DeliveryDate.ToString("dd.MM.yyyy HH:mm")</td>
                         <td>@order.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
                         <td>@order.StatusTypeName</td>
-                        <td>@order.DeliveryServiceName</td>
-                        <td>@order.DeliveryDepartmentName</td>
                         <td>
-                            <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-primary me-2">Деталі</a>
+                            <a asp-action="Edit" asp-route-id="@order.Id" class="btn btn-sm btn-primary me-2">Редагувати</a>
+                            <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-info me-2">Деталі</a>
                             <a asp-action="Delete" asp-route-id="@order.Id" class="btn btn-sm btn-danger">Видалити</a>
                         </td>
                     </tr>

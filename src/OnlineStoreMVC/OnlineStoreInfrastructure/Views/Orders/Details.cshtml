@@ -1,11 +1,11 @@
-﻿@model OnlineStoreInfrastructure.Controllers.OrderDetailsViewModel
+﻿@model OnlineStoreInfrastructure.Controllers.OrdersController.OrderDetailsViewModel
 
 @{
     ViewData["Title"] = "Деталі замовлення";
 }
 
 <div class="container mt-4 p-4 bg-light shadow rounded">
-    <h1 class="mb-4 text-black">Деталі замовлення</h1>
+    <h1 class="mb-4 text-black">Деталі замовлення #@Model.Id</h1>
 
     <div class="row">
         <div class="col-md-6">
@@ -26,6 +26,8 @@
             <dl class="row">
                 <dt class="col-sm-4">Дата реєстрації</dt>
                 <dd class="col-sm-8">@Model.RegistrationDate.ToString("dd.MM.yyyy HH:mm")</dd>
+                <dt class="col-sm-4">Дата доставки</dt>
+                <dd class="col-sm-8">@Model.DeliveryDate.ToString("dd.MM.yyyy HH:mm")</dd>
                 <dt class="col-sm-4">Сума</dt>
                 <dd class="col-sm-8">@Model.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
                 <dt class="col-sm-4">Статус</dt>
