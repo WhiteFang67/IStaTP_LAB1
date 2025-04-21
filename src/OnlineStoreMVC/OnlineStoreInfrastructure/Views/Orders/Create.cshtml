@@ -12,54 +12,54 @@
         <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
     }
 
-    <form asp-action="Create" method="post">
+    <form asp-action="Create" method="post" id="createOrderForm">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group mb-3">
-                    <label asp-for="Name" class="control-label">Ім’я</label>
+                    <label asp-for="Name" class="control-label"></label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="LastName" class="control-label">Прізвище</label>
+                    <label asp-for="LastName" class="control-label"></label>
                     <input asp-for="LastName" class="form-control" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="Email" class="control-label">Email</label>
+                    <label asp-for="Email" class="control-label"></label>
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="Phone" class="control-label">Телефон</label>
+                    <label asp-for="Phone" class="control-label"></label>
                     <input asp-for="Phone" class="form-control" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group mb-3">
-                    <label asp-for="DeliveryServiceId" class="control-label">Служба доставки</label>
+                    <label asp-for="DeliveryServiceId" class="control-label"></label>
                     <select asp-for="DeliveryServiceId" class="form-control" asp-items="@(ViewData["DeliveryServiceId"] as SelectList)" id="DeliveryServiceId" onchange="loadDeliveryDepartments()">
                         <option value="">Оберіть службу доставки</option>
                     </select>
                     <span asp-validation-for="DeliveryServiceId" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="DeliveryDepartmentId" class="control-label">Відділення</label>
+                    <label asp-for="DeliveryDepartmentId" class="control-label"></label>
                     <select asp-for="DeliveryDepartmentId" class="form-control" asp-items="@(ViewData["DeliveryDepartmentId"] as SelectList)" id="DeliveryDepartmentId">
                         <option value="">Оберіть відділення</option>
                     </select>
                     <span asp-validation-for="DeliveryDepartmentId" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="DeliveryDate" class="control-label">Дата доставки</label>
-                    <input asp-for="DeliveryDate" class="form-control" type="date" id="DeliveryDate" value="@Model.DeliveryDate.ToString("yyyy-MM-dd")" />
+                    <label asp-for="DeliveryDate" class="control-label"></label>
+                    <input asp-for="DeliveryDate" class="form-control" type="date" required />
                     <span asp-validation-for="DeliveryDate" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label for="deliveryTime" class="control-label">Час доставки</label>
-                    <select name="deliveryTime" class="form-control" asp-items="@(ViewData["DeliveryTime"] as SelectList)">
+                    <select name="deliveryTime" id="deliveryTime" class="form-control" data-val="true" data-val-required="Час доставки є обов’язковим." asp-items="@(ViewData["DeliveryTime"] as SelectList)">
                         <option value="">Оберіть час доставки</option>
                     </select>
                     <span class="text-danger" data-valmsg-for="deliveryTime" data-valmsg-replace="true"></span>
@@ -119,7 +119,7 @@
 
         function loadDeliveryDepartments() {
             var deliveryServiceId = $("#DeliveryServiceId").val();
-            var currentDepartmentId = '@Model.DeliveryDepartmentId'; // Поточне значення (зазвичай 0 для створення)
+            var currentDepartmentId = '@Model?.DeliveryDepartmentId'; // Поточне значення (зазвичай 0 для створення)
             if (!deliveryServiceId) {
                 var deliveryDepartmentSelect = $("#DeliveryDepartmentId");
                 deliveryDepartmentSelect.empty();

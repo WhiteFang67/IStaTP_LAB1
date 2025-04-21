@@ -1,25 +1,47 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineStoreDomain.Model
 {
     public class Order : Entity
     {
         public int? CustomerId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Ім’я є обов’язковим.")]
+        [Display(Name = "Ім’я")]
         public string Name { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Прізвище є обов’язковим.")]
+        [Display(Name = "Прізвище")]
         public string LastName { get; set; }
-        [Required]
-        [EmailAddress]
+
+        [Required(ErrorMessage = "Електронна пошта є обов’язковою.")]
+        [EmailAddress(ErrorMessage = "Некоректна електронна пошта.")]
+        [Display(Name = "Електронна пошта")]
         public string Email { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Телефон є обов’язковим.")]
+        [Display(Name = "Телефон")]
         public string Phone { get; set; }
+
+        [Display(Name = "Ціна замовлення")]
         public decimal OrderPrice { get; set; }
+
+        [Display(Name = "Статус")]
         public int StatusTypeId { get; set; }
+
+        [Display(Name = "Служба доставки")]
         public int DeliveryServiceId { get; set; }
+
+        [Display(Name = "Відділення")]
         public int DeliveryDepartmentId { get; set; }
+
+        [Display(Name = "Дата реєстрації")]
         public DateTime RegistrationDate { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Дата доставки є обов’язковою.")]
+        [Display(Name = "Дата доставки")]
         public DateTime DeliveryDate { get; set; }
 
         public Customer Customer { get; set; }

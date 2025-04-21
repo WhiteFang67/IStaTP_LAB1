@@ -72,6 +72,10 @@
         {
             <button type="button" class="btn btn-warning" onclick="showCancelModal(@Model.Id)">Скасувати</button>
         }
+        @if (Model.StatusTypeId == 4)
+        {
+            <button type="button" class="btn btn-danger" onclick="showDeleteModal(@Model.Id)">Видалити</button>
+        }
         <a asp-action="Index" class="btn btn-secondary">Назад до списку</a>
     </div>
 
@@ -84,7 +88,8 @@
                 </div>
                 <div class="modal-body">
                     <p>Ви впевнені, що хочете скасувати замовлення?</p>
-                    <form id="cancelOrderForm" asp-controller="Orders" asp-action="Cancel" method="post">
+                    <form id="cancelOrderForm" action="@Url.Action("Cancel", "Orders")" method="post">
+                        @Html.AntiForgeryToken()
                         <input type="hidden" id="modalOrderId" name="id" />
                     </form>
                 </div>
