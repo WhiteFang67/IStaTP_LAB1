@@ -31,20 +31,6 @@ namespace OnlineStoreInfrastructure.Controllers
                 .Include(o => o.DeliveryService)
                 .Include(o => o.DeliveryDepartment)
                 .Include(o => o.StatusType)
-                .Select(o => new OrderViewModel
-                {
-                    Id = o.Id,
-                    Name = o.Name,
-                    LastName = o.LastName,
-                    Email = o.Email,
-                    Phone = o.Phone,
-                    DeliveryServiceName = o.DeliveryService.Name,
-                    DeliveryDepartmentName = o.DeliveryDepartment.Name,
-                    StatusTypeName = o.StatusType.Name,
-                    OrderPrice = o.OrderPrice,
-                    RegistrationDate = o.RegistrationDate,
-                    DeliveryDate = o.DeliveryDate
-                })
                 .ToListAsync();
 
             return View(orders);
@@ -73,29 +59,8 @@ namespace OnlineStoreInfrastructure.Controllers
                 return NotFound();
             }
 
-            var model = new OrderDetailsViewModel
-            {
-                Id = order.Id,
-                Name = order.Name,
-                LastName = order.LastName,
-                Email = order.Email,
-                Phone = order.Phone,
-                DeliveryServiceName = order.DeliveryService.Name,
-                DeliveryDepartmentName = order.DeliveryDepartment.Name,
-                StatusTypeName = order.StatusType.Name,
-                OrderPrice = order.OrderPrice,
-                RegistrationDate = order.RegistrationDate,
-                DeliveryDate = order.DeliveryDate,
-                OrderItems = order.OrderItems.Select(oi => new OrderItemViewModel
-                {
-                    ProductName = oi.Product.Name,
-                    Quantity = oi.Quantity,
-                    TotalPrice = oi.TotalPrice
-                }).ToList()
-            };
-
             _logger.LogInformation("Відкрито деталі замовлення з Id {OrderId}", id);
-            return View(model);
+            return View(order);
         }
 
         // GET: Orders/Create
@@ -115,32 +80,33 @@ namespace OnlineStoreInfrastructure.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
-            var model = new OrderCreateViewModel
-            {
-                CartItems = cartItems,
-                TotalPrice = cartItems.Sum(oi => oi.TotalPrice),
-                DeliveryServices = new SelectList(_context.DeliveryServices, "Id", "Name"),
-                DeliveryDepartments = new SelectList(Enumerable.Empty<SelectListItem>()),
-                DeliveryTimeSlots = new SelectList(
-                    new[]
-                    {
+            ViewData["DeliveryServiceId"] = new SelectList(_context.DeliveryServices, "Id", "Name");
+            ViewData["DeliveryDepartmentId"] = new SelectList(Enumerable.Empty<SelectListItem>());
+            ViewData["DeliveryTime"] = new SelectList(
+                new[]
+                {
                 new { Value = "08:00", Text = "08:00" },
                 new { Value = "14:00", Text = "14:00" },
                 new { Value = "18:00", Text = "18:00" }
-                    },
-                    "Value",
-                    "Text"
-                ),
+                },
+                "Value",
+                "Text"
+            );
+            ViewBag.CartItems = cartItems;
+            ViewBag.TotalPrice = cartItems.Sum(oi => oi.TotalPrice);
+
+            var order = new Order
+            {
                 DeliveryDate = DateTime.Today.AddDays(1) // За замовчуванням завтра
             };
 
-            return View(model);
+            return View(order);
         }
 
         // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(OrderCreateViewModel model)
+        public async Task<IActionResult> Create([Bind("Name,LastName,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate")] Order order, string deliveryTime)
         {
             _logger.LogInformation("Отримано запит на створення замовлення");
 
@@ -156,105 +122,93 @@ namespace OnlineStoreInfrastructure.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
-            ModelState.Remove("CartItems");
-            ModelState.Remove("DeliveryServices");
-            ModelState.Remove("DeliveryDepartments");
-            ModelState.Remove("DeliveryTimeSlots");
-            ModelState.Remove("TotalPrice");
+            ModelState.Clear();
 
-            // Валідація DeliveryDate: не раніше ніж через добу
-            if (model.DeliveryDate < DateTime.Today.AddDays(1))
-            {
+            if (string.IsNullOrEmpty(order.Name))
+                ModelState.AddModelError("Name", "Ім’я обов’язкове.");
+            if (string.IsNullOrEmpty(order.LastName))
+                ModelState.AddModelError("LastName", "Прізвище обов’язкове.");
+            if (string.IsNullOrEmpty(order.Email) || !new System.ComponentModel.DataAnnotations.EmailAddressAttribute().IsValid(order.Email))
+                ModelState.AddModelError("Email", "Вкажіть коректну електронну пошту.");
+            if (string.IsNullOrEmpty(order.Phone))
+                ModelState.AddModelError("Phone", "Телефон обов’язковий.");
+            if (order.DeliveryServiceId <= 0 || !_context.DeliveryServices.Any(ds => ds.Id == order.DeliveryServiceId))
+                ModelState.AddModelError("DeliveryServiceId", "Оберіть службу доставки.");
+            if (order.DeliveryDepartmentId <= 0 || !_context.DeliveryDepartments.Any(dd => dd.Id == order.DeliveryDepartmentId))
+                ModelState.AddModelError("DeliveryDepartmentId", "Оберіть відділення доставки.");
+            if (order.DeliveryDate < DateTime.Today.AddDays(1))
                 ModelState.AddModelError("DeliveryDate", "Дата доставки має бути не раніше ніж через добу.");
-            }
+            if (string.IsNullOrEmpty(deliveryTime) || !new[] { "08:00", "14:00", "18:00" }.Contains(deliveryTime))
+                ModelState.AddModelError("deliveryTime", "Оберіть коректний час доставки.");
 
             if (!ModelState.IsValid)
             {
-                model.CartItems = cartItems;
-                model.TotalPrice = cartItems.Sum(oi => oi.TotalPrice);
-                model.DeliveryServices = new SelectList(_context.DeliveryServices, "Id", "Name", model.DeliveryServiceId);
-                model.DeliveryDepartments = new SelectList(
-                    _context.DeliveryDepartments
-                        .Where(dd => dd.DeliveryServiceId == model.DeliveryServiceId),
-                    "Id", "Name", model.DeliveryDepartmentId);
-                model.DeliveryTimeSlots = new SelectList(
+                ViewData["DeliveryServiceId"] = new SelectList(_context.DeliveryServices, "Id", "Name", order.DeliveryServiceId);
+                ViewData["DeliveryDepartmentId"] = new SelectList(
+                    _context.DeliveryDepartments.Where(dd => dd.DeliveryServiceId == order.DeliveryServiceId),
+                    "Id", "Name", order.DeliveryDepartmentId);
+                ViewData["DeliveryTime"] = new SelectList(
                     new[]
                     {
-                new { Value = "08:00", Text = "08:00" },
-                new { Value = "14:00", Text = "14:00" },
-                new { Value = "18:00", Text = "18:00" }
+                    new { Value = "08:00", Text = "08:00" },
+                    new { Value = "14:00", Text = "14:00" },
+                    new { Value = "18:00", Text = "18:00" }
                     },
                     "Value",
                     "Text",
-                    model.DeliveryTimeSlot
+                    deliveryTime
                 );
-                _logger.LogWarning("Помилка валідації моделі: {Errors}", string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)));
-                return View(model);
+                ViewBag.CartItems = cartItems;
+                ViewBag.TotalPrice = cartItems.Sum(oi => oi.TotalPrice);
+                _logger.LogWarning("Помилка валідації: {Errors}", string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)));
+                return View(order);
             }
 
             try
             {
-                // Комбінуємо дату і час доставки
-                var deliveryTime = TimeSpan.Parse(model.DeliveryTimeSlot);
-                var deliveryDateTime = model.DeliveryDate.Date + deliveryTime;
-
-                // Конвертуємо UTC у місцевий час (UTC+3 для України)
-                var localTimeZone = TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time"); // Україна
-                var localRegistrationDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, localTimeZone);
-
-                var order = new Order
-                {
-                    CustomerId = null,
-                    Name = model.Name,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    Phone = model.Phone,
-                    StatusTypeId = 1,
-                    DeliveryServiceId = model.DeliveryServiceId,
-                    DeliveryDepartmentId = model.DeliveryDepartmentId,
-                    RegistrationDate = localRegistrationDate,
-                    OrderPrice = cartItems.Sum(oi => oi.TotalPrice),
-                    DeliveryDate = deliveryDateTime
-                };
+                var timeParts = deliveryTime.Split(':');
+                var deliveryTimeSpan = new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
+                order.DeliveryDate = order.DeliveryDate.Date + deliveryTimeSpan;
+                var localTimeZone = TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time");
+                order.RegistrationDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, localTimeZone);
+                order.StatusTypeId = 1;
+                order.OrderPrice = cartItems.Sum(oi => oi.TotalPrice);
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
                 _logger.LogInformation("Замовлення створено з Id: {OrderId}", order.Id);
 
                 foreach (var item in cartItems)
-                {
                     item.OrderId = order.Id;
-                }
 
                 await _context.SaveChangesAsync();
                 _logger.LogInformation("Елементи кошика прив’язано до замовлення {OrderId}", order.Id);
 
                 TempData["SuccessMessage"] = "Замовлення успішно створено!";
-                return RedirectToAction("Index", "Orders");
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Помилка при створенні замовлення");
                 ModelState.AddModelError("", $"Помилка при створенні замовлення: {ex.Message}");
-                model.CartItems = cartItems;
-                model.TotalPrice = cartItems.Sum(oi => oi.TotalPrice);
-                model.DeliveryServices = new SelectList(_context.DeliveryServices, "Id", "Name", model.DeliveryServiceId);
-                model.DeliveryDepartments = new SelectList(
-                    _context.DeliveryDepartments
-                        .Where(dd => dd.DeliveryServiceId == model.DeliveryServiceId),
-                    "Id", "Name", model.DeliveryDepartmentId);
-                model.DeliveryTimeSlots = new SelectList(
+                ViewData["DeliveryServiceId"] = new SelectList(_context.DeliveryServices, "Id", "Name", order.DeliveryServiceId);
+                ViewData["DeliveryDepartmentId"] = new SelectList(
+                    _context.DeliveryDepartments.Where(dd => dd.DeliveryServiceId == order.DeliveryServiceId),
+                    "Id", "Name", order.DeliveryDepartmentId);
+                ViewData["DeliveryTime"] = new SelectList(
                     new[]
                     {
-                new { Value = "08:00", Text = "08:00" },
-                new { Value = "14:00", Text = "14:00" },
-                new { Value = "18:00", Text = "18:00" }
+                    new { Value = "08:00", Text = "08:00" },
+                    new { Value = "14:00", Text = "14:00" },
+                    new { Value = "18:00", Text = "18:00" }
                     },
                     "Value",
                     "Text",
-                    model.DeliveryTimeSlot
+                    deliveryTime
                 );
-                return View(model);
+                ViewBag.CartItems = cartItems;
+                ViewBag.TotalPrice = cartItems.Sum(oi => oi.TotalPrice);
+                return View(order);
             }
         }
 
@@ -270,6 +224,7 @@ namespace OnlineStoreInfrastructure.Controllers
             var order = await _context.Orders
                 .Include(o => o.DeliveryService)
                 .Include(o => o.DeliveryDepartment)
+                .Include(o => o.StatusType)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (order == null)
@@ -278,130 +233,121 @@ namespace OnlineStoreInfrastructure.Controllers
                 return NotFound();
             }
 
-            var model = new OrderEditViewModel
-            {
-                Id = order.Id,
-                Email = order.Email,
-                Phone = order.Phone,
-                DeliveryServiceId = order.DeliveryServiceId,
-                DeliveryDepartmentId = order.DeliveryDepartmentId,
-                DeliveryDate = order.DeliveryDate.Date,
-                DeliveryTimeSlot = order.DeliveryDate.ToString("HH:mm"),
-                StatusTypeId = order.StatusTypeId,
-                DeliveryServices = new SelectList(_context.DeliveryServices, "Id", "Name", order.DeliveryServiceId),
-                DeliveryDepartments = new SelectList(
-                    _context.DeliveryDepartments
-                        .Where(dd => dd.DeliveryServiceId == order.DeliveryServiceId),
-                    "Id", "Name", order.DeliveryDepartmentId),
-                DeliveryTimeSlots = new SelectList(
-                    new[]
-                    {
+            ViewData["DeliveryServiceId"] = new SelectList(_context.DeliveryServices, "Id", "Name", order.DeliveryServiceId);
+            ViewData["DeliveryDepartmentId"] = new SelectList(
+                _context.DeliveryDepartments.Where(dd => dd.DeliveryServiceId == order.DeliveryServiceId),
+                "Id", "Name", order.DeliveryDepartmentId);
+            ViewData["DeliveryTime"] = new SelectList(
+                new[]
+                {
                 new { Value = "08:00", Text = "08:00" },
                 new { Value = "14:00", Text = "14:00" },
                 new { Value = "18:00", Text = "18:00" }
-                    },
-                    "Value",
-                    "Text",
-                    order.DeliveryDate.ToString("HH:mm")),
-                StatusTypes = new SelectList(_context.StatusTypes, "Id", "Name", order.StatusTypeId)
-            };
+                },
+                "Value",
+                "Text",
+                order.DeliveryDate.ToString("HH:mm"));
+            ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "Id", "Name", order.StatusTypeId);
 
             _logger.LogInformation("Відкрито сторінку редагування замовлення з Id {OrderId}", id);
-            return View(model);
+            return View(order);
         }
 
         // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, OrderEditViewModel model)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate,StatusTypeId")] Order order, string deliveryTime)
         {
-            if (id != model.Id)
+            if (id != order.Id)
             {
-                _logger.LogWarning("Невідповідність Id при редагуванні замовлення: {Id} != {ModelId}", id, model.Id);
+                _logger.LogWarning("Невідповідність Id при редагуванні замовлення: {Id} != {ModelId}", id, order.Id);
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            ModelState.Clear();
+
+            if (string.IsNullOrEmpty(order.Email) || !new System.ComponentModel.DataAnnotations.EmailAddressAttribute().IsValid(order.Email))
+                ModelState.AddModelError("Email", "Вкажіть коректну електронну пошту.");
+            if (string.IsNullOrEmpty(order.Phone))
+                ModelState.AddModelError("Phone", "Телефон обов’язковий.");
+            if (order.DeliveryServiceId <= 0 || !_context.DeliveryServices.Any(ds => ds.Id == order.DeliveryServiceId))
+                ModelState.AddModelError("DeliveryServiceId", "Оберіть службу доставки.");
+            if (order.DeliveryDepartmentId <= 0 || !_context.DeliveryDepartments.Any(dd => dd.Id == order.DeliveryDepartmentId))
+                ModelState.AddModelError("DeliveryDepartmentId", "Оберіть відділення доставки.");
+            if (order.DeliveryDate < DateTime.Today.AddDays(1))
+                ModelState.AddModelError("DeliveryDate", "Дата доставки має бути не раніше ніж через добу.");
+            if (string.IsNullOrEmpty(deliveryTime) || !new[] { "08:00", "14:00", "18:00" }.Contains(deliveryTime))
+                ModelState.AddModelError("deliveryTime", "Оберіть коректний час доставки.");
+            if (order.StatusTypeId <= 0 || !_context.StatusTypes.Any(st => st.Id == order.StatusTypeId))
+                ModelState.AddModelError("StatusTypeId", "Оберіть статус замовлення.");
+
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    var order = await _context.Orders.FindAsync(id);
-                    if (order == null)
+                ViewData["DeliveryServiceId"] = new SelectList(_context.DeliveryServices, "Id", "Name", order.DeliveryServiceId);
+                ViewData["DeliveryDepartmentId"] = new SelectList(
+                    _context.DeliveryDepartments.Where(dd => dd.DeliveryServiceId == order.DeliveryServiceId),
+                    "Id", "Name", order.DeliveryDepartmentId);
+                ViewData["DeliveryTime"] = new SelectList(
+                    new[]
                     {
-                        _logger.LogWarning("Замовлення з Id {OrderId} не знайдено при редагуванні", id);
-                        return NotFound();
-                    }
-
-                    // Валідація DeliveryDate: не раніше ніж через добу
-                    if (model.DeliveryDate < DateTime.Today.AddDays(1))
-                    {
-                        ModelState.AddModelError("DeliveryDate", "Дата доставки має бути не раніше ніж через добу.");
-                    }
-
-                    if (!ModelState.IsValid)
-                    {
-                        model.DeliveryServices = new SelectList(_context.DeliveryServices, "Id", "Name", model.DeliveryServiceId);
-                        model.DeliveryDepartments = new SelectList(
-                            _context.DeliveryDepartments
-                                .Where(dd => dd.DeliveryServiceId == model.DeliveryServiceId),
-                            "Id", "Name", model.DeliveryDepartmentId);
-                        model.DeliveryTimeSlots = new SelectList(
-                            new[]
-                            {
-                        new { Value = "08:00", Text = "08:00" },
-                        new { Value = "14:00", Text = "14:00" },
-                        new { Value = "18:00", Text = "18:00" }
-                            },
-                            "Value",
-                            "Text",
-                            model.DeliveryTimeSlot);
-                        model.StatusTypes = new SelectList(_context.StatusTypes, "Id", "Name", model.StatusTypeId);
-                        return View(model);
-                    }
-
-                    // Комбінуємо дату і час доставки
-                    var deliveryTime = TimeSpan.Parse(model.DeliveryTimeSlot);
-                    var deliveryDateTime = model.DeliveryDate.Date + deliveryTime;
-
-                    order.Email = model.Email;
-                    order.Phone = model.Phone;
-                    order.DeliveryServiceId = model.DeliveryServiceId;
-                    order.DeliveryDepartmentId = model.DeliveryDepartmentId;
-                    order.DeliveryDate = deliveryDateTime;
-                    order.StatusTypeId = model.StatusTypeId;
-
-                    _context.Update(order);
-                    await _context.SaveChangesAsync();
-                    _logger.LogInformation("Замовлення з Id {OrderId} успішно відредаговано", id);
-
-                    TempData["SuccessMessage"] = "Замовлення успішно відредаговано!";
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Помилка при редагуванні замовлення з Id {OrderId}", id);
-                    ModelState.AddModelError("", $"Помилка при редагуванні замовлення: {ex.Message}");
-                }
+                    new { Value = "08:00", Text = "08:00" },
+                    new { Value = "14:00", Text = "14:00" },
+                    new { Value = "18:00", Text = "18:00" }
+                    },
+                    "Value",
+                    "Text",
+                    deliveryTime);
+                ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "Id", "Name", order.StatusTypeId);
+                _logger.LogWarning("Помилка валідації: {Errors}", string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)));
+                return View(order);
             }
 
-            model.DeliveryServices = new SelectList(_context.DeliveryServices, "Id", "Name", model.DeliveryServiceId);
-            model.DeliveryDepartments = new SelectList(
-                _context.DeliveryDepartments
-                    .Where(dd => dd.DeliveryServiceId == model.DeliveryServiceId),
-                "Id", "Name", model.DeliveryDepartmentId);
-            model.DeliveryTimeSlots = new SelectList(
-                new[]
+            try
+            {
+                var existingOrder = await _context.Orders.FindAsync(id);
+                if (existingOrder == null)
                 {
-            new { Value = "08:00", Text = "08:00" },
-            new { Value = "14:00", Text = "14:00" },
-            new { Value = "18:00", Text = "18:00" }
-                },
-                "Value",
-                "Text",
-                model.DeliveryTimeSlot);
-            model.StatusTypes = new SelectList(_context.StatusTypes, "Id", "Name", model.StatusTypeId);
-            _logger.LogWarning("Помилка валідації при редагуванні замовлення: {Errors}", string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)));
-            return View(model);
+                    _logger.LogWarning("Замовлення з Id {OrderId} не знайдено при редагуванні", id);
+                    return NotFound();
+                }
+
+                var timeParts = deliveryTime.Split(':');
+                var deliveryTimeSpan = new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
+                existingOrder.Email = order.Email;
+                existingOrder.Phone = order.Phone;
+                existingOrder.DeliveryServiceId = order.DeliveryServiceId;
+                existingOrder.DeliveryDepartmentId = order.DeliveryDepartmentId;
+                existingOrder.DeliveryDate = order.DeliveryDate.Date + deliveryTimeSpan;
+                existingOrder.StatusTypeId = order.StatusTypeId;
+
+                _context.Update(existingOrder);
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Замовлення з Id {OrderId} успішно відредаговано", id);
+
+                TempData["SuccessMessage"] = "Замовлення успішно відредаговано!";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Помилка при редагуванні замовлення з Id {OrderId}", id);
+                ModelState.AddModelError("", $"Помилка при редагуванні замовлення: {ex.Message}");
+                ViewData["DeliveryServiceId"] = new SelectList(_context.DeliveryServices, "Id", "Name", order.DeliveryServiceId);
+                ViewData["DeliveryDepartmentId"] = new SelectList(
+                    _context.DeliveryDepartments.Where(dd => dd.DeliveryServiceId == order.DeliveryServiceId),
+                    "Id", "Name", order.DeliveryDepartmentId);
+                ViewData["DeliveryTime"] = new SelectList(
+                    new[]
+                    {
+                    new { Value = "08:00", Text = "08:00" },
+                    new { Value = "14:00", Text = "14:00" },
+                    new { Value = "18:00", Text = "18:00" }
+                    },
+                    "Value",
+                    "Text",
+                    deliveryTime);
+                ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "Id", "Name", order.StatusTypeId);
+                return View(order);
+            }
         }
 
         // GET: Orders/Delete/5
@@ -425,23 +371,8 @@ namespace OnlineStoreInfrastructure.Controllers
                 return NotFound();
             }
 
-            var model = new OrderViewModel
-            {
-                Id = order.Id,
-                Name = order.Name,
-                LastName = order.LastName,
-                Email = order.Email,
-                Phone = order.Phone,
-                DeliveryServiceName = order.DeliveryService.Name,
-                DeliveryDepartmentName = order.DeliveryDepartment.Name,
-                StatusTypeName = order.StatusType.Name,
-                OrderPrice = order.OrderPrice,
-                RegistrationDate = order.RegistrationDate,
-                DeliveryDate = order.DeliveryDate
-            };
-
             _logger.LogInformation("Відкрито сторінку підтвердження видалення замовлення з Id {OrderId}", id);
-            return View(model);
+            return View(order);
         }
 
         // POST: Orders/Delete/5
@@ -483,112 +414,6 @@ namespace OnlineStoreInfrastructure.Controllers
                 .ToList();
 
             return Json(departments);
-        }
-
-        public class OrderCreateViewModel
-        {
-            [Required(ErrorMessage = "Ім’я обов’язкове.")]
-            public string Name { get; set; }
-
-            [Required(ErrorMessage = "Прізвище обов’язкове.")]
-            public string LastName { get; set; }
-
-            [Required(ErrorMessage = "Електронна пошта обов’язкова.")]
-            [EmailAddress(ErrorMessage = "Вкажіть коректну електронну пошту.")]
-            public string Email { get; set; }
-
-            [Required(ErrorMessage = "Телефон обов’язковий.")]
-            public string Phone { get; set; }
-
-            [Required(ErrorMessage = "Оберіть службу доставки.")]
-            public int DeliveryServiceId { get; set; }
-
-            [Required(ErrorMessage = "Оберіть відділення доставки.")]
-            public int DeliveryDepartmentId { get; set; }
-
-            [Required(ErrorMessage = "Оберіть дату доставки.")]
-            [DataType(DataType.Date)]
-            public DateTime DeliveryDate { get; set; }
-
-            [Required(ErrorMessage = "Оберіть час доставки.")]
-            public string DeliveryTimeSlot { get; set; }
-
-            public List<OrderItem> CartItems { get; set; }
-            public decimal TotalPrice { get; set; }
-            public SelectList DeliveryServices { get; set; }
-            public SelectList DeliveryDepartments { get; set; }
-            public SelectList DeliveryTimeSlots { get; set; }
-        }
-
-        public class OrderEditViewModel
-        {
-            public int Id { get; set; }
-
-            [Required(ErrorMessage = "Електронна пошта обов’язкова.")]
-            [EmailAddress(ErrorMessage = "Вкажіть коректну електронну пошту.")]
-            public string Email { get; set; }
-
-            [Required(ErrorMessage = "Телефон обов’язковий.")]
-            public string Phone { get; set; }
-
-            [Required(ErrorMessage = "Оберіть службу доставки.")]
-            public int DeliveryServiceId { get; set; }
-
-            [Required(ErrorMessage = "Оберіть відділення доставки.")]
-            public int DeliveryDepartmentId { get; set; }
-
-            [Required(ErrorMessage = "Оберіть дату доставки.")]
-            [DataType(DataType.Date)]
-            public DateTime DeliveryDate { get; set; }
-
-            [Required(ErrorMessage = "Оберіть час доставки.")]
-            public string DeliveryTimeSlot { get; set; }
-
-            [Required(ErrorMessage = "Оберіть статус замовлення.")]
-            public int StatusTypeId { get; set; }
-
-            public SelectList DeliveryServices { get; set; }
-            public SelectList DeliveryDepartments { get; set; }
-            public SelectList DeliveryTimeSlots { get; set; }
-            public SelectList StatusTypes { get; set; }
-        }
-
-        public class OrderViewModel
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string LastName { get; set; }
-            public string Email { get; set; }
-            public string Phone { get; set; }
-            public string DeliveryServiceName { get; set; }
-            public string DeliveryDepartmentName { get; set; }
-            public string StatusTypeName { get; set; }
-            public decimal OrderPrice { get; set; }
-            public DateTime RegistrationDate { get; set; }
-            public DateTime DeliveryDate { get; set; }
-        }
-
-        public class OrderDetailsViewModel
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string LastName { get; set; }
-            public string Email { get; set; }
-            public string Phone { get; set; }
-            public string DeliveryServiceName { get; set; }
-            public string DeliveryDepartmentName { get; set; }
-            public string StatusTypeName { get; set; }
-            public decimal OrderPrice { get; set; }
-            public DateTime RegistrationDate { get; set; }
-            public DateTime DeliveryDate { get; set; }
-            public List<OrderItemViewModel> OrderItems { get; set; }
-        }
-
-        public class OrderItemViewModel
-        {
-            public string ProductName { get; set; }
-            public int Quantity { get; set; }
-            public decimal TotalPrice { get; set; }
         }
     }
 }

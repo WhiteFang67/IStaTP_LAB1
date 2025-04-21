@@ -1,4 +1,4 @@
-﻿@model OnlineStoreInfrastructure.Controllers.OrdersController.OrderCreateViewModel
+﻿@model OnlineStoreDomain.Model.Order
 
 @{
     ViewData["Title"] = "Оформлення замовлення";
@@ -12,108 +12,87 @@
         <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
     }
 
-    @if (!ViewData.ModelState.IsValid)
-    {
-        <div class="alert alert-danger">
-            <ul>
-                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    <li>@error.ErrorMessage</li>
-                }
-            </ul>
-        </div>
-    }
-
     <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
-            <!-- Контактні дані -->
             <div class="col-md-6">
-                <h4>Контактні дані</h4>
-                <div class="mb-3">
-                    <label asp-for="Name" class="form-label">Ім’я</label>
-                    <input asp-for="Name" class="form-control" required />
+                <div class="form-group mb-3">
+                    <label asp-for="Name" class="control-label">Ім’я</label>
+                    <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="LastName" class="form-label">Прізвище</label>
-                    <input asp-for="LastName" class="form-control" required />
+                <div class="form-group mb-3">
+                    <label asp-for="LastName" class="control-label">Прізвище</label>
+                    <input asp-for="LastName" class="form-control" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label">Email</label>
-                    <input asp-for="Email" class="form-control" type="email" required />
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="Phone" class="form-label">Телефон</label>
-                    <input asp-for="Phone" class="form-control" required />
+                <div class="form-group mb-3">
+                    <label asp-for="Phone" class="control-label">Телефон</label>
+                    <input asp-for="Phone" class="form-control" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="DeliveryServiceId" class="form-label">Служба доставки</label>
-                    <select asp-for="DeliveryServiceId" class="form-select" asp-items="Model.DeliveryServices" required>
-                        <option value="">Оберіть службу доставки</option>
-                    </select>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label asp-for="DeliveryServiceId" class="control-label">Служба доставки</label>
+                    <select asp-for="DeliveryServiceId" class="form-control" asp-items="@(ViewData["DeliveryServiceId"] as SelectList)" id="DeliveryServiceId" onchange="loadDeliveryDepartments()"></select>
                     <span asp-validation-for="DeliveryServiceId" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="DeliveryDepartmentId" class="form-label">Відділення доставки</label>
-                    <select asp-for="DeliveryDepartmentId" class="form-select" asp-items="Model.DeliveryDepartments" required>
-                        <option value="">Оберіть відділення</option>
-                    </select>
+                <div class="form-group mb-3">
+                    <label asp-for="DeliveryDepartmentId" class="control-label">Відділення</label>
+                    <select asp-for="DeliveryDepartmentId" class="form-control" asp-items="@(ViewData["DeliveryDepartmentId"] as SelectList)" id="DeliveryDepartmentId"></select>
                     <span asp-validation-for="DeliveryDepartmentId" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="DeliveryDate" class="form-label">Дата доставки</label>
-                    <input asp-for="DeliveryDate" class="form-control" type="date" required />
+                <div class="form-group mb-3">
+                    <label asp-for="DeliveryDate" class="control-label">Дата доставки</label>
+                    <input asp-for="DeliveryDate" class="form-control" type="date" id="DeliveryDate" value="@Model.DeliveryDate.ToString("yyyy-MM-dd")" />
                     <span asp-validation-for="DeliveryDate" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="DeliveryTimeSlot" class="form-label">Час доставки</label>
-                    <select asp-for="DeliveryTimeSlot" class="form-select" asp-items="Model.DeliveryTimeSlots" required>
-                        <option value="">Оберіть час доставки</option>
-                    </select>
-                    <span asp-validation-for="DeliveryTimeSlot" class="text-danger"></span>
+                <div class="form-group mb-3">
+                    <label for="deliveryTime" class="control-label">Час доставки</label>
+                    <select name="deliveryTime" class="form-control" asp-items="@(ViewData["DeliveryTime"] as SelectList)"></select>
+                    <span class="text-danger" data-valmsg-for="deliveryTime" data-valmsg-replace="true"></span>
                 </div>
-            </div>
-
-            <!-- Список товарів -->
-            <div class="col-md-6">
-                <h4>Товари в замовленні</h4>
-                @if (Model.CartItems != null && Model.CartItems.Any())
-                {
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Товар</th>
-                                <th>Кількість</th>
-                                <th>Вартість</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.CartItems)
-                            {
-                                <tr>
-                                    <td>@item.Product.Name</td>
-                                    <td>@item.Quantity</td>
-                                    <td>@item.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <h5>Загальна вартість: @Model.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</h5>
-                }
-                else
-                {
-                    <p>Немає товарів для замовлення.</p>
-                }
             </div>
         </div>
 
-        <!-- Кнопки -->
-        <div class="mt-4 d-flex">
-            <button type="submit" class="btn btn-primary me-2">Замовити</button>
-            <a asp-action="Index" asp-controller="Cart" class="btn btn-secondary">Скасувати</a>
+        <h4 class="mt-4">Товари в кошику</h4>
+        @if (ViewBag.CartItems != null && ViewBag.CartItems.Count > 0)
+        {
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Кількість</th>
+                        <th>Вартість</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.CartItems)
+                    {
+                        <tr>
+                            <td>@item.Product.Name</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <p><strong>Загальна сума:</strong> @ViewBag.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</p>
+        }
+        else
+        {
+            <p class="text-muted">Кошик порожній.</p>
+        }
+
+        <div class="form-group mt-3">
+            <input type="submit" value="Оформити замовлення" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Назад до списку</a>
         </div>
     </form>
 </div>
@@ -122,44 +101,40 @@
     <partial name="_ValidationScriptsPartial" />
     <script>
         $(document).ready(function () {
-            // При зміні служби доставки оновлюємо список відділень
-            $("#DeliveryServiceId").change(function () {
-                var deliveryServiceId = $(this).val();
-                var $deliveryDepartmentSelect = $("#DeliveryDepartmentId");
-
-                // Очищаємо попередній список
-                $deliveryDepartmentSelect.empty();
-                $deliveryDepartmentSelect.append($('<option>', {
-                    value: '',
-                    text: 'Оберіть відділення'
-                }));
-
-                if (deliveryServiceId) {
-                    // AJAX-запит для отримання відділень
-                    $.ajax({
-                        url: '@Url.Action("GetDeliveryDepartments", "Orders")',
-                        type: 'GET',
-                        data: { deliveryServiceId: deliveryServiceId },
-                        success: function (data) {
-                            $.each(data, function (index, department) {
-                                $deliveryDepartmentSelect.append($('<option>', {
-                                    value: department.id,
-                                    text: department.name
-                                }));
-                            });
-                        },
-                        error: function () {
-                            alert('Помилка при завантаженні відділень.');
-                        }
-                    });
-                }
-            });
-
-            // Обмежуємо вибір дати доставки (мін. завтра)
+            // Обмеження дати доставки (не раніше ніж завтра)
             var tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             var minDate = tomorrow.toISOString().split('T')[0];
             $("#DeliveryDate").attr("min", minDate);
+
+            // Завантаження відділень при зміні служби доставки
+            loadDeliveryDepartments();
         });
+
+        function loadDeliveryDepartments() {
+            var deliveryServiceId = $("#DeliveryServiceId").val();
+            $.ajax({
+                url: '@Url.Action("GetDeliveryDepartments", "Orders")',
+                type: 'GET',
+                data: { deliveryServiceId: deliveryServiceId },
+                success: function (data) {
+                    var deliveryDepartmentSelect = $("#DeliveryDepartmentId");
+                    deliveryDepartmentSelect.empty();
+                    deliveryDepartmentSelect.append($('<option>', {
+                        value: '',
+                        text: 'Оберіть відділення'
+                    }));
+                    $.each(data, function (index, item) {
+                        deliveryDepartmentSelect.append($('<option>', {
+                            value: item.id,
+                            text: item.name
+                        }));
+                    });
+                },
+                error: function () {
+                    alert("Помилка при завантаженні відділень.");
+                }
+            });
+        }
     </script>
 }

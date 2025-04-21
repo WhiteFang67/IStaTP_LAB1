@@ -1,4 +1,4 @@
-﻿@model OnlineStoreInfrastructure.Controllers.OrdersController.OrderDetailsViewModel
+﻿@model OnlineStoreDomain.Model.Order
 
 @{
     ViewData["Title"] = "Деталі замовлення";
@@ -31,11 +31,11 @@
                 <dt class="col-sm-4">Сума</dt>
                 <dd class="col-sm-8">@Model.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
                 <dt class="col-sm-4">Статус</dt>
-                <dd class="col-sm-8">@Model.StatusTypeName</dd>
+                <dd class="col-sm-8">@Model.StatusType.Name</dd>
                 <dt class="col-sm-4">Служба доставки</dt>
-                <dd class="col-sm-8">@Model.DeliveryServiceName</dd>
+                <dd class="col-sm-8">@Model.DeliveryService.Name</dd>
                 <dt class="col-sm-4">Відділення</dt>
-                <dd class="col-sm-8">@Model.DeliveryDepartmentName</dd>
+                <dd class="col-sm-8">@Model.DeliveryDepartment.Name</dd>
             </dl>
         </div>
     </div>
@@ -55,7 +55,7 @@
                 @foreach (var item in Model.OrderItems)
                 {
                     <tr>
-                        <td>@item.ProductName</td>
+                        <td>@item.Product.Name</td>
                         <td>@item.Quantity</td>
                         <td>@item.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
                     </tr>

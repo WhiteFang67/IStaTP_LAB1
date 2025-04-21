@@ -2,9 +2,8 @@
 
 namespace OnlineStoreDomain.Model
 {
-    public class Order
+    public class Order : Entity
     {
-        public int Id { get; set; }
         public int? CustomerId { get; set; }
         [Required]
         public string Name { get; set; }

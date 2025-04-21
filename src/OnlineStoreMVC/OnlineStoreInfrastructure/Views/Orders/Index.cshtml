@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnlineStoreInfrastructure.Controllers.OrdersController.OrderViewModel>
+﻿@model IEnumerable<OnlineStoreDomain.Model.Order>
 
 @{
     ViewData["Title"] = "Список замовлень";
@@ -40,7 +40,7 @@
                         <td>@order.RegistrationDate.ToString("dd.MM.yyyy HH:mm")</td>
                         <td>@order.DeliveryDate.ToString("dd.MM.yyyy HH:mm")</td>
                         <td>@order.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
-                        <td>@order.StatusTypeName</td>
+                        <td>@order.StatusType.Name</td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@order.Id" class="btn btn-sm btn-primary me-2">Редагувати</a>
                             <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-info me-2">Деталі</a>
