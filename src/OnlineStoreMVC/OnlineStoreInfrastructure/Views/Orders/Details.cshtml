@@ -5,37 +5,35 @@
 }
 
 <div class="container mt-4 p-4 bg-light shadow rounded">
-    <h1 class="mb-4 text-black">Деталі замовлення #@Model.Id</h1>
+    <h1 class="mb-4 text-black">Деталі замовлення</h1>
 
     <div class="row">
         <div class="col-md-6">
-            <h4>Контактні дані</h4>
             <dl class="row">
                 <dt class="col-sm-4">Ім’я</dt>
-                <dd class="col-sm-8">@Model.Name</dd>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
                 <dt class="col-sm-4">Прізвище</dt>
-                <dd class="col-sm-8">@Model.LastName</dd>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.LastName)</dd>
                 <dt class="col-sm-4">Email</dt>
-                <dd class="col-sm-8">@Model.Email</dd>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
                 <dt class="col-sm-4">Телефон</dt>
-                <dd class="col-sm-8">@Model.Phone</dd>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Phone)</dd>
+                <dt class="col-sm-4">Служба доставки</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.DeliveryService.Name)</dd>
+                <dt class="col-sm-4">Відділення</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.DeliveryDepartment.Name)</dd>
             </dl>
         </div>
         <div class="col-md-6">
-            <h4>Інформація про замовлення</h4>
             <dl class="row">
-                <dt class="col-sm-4">Дата реєстрації</dt>
-                <dd class="col-sm-8">@Model.RegistrationDate.ToString("dd.MM.yyyy HH:mm")</dd>
                 <dt class="col-sm-4">Дата доставки</dt>
-                <dd class="col-sm-8">@Model.DeliveryDate.ToString("dd.MM.yyyy HH:mm")</dd>
-                <dt class="col-sm-4">Сума</dt>
-                <dd class="col-sm-8">@Model.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.DeliveryDate)</dd>
+                <dt class="col-sm-4">Дата реєстрації</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.RegistrationDate)</dd>
                 <dt class="col-sm-4">Статус</dt>
-                <dd class="col-sm-8">@Model.StatusType.Name</dd>
-                <dt class="col-sm-4">Служба доставки</dt>
-                <dd class="col-sm-8">@Model.DeliveryService.Name</dd>
-                <dt class="col-sm-4">Відділення</dt>
-                <dd class="col-sm-8">@Model.DeliveryDepartment.Name</dd>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.StatusType.Name)</dd>
+                <dt class="col-sm-4">Ціна замовлення</dt>
+                <dd class="col-sm-8">@Model.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
             </dl>
         </div>
     </div>
@@ -65,10 +63,46 @@
     }
     else
     {
-        <p class="text-muted">Товари відсутні.</p>
+        <p class="text-muted">Немає товарів у замовленні.</p>
     }
 
-    <div class="mt-4">
+    <div class="form-group mt-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати</a>
+        @if (Model.StatusTypeId == 1) // "В обробці"
+        {
+            <button type="button" class="btn btn-warning" onclick="showCancelModal(@Model.Id)">Скасувати</button>
+        }
         <a asp-action="Index" class="btn btn-secondary">Назад до списку</a>
     </div>
+
+    <div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelOrderModalLabel">Підтвердження скасування</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ви впевнені, що хочете скасувати замовлення?</p>
+                    <form id="cancelOrderForm" asp-controller="Orders" asp-action="Cancel" method="post">
+                        <input type="hidden" id="modalOrderId" name="id" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                    <button type="submit" form="cancelOrderForm" class="btn btn-danger">Підтвердити</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        function showCancelModal(orderId) {
+            document.getElementById('modalOrderId').value = orderId;
+            var modal = new bootstrap.Modal(document.getElementById('cancelOrderModal'));
+            modal.show();
+        }
+    </script>
+}

@@ -40,12 +40,16 @@
             <div class="col-md-6">
                 <div class="form-group mb-3">
                     <label asp-for="DeliveryServiceId" class="control-label">Служба доставки</label>
-                    <select asp-for="DeliveryServiceId" class="form-control" asp-items="@(ViewData["DeliveryServiceId"] as SelectList)" id="DeliveryServiceId" onchange="loadDeliveryDepartments()"></select>
+                    <select asp-for="DeliveryServiceId" class="form-control" asp-items="@(ViewData["DeliveryServiceId"] as SelectList)" id="DeliveryServiceId" onchange="loadDeliveryDepartments()">
+                        <option value="">Оберіть службу доставки</option>
+                    </select>
                     <span asp-validation-for="DeliveryServiceId" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="DeliveryDepartmentId" class="control-label">Відділення</label>
-                    <select asp-for="DeliveryDepartmentId" class="form-control" asp-items="@(ViewData["DeliveryDepartmentId"] as SelectList)" id="DeliveryDepartmentId"></select>
+                    <select asp-for="DeliveryDepartmentId" class="form-control" asp-items="@(ViewData["DeliveryDepartmentId"] as SelectList)" id="DeliveryDepartmentId">
+                        <option value="">Оберіть відділення</option>
+                    </select>
                     <span asp-validation-for="DeliveryDepartmentId" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
@@ -55,7 +59,9 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="deliveryTime" class="control-label">Час доставки</label>
-                    <select name="deliveryTime" class="form-control" asp-items="@(ViewData["DeliveryTime"] as SelectList)"></select>
+                    <select name="deliveryTime" class="form-control" asp-items="@(ViewData["DeliveryTime"] as SelectList)">
+                        <option value="">Оберіть час доставки</option>
+                    </select>
                     <span class="text-danger" data-valmsg-for="deliveryTime" data-valmsg-replace="true"></span>
                 </div>
             </div>
@@ -113,6 +119,16 @@
 
         function loadDeliveryDepartments() {
             var deliveryServiceId = $("#DeliveryServiceId").val();
+            var currentDepartmentId = '@Model.DeliveryDepartmentId'; // Поточне значення (зазвичай 0 для створення)
+            if (!deliveryServiceId) {
+                var deliveryDepartmentSelect = $("#DeliveryDepartmentId");
+                deliveryDepartmentSelect.empty();
+                deliveryDepartmentSelect.append($('<option>', {
+                    value: '',
+                    text: 'Оберіть відділення'
+                }));
+                return;
+            }
             $.ajax({
                 url: '@Url.Action("GetDeliveryDepartments", "Orders")',
                 type: 'GET',
@@ -125,9 +141,11 @@
                         text: 'Оберіть відділення'
                     }));
                     $.each(data, function (index, item) {
+                        var isSelected = item.id == currentDepartmentId;
                         deliveryDepartmentSelect.append($('<option>', {
                             value: item.id,
-                            text: item.name
+                            text: item.name,
+                            selected: isSelected
                         }));
                     });
                 },

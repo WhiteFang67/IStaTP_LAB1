@@ -415,5 +415,45 @@ namespace OnlineStoreInfrastructure.Controllers
 
             return Json(departments);
         }
+
+        // POST: Orders/Cancel
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Cancel(int id)
+        {
+            var order = await _context.Orders
+                .Include(o => o.StatusType)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (order == null)
+            {
+                _logger.LogWarning("Замовлення з Id {OrderId} не знайдено", id);
+                TempData["ErrorMessage"] = "Замовлення не знайдено.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (order.StatusTypeId != 1) // Перевірка, що статус "В обробці"
+            {
+                _logger.LogWarning("Спроба скасувати замовлення з Id {OrderId} зі статусом {Status}", id, order.StatusType.Name);
+                TempData["ErrorMessage"] = "Замовлення не можна скасувати, оскільки воно не в статусі 'В обробці'.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            try
+            {
+                order.StatusTypeId = 4; // Зміна на "Скасовано"
+                _context.Update(order);
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Замовлення з Id {OrderId} успішно скасовано", id);
+                TempData["SuccessMessage"] = "Замовлення успішно скасовано!";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Помилка при скасуванні замовлення з Id {OrderId}", id);
+                TempData["ErrorMessage"] = "Помилка при скасуванні замовлення.";
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

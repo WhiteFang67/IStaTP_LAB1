@@ -79,6 +79,7 @@
 
         function loadDeliveryDepartments() {
             var deliveryServiceId = $("#DeliveryServiceId").val();
+            var currentDepartmentId = '@Model.DeliveryDepartmentId'; // Поточне значення DeliveryDepartmentId
             $.ajax({
                 url: '@Url.Action("GetDeliveryDepartments", "Orders")',
                 type: 'GET',
@@ -91,9 +92,11 @@
                         text: 'Оберіть відділення'
                     }));
                     $.each(data, function (index, item) {
+                        var isSelected = item.id == currentDepartmentId;
                         deliveryDepartmentSelect.append($('<option>', {
                             value: item.id,
-                            text: item.name
+                            text: item.name,
+                            selected: isSelected
                         }));
                     });
                 },
