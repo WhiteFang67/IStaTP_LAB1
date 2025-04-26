@@ -97,7 +97,8 @@ namespace OnlineStoreInfrastructure.Controllers
 
             var order = new Order
             {
-                DeliveryDate = DateTime.Today.AddDays(1) // За замовчуванням завтра
+                DeliveryDate = DateTime.Today.AddDays(1), // За замовчуванням завтра
+                DeliveryTime = "08:00" // За замовчуванням
             };
 
             return View(order);
@@ -106,7 +107,7 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,LastName,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate")] Order order, string deliveryTime)
+        public async Task<IActionResult> Create([Bind("Name,LastName,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate,DeliveryTime")] Order order)
         {
             _logger.LogInformation("Отримано запит на створення замовлення");
 
@@ -138,8 +139,8 @@ namespace OnlineStoreInfrastructure.Controllers
                 ModelState.AddModelError("DeliveryDepartmentId", "Оберіть відділення доставки.");
             if (order.DeliveryDate < DateTime.Today.AddDays(1))
                 ModelState.AddModelError("DeliveryDate", "Дата доставки має бути не раніше ніж через добу.");
-            if (string.IsNullOrEmpty(deliveryTime) || !new[] { "08:00", "14:00", "18:00" }.Contains(deliveryTime))
-                ModelState.AddModelError("deliveryTime", "Час доставки є обов’язковим.");
+            if (string.IsNullOrEmpty(order.DeliveryTime) || !new[] { "08:00", "14:00", "18:00" }.Contains(order.DeliveryTime))
+                ModelState.AddModelError("DeliveryTime", "Час доставки є обов’язковим і має бути 08:00, 14:00 або 18:00.");
 
             // Перевірка наявності товарів
             foreach (var item in cartItems)
@@ -171,7 +172,7 @@ namespace OnlineStoreInfrastructure.Controllers
                     },
                     "Value",
                     "Text",
-                    deliveryTime
+                    order.DeliveryTime
                 );
                 ViewBag.CartItems = cartItems;
                 ViewBag.TotalPrice = cartItems.Sum(oi => oi.TotalPrice);
@@ -190,16 +191,11 @@ namespace OnlineStoreInfrastructure.Controllers
                     {
                         product.Quantity -= item.Quantity;
                         if (product.Quantity < 0)
-                        {
                             throw new Exception($"Кількість товару {product.Name} стала від’ємною.");
-                        }
                         _context.Update(product);
                     }
                 }
 
-                var timeParts = deliveryTime.Split(':');
-                var deliveryTimeSpan = new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
-                order.DeliveryDate = order.DeliveryDate.Date + deliveryTimeSpan;
                 var localTimeZone = TimeZoneInfo.FindSystemTimeZoneById("FLE Standard Time");
                 order.RegistrationDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, localTimeZone);
                 order.StatusTypeId = 1;
@@ -237,7 +233,7 @@ namespace OnlineStoreInfrastructure.Controllers
                     },
                     "Value",
                     "Text",
-                    deliveryTime
+                    order.DeliveryTime
                 );
                 ViewBag.CartItems = cartItems;
                 ViewBag.TotalPrice = cartItems.Sum(oi => oi.TotalPrice);
@@ -279,7 +275,8 @@ namespace OnlineStoreInfrastructure.Controllers
                 },
                 "Value",
                 "Text",
-                order.DeliveryDate.ToString("HH:mm"));
+                order.DeliveryTime
+            );
             ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "Id", "Name", order.StatusTypeId);
 
             _logger.LogInformation("Відкрито сторінку редагування замовлення з Id {OrderId}", id);
@@ -289,7 +286,7 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate,StatusTypeId")] Order order, string deliveryTime)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate,DeliveryTime,StatusTypeId")] Order order)
         {
             if (id != order.Id)
             {
@@ -309,8 +306,8 @@ namespace OnlineStoreInfrastructure.Controllers
                 ModelState.AddModelError("DeliveryDepartmentId", "Оберіть відділення доставки.");
             if (order.DeliveryDate < DateTime.Today.AddDays(1))
                 ModelState.AddModelError("DeliveryDate", "Дата доставки має бути не раніше ніж через добу.");
-            if (string.IsNullOrEmpty(deliveryTime) || !new[] { "08:00", "14:00", "18:00" }.Contains(deliveryTime))
-                ModelState.AddModelError("deliveryTime", "Час доставки є обов’язковим.");
+            if (string.IsNullOrEmpty(order.DeliveryTime) || !new[] { "08:00", "14:00", "18:00" }.Contains(order.DeliveryTime))
+                ModelState.AddModelError("DeliveryTime", "Час доставки є обов’язковим і має бути 08:00, 14:00 або 18:00.");
             if (order.StatusTypeId <= 0 || !_context.StatusTypes.Any(st => st.Id == order.StatusTypeId))
                 ModelState.AddModelError("StatusTypeId", "Оберіть статус замовлення.");
 
@@ -329,7 +326,8 @@ namespace OnlineStoreInfrastructure.Controllers
                     },
                     "Value",
                     "Text",
-                    deliveryTime);
+                    order.DeliveryTime
+                );
                 ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "Id", "Name", order.StatusTypeId);
                 _logger.LogWarning("Помилка валідації: {Errors}", string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)));
                 return View(order);
@@ -345,13 +343,12 @@ namespace OnlineStoreInfrastructure.Controllers
                     return NotFound();
                 }
 
-                var timeParts = deliveryTime.Split(':');
-                var deliveryTimeSpan = new TimeSpan(int.Parse(timeParts[0]), int.Parse(timeParts[1]), 0);
                 existingOrder.Email = order.Email;
                 existingOrder.Phone = order.Phone;
                 existingOrder.DeliveryServiceId = order.DeliveryServiceId;
                 existingOrder.DeliveryDepartmentId = order.DeliveryDepartmentId;
-                existingOrder.DeliveryDate = order.DeliveryDate.Date + deliveryTimeSpan;
+                existingOrder.DeliveryDate = order.DeliveryDate.Date;
+                existingOrder.DeliveryTime = order.DeliveryTime;
                 existingOrder.StatusTypeId = order.StatusTypeId;
 
                 _context.Update(existingOrder);
@@ -380,7 +377,8 @@ namespace OnlineStoreInfrastructure.Controllers
                     },
                     "Value",
                     "Text",
-                    deliveryTime);
+                    order.DeliveryTime
+                );
                 ViewData["StatusTypeId"] = new SelectList(_context.StatusTypes, "Id", "Name", order.StatusTypeId);
                 return View(order);
             }
@@ -426,7 +424,10 @@ namespace OnlineStoreInfrastructure.Controllers
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                var order = await _context.Orders.FindAsync(id);
+                var order = await _context.Orders
+                    .Include(o => o.StatusType)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+
                 if (order == null)
                 {
                     _logger.LogWarning("Замовлення з Id {OrderId} не знайдено при видаленні", id);
@@ -452,7 +453,7 @@ namespace OnlineStoreInfrastructure.Controllers
             {
                 await transaction.RollbackAsync();
                 _logger.LogError(ex, "Помилка при видаленні замовлення з Id {OrderId}", id);
-                TempData["ErrorMessage"] = "Помилка при видаленні замовлення.";
+                TempData["ErrorMessage"] = "Помилка при видаленні замовлення: " + ex.Message;
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -474,7 +475,7 @@ namespace OnlineStoreInfrastructure.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Cancel(int id)
         {
-            _logger.LogInformation("Отримано POST-запит на Cancel для OrderId {OrderId}", id);
+            _logger.LogInformation("Отримано POST-запит на скасування замовлення з Id {OrderId}", id);
 
             var order = await _context.Orders
                 .Include(o => o.StatusType)
@@ -491,8 +492,15 @@ namespace OnlineStoreInfrastructure.Controllers
 
             if (order.StatusTypeId != 1) // Перевірка, що статус "В обробці"
             {
-                _logger.LogWarning("Спроба скасувати замовлення з Id {OrderId} зі статусом {Status}", id, order.StatusType.Name);
+                _logger.LogWarning("Спроба скасувати замовлення з Id {OrderId} зі статусом {Status}", id, order.StatusType?.Name ?? "невідомий");
                 TempData["ErrorMessage"] = "Замовлення не можна скасувати, оскільки воно не в статусі 'В обробці'.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (!order.OrderItems.Any())
+            {
+                _logger.LogWarning("Замовлення з Id {OrderId} не містить елементів", id);
+                TempData["ErrorMessage"] = "Замовлення не містить товарів.";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -502,24 +510,29 @@ namespace OnlineStoreInfrastructure.Controllers
                 // Повернення кількості товарів
                 foreach (var item in order.OrderItems)
                 {
-                    var product = await _context.Products.FindAsync(item.ProductId);
-                    if (product != null)
+                    if (item.Product == null)
                     {
-                        product.Quantity += item.Quantity;
-                        _context.Update(product);
+                        _logger.LogWarning("Товар з Id {ProductId} не знайдено для OrderItem {OrderItemId} у замовленні {OrderId}", item.ProductId, item.Id, id);
+                        throw new Exception($"Товар з Id {item.ProductId} не знайдено.");
                     }
-                    else
+
+                    _logger.LogInformation("Оновлення кількості для товару {ProductName} (Id: {ProductId}): додаємо {Quantity}", item.Product.Name, item.ProductId, item.Quantity);
+                    item.Product.Quantity += item.Quantity;
+                    if (item.Product.Quantity < 0)
                     {
-                        _logger.LogWarning("Товар з Id {ProductId} не знайдено при скасуванні замовлення {OrderId}", item.ProductId, id);
+                        _logger.LogWarning("Кількість товару {ProductName} (Id: {ProductId}) стала від’ємною після додавання {Quantity}", item.Product.Name, item.ProductId, item.Quantity);
+                        throw new Exception($"Кількість товару {item.Product.Name} стала від’ємною.");
                     }
+                    _context.Update(item.Product);
                 }
 
                 order.StatusTypeId = 4; // Зміна на "Скасоване"
                 _context.Update(order);
                 await _context.SaveChangesAsync();
-                _logger.LogInformation("Замовлення з Id {OrderId} успішно скасовано", id);
+                _logger.LogInformation("Замовлення з Id {OrderId} успішно скасовано. Статус змінено на 'Скасоване'", id);
 
                 await transaction.CommitAsync();
+                _logger.LogInformation("Транзакцію для скасування замовлення {OrderId} успішно завершено", id);
                 TempData["SuccessMessage"] = "Замовлення успішно скасовано!";
                 return RedirectToAction(nameof(Index));
             }
@@ -527,7 +540,7 @@ namespace OnlineStoreInfrastructure.Controllers
             {
                 await transaction.RollbackAsync();
                 _logger.LogError(ex, "Помилка при скасуванні замовлення з Id {OrderId}", id);
-                TempData["ErrorMessage"] = "Помилка при скасуванні замовлення: " + ex.Message;
+                TempData["ErrorMessage"] = $"Помилка при скасуванні замовлення: {ex.Message}";
                 return RedirectToAction(nameof(Index));
             }
         }

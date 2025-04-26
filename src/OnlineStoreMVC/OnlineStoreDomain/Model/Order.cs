@@ -44,6 +44,10 @@ namespace OnlineStoreDomain.Model
         [Display(Name = "Дата доставки")]
         public DateTime DeliveryDate { get; set; }
 
+        [Required(ErrorMessage = "Час доставки є обов’язковим.")]
+        [Display(Name = "Час доставки")]
+        public string DeliveryTime { get; set; }
+
         public Customer Customer { get; set; }
         public StatusType StatusType { get; set; }
         public DeliveryService DeliveryService { get; set; }

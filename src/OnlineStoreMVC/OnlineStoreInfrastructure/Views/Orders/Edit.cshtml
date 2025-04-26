@@ -36,20 +36,25 @@
                     </div>
                     <div class="form-group mb-3">
                         <label asp-for="DeliveryServiceId" class="control-label"></label>
-                        <select asp-for="DeliveryServiceId" class="form-control" asp-items="ViewBag.DeliveryServiceId"></select>
+                        <select asp-for="DeliveryServiceId" class="form-control" asp-items="ViewBag.DeliveryServiceId" id="DeliveryServiceId" onchange="loadDeliveryDepartments()"></select>
                         <span asp-validation-for="DeliveryServiceId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="DeliveryDepartmentId" class="control-label"></label>
+                        <select asp-for="DeliveryDepartmentId" class="form-control" asp-items="ViewBag.DeliveryDepartmentId" id="DeliveryDepartmentId"></select>
+                        <span asp-validation-for="DeliveryDepartmentId" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label asp-for="DeliveryDepartmentId" class="control-label"></label>
-                        <select asp-for="DeliveryDepartmentId" class="form-control" asp-items="ViewBag.DeliveryDepartmentId"></select>
-                        <span asp-validation-for="DeliveryDepartmentId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group mb-3">
                         <label asp-for="DeliveryDate" class="control-label"></label>
                         <input asp-for="DeliveryDate" class="form-control" type="date" />
                         <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="DeliveryTime" class="control-label"></label>
+                        <select asp-for="DeliveryTime" class="form-control" asp-items="ViewBag.DeliveryTime"></select>
+                        <span asp-validation-for="DeliveryTime" class="text-danger"></span>
                     </div>
                     <div class="form-group mb-3">
                         <label asp-for="StatusTypeId" class="control-label"></label>
@@ -87,6 +92,55 @@
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
         <script>
+            $(document).ready(function () {
+                // Обмеження дати доставки (не раніше ніж завтра)
+                var tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                var minDate = tomorrow.toISOString().split('T')[0];
+                $("#DeliveryDate").attr("min", minDate);
+
+                // Завантаження відділень при завантаженні сторінки
+                loadDeliveryDepartments();
+            });
+
+            function loadDeliveryDepartments() {
+                var deliveryServiceId = $("#DeliveryServiceId").val();
+                var currentDepartmentId = '@Model.DeliveryDepartmentId';
+                if (!deliveryServiceId) {
+                    var deliveryDepartmentSelect = $("#DeliveryDepartmentId");
+                    deliveryDepartmentSelect.empty();
+                    deliveryDepartmentSelect.append($('<option>', {
+                        value: '',
+                        text: 'Оберіть відділення'
+                    }));
+                    return;
+                }
+                $.ajax({
+                    url: '@Url.Action("GetDeliveryDepartments", "Orders")',
+                    type: 'GET',
+                    data: { deliveryServiceId: deliveryServiceId },
+                    success: function (data) {
+                        var deliveryDepartmentSelect = $("#DeliveryDepartmentId");
+                        deliveryDepartmentSelect.empty();
+                        deliveryDepartmentSelect.append($('<option>', {
+                            value: '',
+                            text: 'Оберіть відділення'
+                        }));
+                        $.each(data, function (index, item) {
+                            var isSelected = item.id == currentDepartmentId;
+                            deliveryDepartmentSelect.append($('<option>', {
+                                value: item.id,
+                                text: item.name,
+                                selected: isSelected
+                            }));
+                        });
+                    },
+                    error: function () {
+                        alert("Помилка при завантаженні відділень.");
+                    }
+                });
+            }
+
             document.getElementById('editOrderForm').addEventListener('submit', function (event) {
                 var statusSelect = document.getElementById('StatusTypeId');
                 var selectedStatus = statusSelect.value;

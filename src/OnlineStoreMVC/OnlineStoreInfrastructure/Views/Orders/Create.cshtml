@@ -58,11 +58,11 @@
                     <span asp-validation-for="DeliveryDate" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="deliveryTime" class="control-label">Час доставки</label>
-                    <select name="deliveryTime" id="deliveryTime" class="form-control" data-val="true" data-val-required="Час доставки є обов’язковим." asp-items="@(ViewData["DeliveryTime"] as SelectList)">
+                    <label asp-for="DeliveryTime" class="control-label"></label>
+                    <select asp-for="DeliveryTime" class="form-control" id="DeliveryTime" asp-items="@(ViewData["DeliveryTime"] as SelectList)">
                         <option value="">Оберіть час доставки</option>
                     </select>
-                    <span class="text-danger" data-valmsg-for="deliveryTime" data-valmsg-replace="true"></span>
+                    <span asp-validation-for="DeliveryTime" class="text-danger"></span>
                 </div>
             </div>
         </div>

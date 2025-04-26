@@ -27,7 +27,9 @@
         <div class="col-md-6">
             <dl class="row">
                 <dt class="col-sm-4">Дата доставки</dt>
-                <dd class="col-sm-8">@Html.DisplayFor(model => model.DeliveryDate)</dd>
+                <dd class="col-sm-8">@Model.DeliveryDate.ToString("dd.MM.yyyy")</dd>
+                <dt class="col-sm-4">Час доставки</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.DeliveryTime)</dd>
                 <dt class="col-sm-4">Дата реєстрації</dt>
                 <dd class="col-sm-8">@Html.DisplayFor(model => model.RegistrationDate)</dd>
                 <dt class="col-sm-4">Статус</dt>
@@ -100,6 +102,28 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="deleteOrderModal" tabindex="-1" aria-labelledby="deleteOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteOrderModalLabel">Підтвердження видалення</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ви впевнені, що хочете видалити замовлення?</p>
+                    <form id="deleteOrderForm" action="@Url.Action("Delete", "Orders")" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="modalDeleteOrderId" name="id" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                    <button type="submit" form="deleteOrderForm" class="btn btn-danger">Підтвердити</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
@@ -107,6 +131,12 @@
         function showCancelModal(orderId) {
             document.getElementById('modalOrderId').value = orderId;
             var modal = new bootstrap.Modal(document.getElementById('cancelOrderModal'));
+            modal.show();
+        }
+
+        function showDeleteModal(orderId) {
+            document.getElementById('modalDeleteOrderId').value = orderId;
+            var modal = new bootstrap.Modal(document.getElementById('deleteOrderModal'));
             modal.show();
         }
     </script>
