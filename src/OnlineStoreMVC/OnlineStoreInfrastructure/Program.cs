@@ -13,8 +13,9 @@ builder.Services.AddDbContext<OnlineStoreContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
 ));
 
-// Register services for export
+// Register services for export and import
 builder.Services.AddScoped<IExportService<Product>, ProductExportService>();
+builder.Services.AddScoped<IImportService<Product>, ProductImportService>();
 builder.Services.AddScoped<IDataPortServiceFactory<Product>, DataPortServiceFactory>();
 
 // Add logging

@@ -8,6 +8,7 @@ using OnlineStoreDomain.Model;
 using OnlineStoreInfrastructure;
 using OnlineStoreInfrastructure.Services;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace OnlineStoreInfrastructure.Controllers
 {
@@ -15,29 +16,16 @@ namespace OnlineStoreInfrastructure.Controllers
     {
         private readonly OnlineStoreContext _context;
         private readonly IExportService<Product> _exportService;
+        private readonly IImportService<Product> _importService;
 
-        public ProductsController(OnlineStoreContext context, IExportService<Product> exportService)
+        public ProductsController(
+            OnlineStoreContext context,
+            IExportService<Product> exportService,
+            IImportService<Product> importService)
         {
             _context = context;
             _exportService = exportService;
-        }
-
-        public async Task<IActionResult> Export(int? categoryId, CancellationToken cancellationToken)
-        {
-            try
-            {
-                using var memoryStream = new MemoryStream();
-                await _exportService.WriteToAsync(memoryStream, cancellationToken);
-                var fileBytes = memoryStream.ToArray();
-
-                var fileName = $"products_{DateTime.UtcNow:yyyy-MM-dd}.xlsx";
-                return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
-            }
-            catch (Exception ex)
-            {
-                TempData["ValidationErrors"] = $"Помилка при експорті: {ex.Message}";
-                return RedirectToAction(nameof(Index));
-            }
+            _importService = importService;
         }
 
         public async Task<IActionResult> Index(int? id, string? name, bool all = false)
@@ -320,5 +308,55 @@ namespace OnlineStoreInfrastructure.Controllers
             return RedirectToAction(nameof(Index), new { id = returnId, name = returnName });
         }
 
+        public async Task<IActionResult> Export(int? categoryId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                using var memoryStream = new MemoryStream();
+                await _exportService.WriteToAsync(memoryStream, cancellationToken);
+                var fileBytes = memoryStream.ToArray();
+
+                var fileName = $"products_{DateTime.UtcNow:yyyy-MM-dd}.xlsx";
+                return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+            }
+            catch (Exception ex)
+            {
+                TempData["ValidationErrors"] = $"Помилка при експорті: {ex.Message}";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Import(IFormFile file, CancellationToken cancellationToken)
+        {
+            if (file == null || file.Length == 0)
+            {
+                TempData["ValidationErrors"] = "Будь ласка, виберіть файл для імпорту";
+                return RedirectToAction(nameof(Index), new { all = true });
+            }
+
+            if (file.ContentType != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+            {
+                TempData["ValidationErrors"] = "Підтримується лише формат .xlsx";
+                return RedirectToAction(nameof(Index), new { all = true });
+            }
+
+            try
+            {
+                using var stream = file.OpenReadStream();
+                await _importService.ImportFromStreamAsync(stream, cancellationToken);
+                TempData["SuccessMessage"] = "Товари успішно імпортовано";
+            }
+            catch (InvalidOperationException ex)
+            {
+                TempData["ValidationErrors"] = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                TempData["ValidationErrors"] = $"Помилка при імпорті: {ex.Message}";
+            }
+
+            return RedirectToAction(nameof(Index), new { all = true });
+        }
     }
 }

@@ -16,7 +16,8 @@ namespace OnlineStoreInfrastructure.Services
         {
             if (contentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
             {
-                return _serviceProvider.GetService<IImportService<Product>>();
+                return _serviceProvider.GetService<IImportService<Product>>()
+                    ?? throw new InvalidOperationException("Import service not registered");
             }
             throw new NotSupportedException($"Content type {contentType} is not supported for import.");
         }
@@ -25,7 +26,8 @@ namespace OnlineStoreInfrastructure.Services
         {
             if (contentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
             {
-                return _serviceProvider.GetService<IExportService<Product>>();
+                return _serviceProvider.GetService<IExportService<Product>>()
+                    ?? throw new InvalidOperationException("Export service not registered");
             }
             throw new NotSupportedException($"Content type {contentType} is not supported for export.");
         }
