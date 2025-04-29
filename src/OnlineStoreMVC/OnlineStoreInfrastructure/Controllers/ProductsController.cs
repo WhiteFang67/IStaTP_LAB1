@@ -6,16 +6,38 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineStoreDomain.Model;
 using OnlineStoreInfrastructure;
+using OnlineStoreInfrastructure.Services;
+using System.IO;
 
 namespace OnlineStoreInfrastructure.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly OnlineStoreContext _context;
+        private readonly IExportService<Product> _exportService;
 
-        public ProductsController(OnlineStoreContext context)
+        public ProductsController(OnlineStoreContext context, IExportService<Product> exportService)
         {
             _context = context;
+            _exportService = exportService;
+        }
+
+        public async Task<IActionResult> Export(int? categoryId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                using var memoryStream = new MemoryStream();
+                await _exportService.WriteToAsync(memoryStream, cancellationToken);
+                var fileBytes = memoryStream.ToArray();
+
+                var fileName = $"products_{DateTime.UtcNow:yyyy-MM-dd}.xlsx";
+                return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+            }
+            catch (Exception ex)
+            {
+                TempData["ValidationErrors"] = $"Помилка при експорті: {ex.Message}";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         public async Task<IActionResult> Index(int? id, string? name, bool all = false)

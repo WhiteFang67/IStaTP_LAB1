@@ -3,8 +3,72 @@
   "WorkspaceRootPath": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\services\\productexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\services\\productexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\services\\dataportservicefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\services\\dataportservicefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\services\\idataportservicefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\services\\idataportservicefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\services\\iimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\services\\iimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\services\\iexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\services\\iexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\productrating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\productrating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\statustype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\statustype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\onlinestoreinfrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\onlinestoreinfrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -27,32 +91,12 @@
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\orders\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\chartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\chartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\products\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -73,14 +117,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\deliverydepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\deliverydepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\statustype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\statustype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -109,14 +145,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\productratingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\productratingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\productrating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\productrating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|solutionrelative:onlinestoredomain\\model\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -159,10 +187,6 @@
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\categories\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\categories\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -194,7 +218,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -210,59 +234,228 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "ProductExportService.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\ProductExportService.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Services\\ProductExportService.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\ProductExportService.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Services\\ProductExportService.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwEoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T15:18:43.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IDataPortServiceFactory.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\IDataPortServiceFactory.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Services\\IDataPortServiceFactory.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\IDataPortServiceFactory.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Services\\IDataPortServiceFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T09:59:37.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IExportService.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\IExportService.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Services\\IExportService.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\IExportService.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Services\\IExportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T09:56:43.323Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IImportService.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\IImportService.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Services\\IImportService.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\IImportService.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Services\\IImportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T09:54:45.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Product.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Product.cs",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Product.cs",
               "RelativeToolTip": "OnlineStoreDomain\\Model\\Product.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAQwCoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAA0wCAAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T17:53:13.091Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
+              "Title": "ProductRating.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\ProductRating.cs",
+              "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\ProductRating.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\ProductRating.cs",
+              "RelativeToolTip": "OnlineStoreDomain\\Model\\ProductRating.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:27:25.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAHcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-03T19:12:04.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Program.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Program.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Program.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAC0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T18:03:43.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAuwBoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-03T18:53:25.26Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DataPortServiceFactory.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\DataPortServiceFactory.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Services\\DataPortServiceFactory.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Services\\DataPortServiceFactory.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Services\\DataPortServiceFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-29T15:24:19.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "StatusType.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\StatusType.cs",
+              "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\StatusType.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\StatusType.cs",
+              "RelativeToolTip": "OnlineStoreDomain\\Model\\StatusType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T17:53:14.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "OrdersController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\OrdersController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\OrdersController.cs",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\OrdersController.cs",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\OrdersController.cs",
-              "ViewState": "AgIAAAgCAAAAAAAAAAAAACMCAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAsCAAAAAAAAAAAAACICAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-15T09:07:13.398Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Delete.cshtml",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Delete.cshtml",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Delete.cshtml",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Orders\\Delete.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACoAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-16T17:39:51.004Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "Order.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Order.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Order.cs",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Order.cs",
               "RelativeToolTip": "OnlineStoreDomain\\Model\\Order.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAADwvzgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAIwDgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T17:53:12.048Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
+              "Title": "OrderItem.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\OrderItem.cs",
+              "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\OrderItem.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\OrderItem.cs",
+              "RelativeToolTip": "OnlineStoreDomain\\Model\\OrderItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T17:53:12.595Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Review.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Review.cs",
+              "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Review.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Review.cs",
+              "RelativeToolTip": "OnlineStoreDomain\\Model\\Review.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T17:53:13.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "OnlineStoreInfrastructure",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-29T09:51:18.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Delete.cshtml",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Delete.cshtml",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Delete.cshtml",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Orders\\Delete.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAIBJwCoAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-16T17:39:51.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "ChartsController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ChartsController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ChartsController.cs",
@@ -270,11 +463,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\ChartsController.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAQwDcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T15:20:43.572Z"
+              "WhenOpened": "2025-03-31T15:20:43.572Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "Category.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Category.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Category.cs",
@@ -282,50 +476,51 @@
               "RelativeToolTip": "OnlineStoreDomain\\Model\\Category.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T17:53:07.695Z"
+              "WhenOpened": "2025-02-26T17:53:07.695Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 21,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Create.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Create.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Create.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Orders\\Create.cshtml",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAAAIkAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAHYAAAAAAAAAAIBJwIkAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-15T09:11:49.841Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 19,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Details.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Details.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Orders\\Details.cshtml",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAAAI4AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAHMAAAAAAAAAAIBJwI4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-16T17:39:11.008Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 18,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Edit.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Edit.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Edit.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Orders\\Edit.cshtml",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAAAJ4AAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAIMAAAAAAAAAAIBJwJ4AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-17T13:29:18.263Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 17,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Index.cshtml",
@@ -338,7 +533,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 22,
               "Title": "ReviewsController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
@@ -351,43 +546,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAAAGgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-03T19:12:04.795Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
-              "ViewState": "AgIAABIBAAAAAAAAAAAuwCQBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T18:53:25.26Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 24,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Edit.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Edit.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Edit.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Products\\Edit.cshtml",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAC4AAABgAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAIBJwC4AAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-16T20:21:06.837Z"
+              "WhenOpened": "2025-03-16T20:21:06.837Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 26,
               "Title": "OnlineStoreContext.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\OnlineStoreContext.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\OnlineStoreContext.cs",
@@ -395,23 +567,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\OnlineStoreContext.cs",
               "ViewState": "AgIAADQAAAAAAAAAAAAwwDUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T17:54:47.887Z"
+              "WhenOpened": "2025-02-26T17:54:47.887Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "OrderItem.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\OrderItem.cs",
-              "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\OrderItem.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\OrderItem.cs",
-              "RelativeToolTip": "OnlineStoreDomain\\Model\\OrderItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T17:53:12.595Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 27,
               "Title": "DeliveryService.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\DeliveryService.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\DeliveryService.cs",
@@ -419,11 +580,12 @@
               "RelativeToolTip": "OnlineStoreDomain\\Model\\DeliveryService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T17:53:10.946Z"
+              "WhenOpened": "2025-02-26T17:53:10.946Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 29,
               "Title": "CartController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\CartController.cs",
@@ -431,35 +593,25 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\CartController.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAYwBIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T19:05:09.883Z"
+              "WhenOpened": "2025-04-07T19:05:09.883Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "StatusType.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\StatusType.cs",
-              "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\StatusType.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\StatusType.cs",
-              "RelativeToolTip": "OnlineStoreDomain\\Model\\StatusType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T17:53:14.023Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 25,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB0AAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAIBJwB0AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-10T21:46:46.315Z"
+              "WhenOpened": "2025-03-10T21:46:46.315Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "DeliveryDepartment.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\DeliveryDepartment.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\DeliveryDepartment.cs",
@@ -467,11 +619,12 @@
               "RelativeToolTip": "OnlineStoreDomain\\Model\\DeliveryDepartment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T08:33:46.269Z"
+              "WhenOpened": "2025-04-16T08:33:46.269Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 30,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Cart\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Cart\\Index.cshtml",
@@ -479,11 +632,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Cart\\Index.cshtml",
               "ViewState": "AgIAABIAAAAAAAAAAAAwwCcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-07T19:08:26.413Z"
+              "WhenOpened": "2025-04-07T19:08:26.413Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 32,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Charts\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Charts\\Index.cshtml",
@@ -491,11 +645,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Charts\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAgwE8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-31T16:30:21.725Z"
+              "WhenOpened": "2025-03-31T16:30:21.725Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 51,
               "Title": "20250415085456_OrderUpdate.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Migrations\\20250415085456_OrderUpdate.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Migrations\\20250415085456_OrderUpdate.cs",
@@ -503,11 +658,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Migrations\\20250415085456_OrderUpdate.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T08:54:56.997Z"
+              "WhenOpened": "2025-04-15T08:54:56.997Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 33,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Details.cshtml",
@@ -515,35 +671,38 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Products\\Details.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-16T20:30:05.259Z"
+              "WhenOpened": "2025-03-16T20:30:05.259Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 31,
               "Title": "Customer.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Customer.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Customer.cs",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Customer.cs",
               "RelativeToolTip": "OnlineStoreDomain\\Model\\Customer.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAABnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwBIAAABnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T17:53:10.313Z"
+              "WhenOpened": "2025-02-26T17:53:10.313Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 34,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Create.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Create.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Create.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Products\\Create.cshtml",
-              "ViewState": "AgIAACYAAAAAAAAAAAAAADcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAIBJwDcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-10T19:09:26.149Z"
+              "WhenOpened": "2025-03-10T19:09:26.149Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 49,
               "Title": "20250414180044_DataBaseUpdate.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Migrations\\20250414180044_DataBaseUpdate.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Migrations\\20250414180044_DataBaseUpdate.cs",
@@ -551,23 +710,25 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Migrations\\20250414180044_DataBaseUpdate.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T18:00:44.561Z"
+              "WhenOpened": "2025-04-14T18:00:44.561Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 50,
               "Title": "20250414181827_PriceNotNull.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Migrations\\20250414181827_PriceNotNull.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Migrations\\20250414181827_PriceNotNull.cs",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Migrations\\20250414181827_PriceNotNull.cs",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Migrations\\20250414181827_PriceNotNull.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T18:18:27.313Z"
+              "WhenOpened": "2025-04-14T18:18:27.313Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 35,
               "Title": "ProductRatingsController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductRatingsController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ProductRatingsController.cs",
@@ -575,11 +736,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\ProductRatingsController.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAwwEkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T11:18:15.291Z"
+              "WhenOpened": "2025-04-11T11:18:15.291Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 48,
               "Title": "20250411111621_AddProductRatings.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Migrations\\20250411111621_AddProductRatings.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Migrations\\20250411111621_AddProductRatings.cs",
@@ -587,35 +749,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Migrations\\20250411111621_AddProductRatings.cs",
               "ViewState": "AgIAADcAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T11:16:21.722Z"
+              "WhenOpened": "2025-04-11T11:16:21.722Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "ProductRating.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\ProductRating.cs",
-              "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\ProductRating.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\ProductRating.cs",
-              "RelativeToolTip": "OnlineStoreDomain\\Model\\ProductRating.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T19:27:25.823Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Review.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Review.cs",
-              "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Review.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Review.cs",
-              "RelativeToolTip": "OnlineStoreDomain\\Model\\Review.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBAAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T17:53:13.532Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 36,
               "Title": "Entity.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Entity.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Entity.cs",
@@ -623,23 +762,25 @@
               "RelativeToolTip": "OnlineStoreDomain\\Model\\Entity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T17:56:13.682Z"
+              "WhenOpened": "2025-02-26T17:56:13.682Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 37,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Delete.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Delete.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Delete.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Products\\Delete.cshtml",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAAACsAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAIBJwCsAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-16T20:29:57.616Z"
+              "WhenOpened": "2025-03-16T20:29:57.616Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 38,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\CategoriesController.cs",
@@ -647,11 +788,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\CategoriesController.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAgwD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T18:07:29.235Z"
+              "WhenOpened": "2025-02-26T18:07:29.235Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 39,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\appsettings.json",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\appsettings.json",
@@ -659,11 +801,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-26T18:02:01.228Z"
+              "WhenOpened": "2025-02-26T18:02:01.228Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 40,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\HomeController.cs",
@@ -671,11 +814,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAwBEAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T11:15:27.6Z"
+              "WhenOpened": "2025-03-04T11:15:27.6Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 44,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Categories\\Delete.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Categories\\Delete.cshtml",
@@ -683,23 +827,25 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Categories\\Delete.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-13T21:34:16.164Z"
+              "WhenOpened": "2025-03-13T21:34:16.164Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 42,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Categories\\Create.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Categories\\Create.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Categories\\Create.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Categories\\Create.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABEAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAIBJwBEAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-13T21:37:42.303Z"
+              "WhenOpened": "2025-03-13T21:37:42.303Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 43,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Categories\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Categories\\Index.cshtml",
@@ -707,11 +853,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Categories\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-11T10:50:57Z"
+              "WhenOpened": "2025-03-11T10:50:57Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 41,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Categories\\Edit.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Categories\\Edit.cshtml",
@@ -719,11 +866,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Categories\\Edit.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-13T21:31:13.041Z"
+              "WhenOpened": "2025-03-13T21:31:13.041Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 45,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -731,23 +879,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T23:09:36.205Z"
+              "WhenOpened": "2025-03-23T23:09:36.205Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Program.cs",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Program.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Program.cs",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T18:03:43.839Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 46,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Categories\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Categories\\Details.cshtml",
@@ -755,11 +892,12 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Categories\\Details.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-13T21:24:18.623Z"
+              "WhenOpened": "2025-03-13T21:24:18.623Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 47,
               "Title": "bootstrap.min.css",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
@@ -767,7 +905,8 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-03-10T22:49:18.079Z"
+              "WhenOpened": "2025-03-10T22:49:18.079Z",
+              "EditorCaption": ""
             }
           ]
         },

@@ -18,12 +18,27 @@
     {
         <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
     }
+    @if (TempData["ValidationErrors"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ValidationErrors"]</div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
 
     @if (ViewBag.CategoryId == null)
     {
         <p>
             <a asp-action="Create" class="btn btn-primary">Додати новий товар</a>
+            <a asp-action="Export" class="btn btn-primary ms-2">Експортувати у файл</a>
         </p>
+        <form asp-action="Import" method="post" enctype="multipart/form-data" class="mb-4">
+            <div class="input-group">
+                <input type="file" name="file" class="form-control" accept=".xlsx" />
+                <button type="submit" class="btn btn-success">Імпортувати</button>
+            </div>
+        </form>
     }
 
     <table class="table table-dark table-hover">
