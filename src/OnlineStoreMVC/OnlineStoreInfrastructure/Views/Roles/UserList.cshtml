@@ -1,0 +1,29 @@
+﻿@model IEnumerable<OnlineStoreDomain.Models.User>
+
+@{
+    ViewData["Title"] = "Список користувачів";
+}
+
+<h2>Список користувачів</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Електронна пошта</th>
+            <th>Рік народження</th>
+            <th>Дії</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.Year</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userId="@user.Id">Редагувати ролі</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
