@@ -1,17 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OnlineStoreDomain.Model;
-
-public partial class ProductRating : Entity
+namespace OnlineStoreDomain.Model
 {
-    public int CustomerId { get; set; } // Обов’язкове поле, null не допускається
-
-    public int ProductId { get; set; }
-
-    [Range(0, 5, ErrorMessage = "Оцінка має бути від 0 до 5")]
-    public float Rating { get; set; }
-
-    public virtual Customer Customer { get; set; } = null!;
-
-    public virtual Product Product { get; set; } = null!;
+    public partial class ProductRating : Entity
+    {
+        [Required(ErrorMessage = "Користувач є обов’язковим")]
+        public string UserId { get; set; }
+        public int ProductId { get; set; }
+        [Range(0, 5, ErrorMessage = "Оцінка має бути від 0 до 5")]
+        public float Rating { get; set; }
+        public virtual Product Product { get; set; } = null!;
+    }
 }

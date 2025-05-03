@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using OnlineStoreInfrastructure;
 using OnlineStoreDomain.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineStoreInfrastructure.Controllers
 {
+    [Authorize]
     public class ReviewsController : Controller
     {
         private readonly OnlineStoreContext _context;
@@ -16,6 +18,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
         // Додавання відгуку (POST)
         [HttpPost]
+        [Authorize(Roles = "User")]
         public IActionResult Create(int productId, string userName, string userEmail, string text)
         {
             if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(userEmail) || string.IsNullOrWhiteSpace(text))
@@ -26,7 +29,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
             var review = new Review
             {
-                CustomerId = null, // Для анонімів
+                UserId = null, // Для анонімів
                 ProductId = productId,
                 UserName = userName,
                 UserEmail = userEmail,

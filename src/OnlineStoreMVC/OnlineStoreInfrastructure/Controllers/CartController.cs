@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using OnlineStoreInfrastructure;
 using OnlineStoreDomain.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineStoreInfrastructure.Controllers
 {
@@ -17,15 +18,22 @@ namespace OnlineStoreInfrastructure.Controllers
         // Перегляд кошика
         public IActionResult Index()
         {
-            var cartItems = _context.OrderItems
-                .Include(oi => oi.Product)
-                .Where(oi => oi.OrderId == null)
-                .ToList();
+            var cartItems = new List<OrderItem>();
+
+            if (User.Identity.IsAuthenticated)
+            {
+                cartItems = _context.OrderItems
+                    .Include(oi => oi.Product)
+                    .Where(oi => oi.OrderId == null)
+                    .ToList();
+            }
+
             return View(cartItems);
         }
 
         // Додавання товару до кошика
         [HttpPost]
+        [Authorize(Roles = "User")]
         public IActionResult AddToCart(int productId, int quantity, string returnUrl)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == productId);
@@ -72,6 +80,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
         // Видалення товару з кошика
         [HttpPost]
+        [Authorize(Roles = "User")]
         public IActionResult RemoveFromCart(int id)
         {
             var cartItem = _context.OrderItems

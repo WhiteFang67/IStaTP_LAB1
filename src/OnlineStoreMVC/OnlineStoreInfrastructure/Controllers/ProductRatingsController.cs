@@ -32,9 +32,9 @@ namespace OnlineStoreInfrastructure.Controllers
                 return RedirectToAction("Details", "Products", new { id = productId });
             }
 
-            var customerId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             var existingRating = await _context.ProductRatings
-                .FirstOrDefaultAsync(r => r.ProductId == productId && r.CustomerId == customerId);
+                .FirstOrDefaultAsync(r => r.ProductId == productId && r.UserId == userId);
 
             if (existingRating != null)
             {
@@ -44,7 +44,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
             var productRating = new ProductRating
             {
-                CustomerId = customerId,
+                UserId = userId,
                 ProductId = productId,
                 Rating = rating
             };
@@ -57,9 +57,9 @@ namespace OnlineStoreInfrastructure.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int productId)
         {
-            var customerId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value);
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             var rating = await _context.ProductRatings
-                .FirstOrDefaultAsync(r => r.ProductId == productId && r.CustomerId == customerId);
+                .FirstOrDefaultAsync(r => r.ProductId == productId && r.UserId == userId);
 
             if (rating == null)
             {

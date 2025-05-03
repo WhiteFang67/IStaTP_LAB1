@@ -24,103 +24,106 @@
                 <dd class="col-sm-8">@Html.DisplayFor(model => model.DeliveryDepartment.Name)</dd>
             </dl>
         </div>
-        <div class="col-md-6">
-            <dl class="row">
-                <dt class="col-sm-4">Дата доставки</dt>
-                <dd class="col-sm-8">@Model.DeliveryDate.ToString("dd.MM.yyyy")</dd>
-                <dt class="col-sm-4">Час доставки</dt>
-                <dd class="col-sm-8">@Html.DisplayFor(model => model.DeliveryTime)</dd>
-                <dt class="col-sm-4">Дата реєстрації</dt>
-                <dd class="col-sm-8">@Html.DisplayFor(model => model.RegistrationDate)</dd>
-                <dt class="col-sm-4">Статус</dt>
-                <dd class="col-sm-8">@Html.DisplayFor(model => model.StatusType.Name)</dd>
-                <dt class="col-sm-4">Ціна замовлення</dt>
-                <dd class="col-sm-8">@Model.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
-            </dl>
-        </div>
     </div>
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">Дата доставки</dt>
+            <dd class="col-sm-8">@Model.DeliveryDate.ToString("dd.MM.yyyy")</dd>
+            <dt class="col-sm-4">Час доставки</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.DeliveryTime)</dd>
+            <dt class="col-sm-4">Дата реєстрації</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.RegistrationDate)</dd>
+            <dt class="col-sm-4">Статус</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.StatusType.Name)</dd>
+            <dt class="col-sm-4">Ціна замовлення</dt>
+            <dd class="col-sm-8">@Model.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</dd>
+        </dl>
+    </div>
+</div>
 
-    <h4 class="mt-4">Товари в замовленні</h4>
-    @if (Model.OrderItems != null && Model.OrderItems.Any())
-    {
-        <table class="table table-hover">
-            <thead>
+<h4 class="mt-4">Товари в замовленні</h4>
+@if (Model.OrderItems != null && Model.OrderItems.Any())
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Товар</th>
+                <th>Кількість</th>
+                <th>Вартість</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItems)
+            {
                 <tr>
-                    <th>Товар</th>
-                    <th>Кількість</th>
-                    <th>Вартість</th>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.OrderItems)
-                {
-                    <tr>
-                        <td>@item.Product.Name</td>
-                        <td>@item.Quantity</td>
-                        <td>@item.TotalPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p class="text-muted">Немає товарів у замовленні.</p>
-    }
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-muted">Немає товарів у замовленні.</p>
+}
 
-    <div class="form-group mt-3">
+<div class="form-group mt-3">
+    @if (User.IsInRole("admin"))
+    {
         <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати</a>
-        @if (Model.StatusTypeId == 1) // "В обробці"
-        {
-            <button type="button" class="btn btn-warning" onclick="showCancelModal(@Model.Id)">Скасувати</button>
-        }
         @if (Model.StatusTypeId == 4)
         {
             <button type="button" class="btn btn-danger" onclick="showDeleteModal(@Model.Id)">Видалити</button>
         }
-        <a asp-action="Index" class="btn btn-secondary">Назад до списку</a>
-    </div>
+    }
+    @if (Model.StatusTypeId == 1)
+    {
+        <button type="button" class="btn btn-warning" onclick="showCancelModal(@Model.Id)">Скасувати</button>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Назад до списку</a>
+</div>
 
-    <div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cancelOrderModalLabel">Підтвердження скасування</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Ви впевнені, що хочете скасувати замовлення?</p>
-                    <form id="cancelOrderForm" action="@Url.Action("Cancel", "Orders")" method="post">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" id="modalOrderId" name="id" />
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
-                    <button type="submit" form="cancelOrderForm" class="btn btn-danger">Підтвердити</button>
-                </div>
+<div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelOrderModalLabel">Підтвердження скасування</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Ви впевнені, що хочете скасувати замовлення?</p>
+                <form id="cancelOrderForm" action="@Url.Action("Cancel", "Orders")" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="modalOrderId" name="id" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                <button type="submit" form="cancelOrderForm" class="btn btn-danger">Підтвердити</button>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="modal fade" id="deleteOrderModal" tabindex="-1" aria-labelledby="deleteOrderModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteOrderModalLabel">Підтвердження видалення</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Ви впевнені, що хочете видалити замовлення?</p>
-                    <form id="deleteOrderForm" action="@Url.Action("Delete", "Orders")" method="post">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" id="modalDeleteOrderId" name="id" />
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
-                    <button type="submit" form="deleteOrderForm" class="btn btn-danger">Підтвердити</button>
-                </div>
+<div class="modal fade" id="deleteOrderModal" tabindex="-1" aria-labelledby="deleteOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteOrderModalLabel">Підтвердження видалення</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Ви впевнені, що хочете видалити замовлення?</p>
+                <form id="deleteOrderForm" action="@Url.Action("Delete", "Orders")" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="modalDeleteOrderId" name="id" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                <button type="submit" form="deleteOrderForm" class="btn btn-danger">Підтвердити</button>
             </div>
         </div>
     </div>

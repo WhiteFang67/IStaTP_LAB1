@@ -28,24 +28,42 @@ namespace OnlineStoreInfrastructure.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User
+                // Перевіряємо коректність дати народження
+                try
                 {
-                    UserName = model.Email,
-                    Email = model.Email,
-                    Year = model.Year
-                };
+                    var birthDate = new DateOnly(model.BirthYear, model.BirthMonth, model.BirthDay);
+                    if (birthDate > DateOnly.FromDateTime(DateTime.Today))
+                    {
+                        ModelState.AddModelError(string.Empty, "Дата народження не може бути в майбутньому");
+                        return View(model);
+                    }
 
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddToRoleAsync(user, "user");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    var user = new User
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        BirthDate = birthDate,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        PhoneNumber = model.PhoneNumber
+                    };
+
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(user, "user");
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
                 }
-
-                foreach (var error in result.Errors)
+                catch (ArgumentException)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    ModelState.AddModelError(string.Empty, "Некоректна дата народження");
                 }
             }
 

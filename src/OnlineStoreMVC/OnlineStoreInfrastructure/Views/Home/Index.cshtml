@@ -1,17 +1,62 @@
-﻿@{
-    ViewData["Title"] = "Лабораторна роботи ІСтаТП 2021. Онлайн-магазин";
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Онлайн-магазин комп’ютерної периферії";
 }
 
-@if (User.Identity.IsAuthenticated)
-{
-    <p>@User.Identity.Name</p>
+<div class="container mt-4 p-4 bg-light shadow rounded">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="mb-4 text-black">Онлайн-магазин комп’ютерної периферії</h1>
+            <h4 class="text-muted">Лабораторна робота з ІСтаТП, 2025</h4>
 
-    <form method="post" asp-controller="Account" asp-action="Logout">
-        <input type="submit" value="Вихід" />
-    </form>
-}
-else
-{
-    <a asp-controller="Account" asp-action="Login">Вхід</a>
-    <a asp-controller="Account" asp-action="Register">Реєстрація</a>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Про проєкт</h5>
+                    <p class="card-text">
+                        Цей проєкт розроблено в рамках лабораторної роботи з дисципліни "Інформаційні системи та технології програмування".
+                        Це онлайн-магазин, присвячений комп’ютерній периферії: миші <i class="bi bi-mouse"></i>, клавіатури <i class="bi bi-keyboard"></i>, гарнітури <i class="bi bi-headset"></i> та інші аксесуари.
+                    </p>
+                    <p class="card-text">
+                        Основний функціонал включає:
+                    </p>
+                    <ul>
+                        <li>Перегляд каталогу товарів із фільтрацією та пошуком.</li>
+                        <li>Додавання товарів до кошика.</li>
+                        <li>Оформлення замовлень із вибором доставки.</li>
+                        <li>Реєстрація та автентифікація користувачів.</li>
+                        <li>Адмін-панель для керування товарами та замовленнями.</li>
+                    </ul>
+                    <p class="card-text">
+                        Зареєструйтесь, щоб отримати доступ до всіх можливостей магазину!
+                    </p>
+                </div>
+            </div>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="alert alert-success" role="alert">
+                    Вітаємо, @User.Identity.Name!
+                </div>
+                <div class="d-flex gap-2">
+                    <form method="post" asp-controller="Account" asp-action="Logout" asp-area="Identity">
+                        <input type="submit" value="Вихід" class="btn btn-danger" />
+                    </form>
+                    <a asp-action="Index" asp-controller="Products" class="btn btn-primary">До каталогу</a>
+                </div>
+            }
+            else
+            {
+                <div class="d-flex gap-2 mb-3">
+                    <a asp-controller="Account" asp-action="Login" asp-area="Identity" class="btn btn-primary">Вхід</a>
+                    <a asp-controller="Account" asp-action="Register" asp-area="Identity" class="btn btn-outline-primary">Реєстрація</a>
+                </div>
+                <a asp-action="Index" asp-controller="Products" class="btn btn-secondary">До каталогу</a>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 }

@@ -23,7 +23,14 @@ namespace OnlineStoreInfrastructure
             // Create admin user if it doesn't exist
             if (await userManager.FindByNameAsync(adminEmail) == null)
             {
-                User admin = new User { Email = adminEmail, UserName = adminEmail, Year = 1980 };
+                User admin = new User
+                {
+                    Email = adminEmail,
+                    UserName = adminEmail,
+                    BirthDate = new DateOnly(1980, 1, 1),
+                    FirstName = "Admin",
+                    LastName = "User"
+                };
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {

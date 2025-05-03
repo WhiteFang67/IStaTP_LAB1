@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +45,7 @@ namespace OnlineStoreInfrastructure.Controllers
         }
 
         // GET: Categories/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
@@ -52,9 +54,9 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Categories/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("Name,Id")] Category category)
         {
-            // Перевіряємо, чи існує категорія з таким самим іменем
             if (_context.Categories.Any(c => c.Name == category.Name))
             {
                 ModelState.AddModelError("Name", "Категорія з таким іменем уже існує.");
@@ -70,6 +72,7 @@ namespace OnlineStoreInfrastructure.Controllers
         }
 
         // GET: Categories/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -88,6 +91,7 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Categories/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Name,Id")] Category category)
         {
             if (id != category.Id)
@@ -95,7 +99,6 @@ namespace OnlineStoreInfrastructure.Controllers
                 return NotFound();
             }
 
-            // Перевіряємо, чи існує інша категорія з таким самим іменем (окрім поточної)
             if (_context.Categories.Any(c => c.Name == category.Name && c.Id != id))
             {
                 ModelState.AddModelError("Name", "Категорія з таким іменем уже існує.");
@@ -125,6 +128,7 @@ namespace OnlineStoreInfrastructure.Controllers
         }
 
         // GET: Categories/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -152,6 +156,7 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Categories.FindAsync(id);
@@ -172,7 +177,7 @@ namespace OnlineStoreInfrastructure.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Новий метод для відображення сторінки з діаграмами
+        // GET: Charts
         [HttpGet("/Charts")]
         public IActionResult Charts()
         {

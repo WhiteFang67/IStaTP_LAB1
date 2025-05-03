@@ -27,7 +27,7 @@
         <div class="alert alert-success">@TempData["SuccessMessage"]</div>
     }
 
-    @if (ViewBag.CategoryId == null)
+    @if (ViewBag.CategoryId == null && User.IsInRole("admin"))
     {
         <p>
             <a asp-action="Create" class="btn btn-primary">Додати новий товар</a>
@@ -60,17 +60,32 @@
                     <td style="width: 27%;">
                         @if (ViewBag.CategoryId == null)
                         {
-                            <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnTo="Index" asp-route-returnAll="true" class="btn btn-sm btn-primary me-1">Редагувати</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-danger me-1">Видалити</a>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnTo="Index" asp-route-returnAll="true" class="btn btn-sm btn-primary me-1">Редагувати</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-danger me-1">Видалити</a>
+                            }
                             <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-info me-1">Деталі</a>
-                            <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { all = true })')">У кошик</button>
+                            @if (User.IsInRole("user"))
+                            {
+
+                                <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { all = true })')">У кошик</button>
+                            }
+
                         }
                         else
                         {
-                            <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnTo="Index" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-primary me-1">Редагувати</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-danger me-1">Видалити</a>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnTo="Index" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-primary me-1">Редагувати</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-danger me-1">Видалити</a>
+                            }
                             <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-info me-1">Деталі</a>
-                            <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { id = ViewBag.CategoryId, name = ViewBag.CategoryName })')">У кошик</button>
+                            @if (User.IsInRole("user"))
+                            {
+                                <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { id = ViewBag.CategoryId, name = ViewBag.CategoryName })')">У кошик</button>
+                            }
+                            
                         }
                     </td>
                 </tr>

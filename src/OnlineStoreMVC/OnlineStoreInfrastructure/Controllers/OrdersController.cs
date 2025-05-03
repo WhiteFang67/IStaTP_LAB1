@@ -8,9 +8,12 @@ using OnlineStoreDomain.Model;
 using OnlineStoreInfrastructure;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace OnlineStoreInfrastructure.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly OnlineStoreContext _context;
@@ -23,15 +26,30 @@ namespace OnlineStoreInfrastructure.Controllers
         }
 
         // GET: Orders
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             _logger.LogInformation("Відкрито сторінку списку замовлень");
 
-            var orders = await _context.Orders
-                .Include(o => o.DeliveryService)
-                .Include(o => o.DeliveryDepartment)
-                .Include(o => o.StatusType)
-                .ToListAsync();
+            var orders = new List<Order>();
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var ordersQuery = _context.Orders
+                    .Include(o => o.DeliveryService)
+                    .Include(o => o.DeliveryDepartment)
+                    .Include(o => o.StatusType)
+                    .AsQueryable();
+
+                if (!User.IsInRole("admin"))
+                {
+                    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    ordersQuery = ordersQuery.Where(o => o.UserId == userId)
+                                            .OrderBy(o => o.UserId);
+                }
+
+                orders = await ordersQuery.ToListAsync();
+            }
 
             return View(orders);
         }
@@ -59,11 +77,18 @@ namespace OnlineStoreInfrastructure.Controllers
                 return NotFound();
             }
 
+            if (!User.IsInRole("admin") && order.UserId != User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
+            {
+                _logger.LogWarning("Користувач {UserId} намагався переглянути чуже замовлення з Id {OrderId}", User.FindFirst(ClaimTypes.NameIdentifier)?.Value, id);
+                return Forbid();
+            }
+
             _logger.LogInformation("Відкрито деталі замовлення з Id {OrderId}", id);
             return View(order);
         }
 
         // GET: Orders/Create
+        [Authorize(Roles = "User")]
         public IActionResult Create()
         {
             _logger.LogInformation("Відкрито сторінку оформлення замовлення");
@@ -97,8 +122,9 @@ namespace OnlineStoreInfrastructure.Controllers
 
             var order = new Order
             {
-                DeliveryDate = DateTime.Today.AddDays(1), // За замовчуванням завтра
-                DeliveryTime = "08:00" // За замовчуванням
+                DeliveryDate = DateTime.Today.AddDays(1),
+                DeliveryTime = "08:00",
+                Email = User.Identity.Name
             };
 
             return View(order);
@@ -107,6 +133,7 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Create([Bind("Name,LastName,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate,DeliveryTime")] Order order)
         {
             _logger.LogInformation("Отримано запит на створення замовлення");
@@ -142,7 +169,6 @@ namespace OnlineStoreInfrastructure.Controllers
             if (string.IsNullOrEmpty(order.DeliveryTime) || !new[] { "08:00", "14:00", "18:00" }.Contains(order.DeliveryTime))
                 ModelState.AddModelError("DeliveryTime", "Час доставки є обов’язковим і має бути 08:00, 14:00 або 18:00.");
 
-            // Перевірка наявності товарів
             foreach (var item in cartItems)
             {
                 if (item.Product == null)
@@ -183,7 +209,6 @@ namespace OnlineStoreInfrastructure.Controllers
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                // Віднімання кількості товарів
                 foreach (var item in cartItems)
                 {
                     var product = await _context.Products.FindAsync(item.ProductId);
@@ -200,6 +225,7 @@ namespace OnlineStoreInfrastructure.Controllers
                 order.RegistrationDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, localTimeZone);
                 order.StatusTypeId = 1;
                 order.OrderPrice = cartItems.Sum(oi => oi.TotalPrice);
+                order.UserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
@@ -242,6 +268,7 @@ namespace OnlineStoreInfrastructure.Controllers
         }
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -286,6 +313,7 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate,DeliveryTime,StatusTypeId")] Order order)
         {
             if (id != order.Id)
@@ -385,6 +413,7 @@ namespace OnlineStoreInfrastructure.Controllers
         }
 
         // GET: Orders/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -419,6 +448,7 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
@@ -460,6 +490,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
         // GET: Orders/GetDeliveryDepartments
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetDeliveryDepartments(int deliveryServiceId)
         {
             var departments = _context.DeliveryDepartments
@@ -473,6 +504,7 @@ namespace OnlineStoreInfrastructure.Controllers
         // POST: Orders/Cancel
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Cancel(int id)
         {
             _logger.LogInformation("Отримано POST-запит на скасування замовлення з Id {OrderId}", id);
@@ -490,7 +522,13 @@ namespace OnlineStoreInfrastructure.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            if (order.StatusTypeId != 1) // Перевірка, що статус "В обробці"
+            if (!User.IsInRole("admin") && order.UserId != User.FindFirst(ClaimTypes.NameIdentifier)?.Value)
+            {
+                _logger.LogWarning("Користувач {UserId} намагався скасувати чуже замовлення з Id {OrderId}", User.FindFirst(ClaimTypes.NameIdentifier)?.Value, id);
+                return Forbid();
+            }
+
+            if (order.StatusTypeId != 1)
             {
                 _logger.LogWarning("Спроба скасувати замовлення з Id {OrderId} зі статусом {Status}", id, order.StatusType?.Name ?? "невідомий");
                 TempData["ErrorMessage"] = "Замовлення не можна скасувати, оскільки воно не в статусі 'В обробці'.";
@@ -507,7 +545,6 @@ namespace OnlineStoreInfrastructure.Controllers
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                // Повернення кількості товарів
                 foreach (var item in order.OrderItems)
                 {
                     if (item.Product == null)
@@ -526,7 +563,7 @@ namespace OnlineStoreInfrastructure.Controllers
                     _context.Update(item.Product);
                 }
 
-                order.StatusTypeId = 4; // Зміна на "Скасоване"
+                order.StatusTypeId = 4;
                 _context.Update(order);
                 await _context.SaveChangesAsync();
                 _logger.LogInformation("Замовлення з Id {OrderId} успішно скасовано. Статус змінено на 'Скасоване'", id);

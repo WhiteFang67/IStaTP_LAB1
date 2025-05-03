@@ -7,86 +7,101 @@
 <div class="container mt-4 p-4 bg-light shadow rounded">
     <h1 class="mb-4 text-black">Список замовлень</h1>
 
-    @if (TempData["SuccessMessage"] != null)
+    @if (!User.Identity.IsAuthenticated)
     {
-        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-    }
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-    }
-
-    @if (Model.Any())
-    {
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Ім’я</th>
-                    <th>Прізвище</th>
-                    <th>Email</th>
-                    <th>Служба доставки</th>
-                    <th>Дата доставки</th>
-                    <th>Час доставки</th>
-                    <th>Статус</th>
-                    <th>Ціна</th>
-                    <th>Дії</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DeliveryService.Name)</td>
-                        <td>@item.DeliveryDate.ToString("dd.MM.yyyy")</td>
-                        <td>@Html.DisplayFor(modelItem => item.DeliveryTime)</td>
-                        <td>@Html.DisplayFor(modelItem => item.StatusType.Name)</td>
-                        <td>@item.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
-                        <td>
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Деталі</a>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Редагувати</a>
-                            @if (item.StatusTypeId == 4)
-                            {
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Видалити</a>
-                            }
-                            @if (item.StatusTypeId == 1) // "В обробці"
-                            {
-                                <button type="button" class="btn btn-warning btn-sm" onclick="showCancelModal(@item.Id)">Скасувати</button>
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div class="alert alert-warning">
+            Для створення замовлення <a href="@Url.Action("Login", "Account", new { area = "Identity" })">увійдіть в обліковий запис</a>.
+        </div>
+        <div class="d-flex align-items-center mt-3">
+            <a asp-action="Index" asp-controller="Products" class="btn btn-secondary">Повернутися до товарів</a>
+        </div>
     }
     else
     {
-        <p class="text-muted">Немає замовлень.</p>
-    }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
 
-    <div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cancelOrderModalLabel">Підтвердження скасування</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Ви впевнені, що хочете скасувати замовлення?</p>
-                    <form id="cancelOrderForm" action="@Url.Action("Cancel", "Orders")" method="post">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" id="modalOrderId" name="id" />
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
-                    <button type="submit" form="cancelOrderForm" class="btn btn-danger">Підтвердити</button>
+        @if (Model.Any())
+        {
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Ім’я</th>
+                        <th>Прізвище</th>
+                        <th>Email</th>
+                        <th>Служба доставки</th>
+                        <th>Дата доставки</th>
+                        <th>Час доставки</th>
+                        <th>Статус</th>
+                        <th>Ціна</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DeliveryService.Name)</td>
+                            <td>@item.DeliveryDate.ToString("dd.MM.yyyy")</td>
+                            <td>@Html.DisplayFor(modelItem => item.DeliveryTime)</td>
+                            <td>@Html.DisplayFor(modelItem => item.StatusType.Name)</td>
+                            <td>@item.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Деталі</a>
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Редагувати</a>
+                                    @if (item.StatusTypeId == 4)
+                                    {
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Видалити</a>
+                                    }
+                                }
+                                @if (item.StatusTypeId == 1)
+                                {
+                                    <button type="button" class="btn btn-warning btn-sm" onclick="showCancelModal(@item.Id)">Скасувати</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-muted">Немає замовлень.</p>
+        }
+
+        <div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cancelOrderModalLabel">Підтвердження скасування</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Ви впевнені, що хочете скасувати замовлення?</p>
+                        <form id="cancelOrderForm" action="@Url.Action("Cancel", "Orders")" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" id="modalOrderId" name="id" />
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                        <button type="submit" form="cancelOrderForm" class="btn btn-danger">Підтвердити</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 </div>
 
 @section Scripts {
