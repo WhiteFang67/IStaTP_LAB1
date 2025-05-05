@@ -32,15 +32,14 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Ім’я</th>
-                        <th>Прізвище</th>
-                        <th>Email</th>
-                        <th>Служба доставки</th>
-                        <th>Дата доставки</th>
-                        <th>Час доставки</th>
-                        <th>Статус</th>
-                        <th>Ціна</th>
-                        <th>Дії</th>
+                        <th style="width: 7%;">Ім’я</th>
+                        <th style="width: 10%;">Прізвище</th>
+                        <th style="width: 15%;">Email</th>
+                        <th style="width: 15%;">Служба доставки</th>
+                        <th style="width: 12%;">Дата доставки</th>
+                        <th style="width: 10%;">Статус</th>
+                        <th style="width: 10%;">Ціна</th>
+                        <th style="width: 26%;">Дії</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +51,6 @@
                             <td>@Html.DisplayFor(modelItem => item.Email)</td>
                             <td>@Html.DisplayFor(modelItem => item.DeliveryService.Name)</td>
                             <td>@item.DeliveryDate.ToString("dd.MM.yyyy")</td>
-                            <td>@Html.DisplayFor(modelItem => item.DeliveryTime)</td>
                             <td>@Html.DisplayFor(modelItem => item.StatusType.Name)</td>
                             <td>@item.OrderPrice.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
                             <td>

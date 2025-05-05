@@ -70,7 +70,7 @@ namespace OnlineStoreInfrastructure.Controllers
             return View(product);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
@@ -79,7 +79,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("CategoryId,Name,GeneralInfo,Characteristics,Quantity,Price")] Product product)
         {
             Console.WriteLine("Сирі дані з форми:");
@@ -141,7 +141,7 @@ namespace OnlineStoreInfrastructure.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id, string returnTo = "Index", bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (id == null)
@@ -169,7 +169,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,GeneralInfo,Characteristics,Quantity,Price,Id")] Product product, string returnTo = "Index", bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (id != product.Id)
@@ -271,7 +271,7 @@ namespace OnlineStoreInfrastructure.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id, bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (id == null)
@@ -298,7 +298,7 @@ namespace OnlineStoreInfrastructure.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id, bool returnAll = false, int? returnId = null, string returnName = null)
         {
             var product = await _context.Products.FindAsync(id);
@@ -315,7 +315,7 @@ namespace OnlineStoreInfrastructure.Controllers
             return RedirectToAction(nameof(Index), new { id = returnId, name = returnName });
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Export(int? categoryId, CancellationToken cancellationToken)
         {
             try
@@ -335,7 +335,7 @@ namespace OnlineStoreInfrastructure.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Import(IFormFile file, CancellationToken cancellationToken)
         {
             if (file == null || file.Length == 0)

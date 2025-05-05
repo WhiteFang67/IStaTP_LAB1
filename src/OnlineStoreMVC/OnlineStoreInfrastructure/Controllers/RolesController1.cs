@@ -4,6 +4,9 @@ using OnlineStoreDomain.Models;
 using OnlineStoreInfrastructure.ViewModel;
 using System.Linq;
 using System.Threading.Tasks;
+using OnlineStoreInfrastructure;
+using OnlineStoreDomain.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineStoreInfrastructure.Controllers
 {
@@ -11,11 +14,15 @@ namespace OnlineStoreInfrastructure.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<User> _userManager;
+        private readonly OnlineStoreContext _context;
+        private readonly IdentityContext _identityContext;
 
-        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
+        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager, OnlineStoreContext context, IdentityContext identityContext)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _context = context;
+            _identityContext = identityContext;
         }
 
         public IActionResult Index()
@@ -66,6 +73,49 @@ namespace OnlineStoreInfrastructure.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            // Оновлення статусу замовлень на "Скасоване" (StatusTypeId = 4) замість видалення
+            var orders = _context.Orders.Where(o => o.UserId == userId).ToList();
+            foreach (var order in orders)
+            {
+                order.StatusTypeId = 4; // Припускаємо, що 4 - це ID статусу "Скасоване"
+                _context.Update(order);
+            }
+
+            // Видалення пов’язаних даних із OnlineStoreContext
+            var orderItems = _context.OrderItems.Where(oi => oi.UserId == userId).ToList();
+            _context.OrderItems.RemoveRange(orderItems);
+
+            var reviews = _context.Reviews.Where(r => r.UserId == userId).ToList();
+            _context.Reviews.RemoveRange(reviews);
+
+            var ratings = _context.ProductRatings.Where(r => r.UserId == userId).ToList();
+            _context.ProductRatings.RemoveRange(ratings);
+
+            await _context.SaveChangesAsync();
+
+            // Видалення користувача з IdentityContext
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                TempData["SuccessMessage"] = "Користувача та пов’язані дані (крім замовлень) успішно видалено! Замовлення скасовано.";
+                return RedirectToAction("UserList");
+            }
+
+            TempData["ErrorMessage"] = "Помилка при видаленні користувача: " + string.Join("; ", result.Errors.Select(e => e.Description));
+            return RedirectToAction("UserList");
         }
     }
 }

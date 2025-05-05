@@ -17,15 +17,16 @@ namespace OnlineStoreInfrastructure.Controllers
     public class OrdersController : Controller
     {
         private readonly OnlineStoreContext _context;
+        private readonly IdentityContext _identityContext;
         private readonly ILogger<OrdersController> _logger;
 
-        public OrdersController(OnlineStoreContext context, ILogger<OrdersController> logger)
+        public OrdersController(OnlineStoreContext context, IdentityContext identityContext, ILogger<OrdersController> logger)
         {
             _context = context;
+            _identityContext = identityContext;
             _logger = logger;
         }
 
-        // GET: Orders
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
@@ -54,7 +55,6 @@ namespace OnlineStoreInfrastructure.Controllers
             return View(orders);
         }
 
-        // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -87,15 +87,15 @@ namespace OnlineStoreInfrastructure.Controllers
             return View(order);
         }
 
-        // GET: Orders/Create
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "user")]
         public IActionResult Create()
         {
             _logger.LogInformation("Відкрито сторінку оформлення замовлення");
 
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var cartItems = _context.OrderItems
                 .Include(oi => oi.Product)
-                .Where(oi => oi.OrderId == null)
+                .Where(oi => oi.OrderId == null && oi.UserId == userId)
                 .ToList();
 
             if (!cartItems.Any())
@@ -104,6 +104,17 @@ namespace OnlineStoreInfrastructure.Controllers
                 _logger.LogWarning("Спроба оформити замовлення з порожнім кошиком");
                 return RedirectToAction("Index", "Cart");
             }
+
+            var user = _identityContext.Users.FirstOrDefault(u => u.Id == userId);
+            var order = new Order
+            {
+                DeliveryDate = DateTime.Today.AddDays(1),
+                DeliveryTime = "08:00",
+                Email = user?.Email ?? User.Identity.Name,
+                Name = user?.FirstName ?? "",
+                LastName = user?.LastName ?? "",
+                Phone = user?.PhoneNumber ?? ""
+            };
 
             ViewData["DeliveryServiceId"] = new SelectList(_context.DeliveryServices, "Id", "Name");
             ViewData["DeliveryDepartmentId"] = new SelectList(Enumerable.Empty<SelectListItem>());
@@ -120,27 +131,20 @@ namespace OnlineStoreInfrastructure.Controllers
             ViewBag.CartItems = cartItems;
             ViewBag.TotalPrice = cartItems.Sum(oi => oi.TotalPrice);
 
-            var order = new Order
-            {
-                DeliveryDate = DateTime.Today.AddDays(1),
-                DeliveryTime = "08:00",
-                Email = User.Identity.Name
-            };
-
             return View(order);
         }
 
-        // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "user")]
         public async Task<IActionResult> Create([Bind("Name,LastName,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate,DeliveryTime")] Order order)
         {
             _logger.LogInformation("Отримано запит на створення замовлення");
 
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var cartItems = _context.OrderItems
                 .Include(oi => oi.Product)
-                .Where(oi => oi.OrderId == null)
+                .Where(oi => oi.OrderId == null && oi.UserId == userId)
                 .ToList();
 
             if (!cartItems.Any())
@@ -225,7 +229,7 @@ namespace OnlineStoreInfrastructure.Controllers
                 order.RegistrationDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, localTimeZone);
                 order.StatusTypeId = 1;
                 order.OrderPrice = cartItems.Sum(oi => oi.TotalPrice);
-                order.UserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                order.UserId = userId;
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
@@ -267,7 +271,6 @@ namespace OnlineStoreInfrastructure.Controllers
             }
         }
 
-        // GET: Orders/Edit/5
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -310,11 +313,10 @@ namespace OnlineStoreInfrastructure.Controllers
             return View(order);
         }
 
-        // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Phone,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate,DeliveryTime,StatusTypeId")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DeliveryServiceId,DeliveryDepartmentId,DeliveryDate,DeliveryTime,StatusTypeId")] Order order)
         {
             if (id != order.Id)
             {
@@ -324,10 +326,6 @@ namespace OnlineStoreInfrastructure.Controllers
 
             ModelState.Clear();
 
-            if (string.IsNullOrEmpty(order.Email) || !new EmailAddressAttribute().IsValid(order.Email))
-                ModelState.AddModelError("Email", "Вкажіть коректну електронну пошту.");
-            if (string.IsNullOrEmpty(order.Phone))
-                ModelState.AddModelError("Phone", "Телефон є обов’язковим.");
             if (order.DeliveryServiceId <= 0 || !_context.DeliveryServices.Any(ds => ds.Id == order.DeliveryServiceId))
                 ModelState.AddModelError("DeliveryServiceId", "Оберіть службу доставки.");
             if (order.DeliveryDepartmentId <= 0 || !_context.DeliveryDepartments.Any(dd => dd.Id == order.DeliveryDepartmentId))
@@ -371,8 +369,8 @@ namespace OnlineStoreInfrastructure.Controllers
                     return NotFound();
                 }
 
-                existingOrder.Email = order.Email;
-                existingOrder.Phone = order.Phone;
+                existingOrder.Email = existingOrder.Email; // Залишаємо незмінним
+                existingOrder.Phone = existingOrder.Phone; // Залишаємо незмінним
                 existingOrder.DeliveryServiceId = order.DeliveryServiceId;
                 existingOrder.DeliveryDepartmentId = order.DeliveryDepartmentId;
                 existingOrder.DeliveryDate = order.DeliveryDate.Date;
@@ -412,7 +410,6 @@ namespace OnlineStoreInfrastructure.Controllers
             }
         }
 
-        // GET: Orders/Delete/5
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -445,7 +442,6 @@ namespace OnlineStoreInfrastructure.Controllers
             return View(order);
         }
 
-        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
@@ -488,7 +484,6 @@ namespace OnlineStoreInfrastructure.Controllers
             }
         }
 
-        // GET: Orders/GetDeliveryDepartments
         [HttpGet]
         [AllowAnonymous]
         public IActionResult GetDeliveryDepartments(int deliveryServiceId)
@@ -501,7 +496,6 @@ namespace OnlineStoreInfrastructure.Controllers
             return Json(departments);
         }
 
-        // POST: Orders/Cancel
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]

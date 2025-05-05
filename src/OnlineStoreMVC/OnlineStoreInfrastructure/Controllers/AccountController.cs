@@ -28,6 +28,14 @@ namespace OnlineStoreInfrastructure.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Перевірка унікальності електронної пошти
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError("Email", "Користувач із такою електронною поштою вже існує.");
+                    return View(model);
+                }
+
                 // Перевіряємо коректність дати народження
                 try
                 {

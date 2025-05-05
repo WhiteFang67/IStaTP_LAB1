@@ -29,16 +29,18 @@
 
     @if (ViewBag.CategoryId == null && User.IsInRole("admin"))
     {
-        <p>
-            <a asp-action="Create" class="btn btn-primary">Додати новий товар</a>
-            <a asp-action="Export" class="btn btn-primary ms-2">Експортувати у файл</a>
-        </p>
-        <form asp-action="Import" method="post" enctype="multipart/form-data" class="mb-4">
-            <div class="input-group">
-                <input type="file" name="file" class="form-control" accept=".xlsx" />
-                <button type="submit" class="btn btn-success">Імпортувати</button>
+        <div class="d-flex align-items-center mb-4">
+            <div>
+                <a asp-action="Create" class="btn btn-primary me-2">Додати новий товар</a>
+                <a asp-action="Export" class="btn btn-primary me-2">Експортувати у файл</a>
             </div>
-        </form>
+            <form asp-action="Import" method="post" enctype="multipart/form-data" class="ms-2">
+                <div class="input-group" style="width: 600px;">
+                    <input type="file" name="file" class="form-control" accept=".xlsx" />
+                    <button type="submit" class="btn btn-success">Імпортувати</button>
+                </div>
+            </form>
+        </div>
     }
 
     <table class="table table-dark table-hover">
@@ -68,10 +70,8 @@
                             <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-info me-1">Деталі</a>
                             @if (User.IsInRole("user"))
                             {
-
                                 <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { all = true })')">У кошик</button>
                             }
-
                         }
                         else
                         {
@@ -85,7 +85,6 @@
                             {
                                 <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { id = ViewBag.CategoryId, name = ViewBag.CategoryName })')">У кошик</button>
                             }
-                            
                         }
                     </td>
                 </tr>

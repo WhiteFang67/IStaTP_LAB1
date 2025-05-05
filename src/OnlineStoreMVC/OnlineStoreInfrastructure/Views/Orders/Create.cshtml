@@ -18,22 +18,22 @@
             <div class="col-md-6">
                 <div class="form-group mb-3">
                     <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
+                    <input asp-for="Name" class="form-control" value="@Model.Name" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="LastName" class="control-label"></label>
-                    <input asp-for="LastName" class="form-control" />
+                    <input asp-for="LastName" class="form-control" value="@Model.LastName" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
+                    <input asp-for="Email" class="form-control" value="@Model.Email" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="Phone" class="control-label"></label>
-                    <input asp-for="Phone" class="form-control" />
+                    <input asp-for="Phone" class="form-control" value="@Model.Phone" />
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
             </div>
@@ -107,19 +107,17 @@
     <partial name="_ValidationScriptsPartial" />
     <script>
         $(document).ready(function () {
-            // Обмеження дати доставки (не раніше ніж завтра)
             var tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             var minDate = tomorrow.toISOString().split('T')[0];
             $("#DeliveryDate").attr("min", minDate);
 
-            // Завантаження відділень при зміні служби доставки
             loadDeliveryDepartments();
         });
 
         function loadDeliveryDepartments() {
             var deliveryServiceId = $("#DeliveryServiceId").val();
-            var currentDepartmentId = '@Model?.DeliveryDepartmentId'; // Поточне значення (зазвичай 0 для створення)
+            var currentDepartmentId = '@Model?.DeliveryDepartmentId';
             if (!deliveryServiceId) {
                 var deliveryDepartmentSelect = $("#DeliveryDepartmentId");
                 deliveryDepartmentSelect.empty();

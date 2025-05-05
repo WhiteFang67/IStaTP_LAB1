@@ -6,6 +6,20 @@
 
 <h2>Список користувачів</h2>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -22,8 +36,40 @@
                 <td>@user.BirthDate?.Year</td>
                 <td>
                     <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userId="@user.Id">Редагувати ролі</a>
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal_@user.Id">Видалити</button>
+                    <form asp-action="DeleteUser" method="post" class="d-none" id="deleteForm_@user.Id">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                    </form>
                 </td>
             </tr>
+            <!-- Модальне вікно для підтвердження видалення -->
+            <div class="modal fade" id="deleteUserModal_@user.Id" tabindex="-1" aria-labelledby="deleteUserModalLabel_@user.Id" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteUserModalLabel_@user.Id">Підтвердження видалення</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Ви впевнені, що хочете видалити користувача <strong>@user.Email</strong>?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                            <button type="button" class="btn btn-danger" onclick="submitDeleteForm('@user.Id')">Підтвердити</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        function submitDeleteForm(userId) {
+            document.getElementById('deleteForm_' + userId).submit();
+            var modal = bootstrap.Modal.getInstance(document.getElementById('deleteUserModal_' + userId));
+            modal.hide();
+        }
+    </script>
+}

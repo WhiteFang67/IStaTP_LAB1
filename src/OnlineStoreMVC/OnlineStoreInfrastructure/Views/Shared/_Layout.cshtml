@@ -43,11 +43,14 @@
                                 <i class="bi bi-list"></i> @(User.IsInRole("admin") ? "Усі замовлення" : "Мої замовлення")
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="Index">
-                                <i class="bi bi-cart"></i> Кошик
-                            </a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="Index">
+                                    <i class="bi bi-cart"></i> Кошик
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
