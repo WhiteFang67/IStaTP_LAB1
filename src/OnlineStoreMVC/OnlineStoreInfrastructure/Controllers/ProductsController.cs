@@ -46,6 +46,7 @@ namespace OnlineStoreInfrastructure.Controllers
             return View(await products.ToListAsync());
         }
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> Details(int? id, bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (id == null)
@@ -56,6 +57,7 @@ namespace OnlineStoreInfrastructure.Controllers
             var product = await _context.Products
                 .Include(p => p.Category)
                 .Include(p => p.Reviews)
+                .Include(p => p.ProductRatings) // Додаємо завантаження ProductRatings
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (product == null)

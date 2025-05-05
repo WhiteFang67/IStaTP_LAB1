@@ -34,6 +34,14 @@ namespace OnlineStoreInfrastructure.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
 
+            // Перевірка, чи користувач уже залишив відгук для цього товару
+            var existingReview = _context.Reviews.FirstOrDefault(r => r.UserId == userId && r.ProductId == productId);
+            if (existingReview != null)
+            {
+                TempData["ErrorMessage"] = "Ви вже залишили відгук для цього товару.";
+                return RedirectToAction("Details", "Products", new { id = productId });
+            }
+
             // Отримання FirstName і LastName із IdentityContext
             var user = _identityContext.Users.FirstOrDefault(u => u.Id == userId);
             string userName = user != null && !string.IsNullOrEmpty(user.FirstName) && !string.IsNullOrEmpty(user.LastName)

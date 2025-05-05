@@ -6,6 +6,11 @@
     var userName = User.Identity.Name; // За замовчуванням
     var userEmail = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value;
     var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+    // Перевірка, чи користувач уже оцінив товар
+    var currentUserRating = Model.ProductRatings?.FirstOrDefault(r => r.UserId == userId)?.Rating;
+    var hasRated = currentUserRating.HasValue;
+    // Перевірка, чи користувач уже залишив відгук
+    var hasReviewed = Model.Reviews.Any(r => r.UserId == userId);
 }
 
 <div class="container mt-4 p-4 bg-light shadow rounded">
@@ -13,7 +18,13 @@
         <h1 class="text-black">Деталі товару</h1>
         @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
         {
-            <button type="button" class="btn btn-primary btn-sm" onclick="showRatingModal()">Оцінити</button>
+            <div class="d-flex align-items-center gap-2">
+                @if (hasRated)
+                {
+                    <span>Ваша оцінка: @currentUserRating.Value.ToString("F1")</span>
+                }
+                <button type="button" class="btn btn-primary btn-sm" onclick="showRatingModal()">@(hasRated ? "Змінити оцінку" : "Оцінити")</button>
+            </div>
         }
     </div>
     <hr />
@@ -29,10 +40,12 @@
             @if (Model.Ratings.HasValue)
             {
                 @Model.Ratings.Value.ToString("F2")
+                <span class="text-muted ms-2" style="font-size: 0.85em;">Кількість оцінок: @Model.ProductRatings.Count</span>
             }
             else
             {
                 <span>Без оцінки</span>
+                <span class="text-muted ms-2" style="font-size: 0.85em;">Кількість оцінок: 0</span>
             }
         </dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Quantity)</dt>
@@ -83,7 +96,7 @@
     <hr />
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h3 class="mb-0">Відгуки</h3>
-        @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
+        @if (User.Identity.IsAuthenticated && User.IsInRole("user") && !hasReviewed)
         {
             <button type="button" class="btn btn-primary" onclick="showReviewModal()">Написати відгук</button>
         }
@@ -196,22 +209,30 @@
                     {
                         <div class="alert alert-danger">@TempData["RatingError"]</div>
                     }
+                    @if (TempData["RatingSuccess"] != null)
+                    {
+                        <div class="alert alert-success">@TempData["RatingSuccess"]</div>
+                    }
                     @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
                     {
-                        var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-                        var hasRated = Model.ProductRatings.Any(r => r.UserId == currentUserId);
                         if (hasRated)
                         {
                             <p>Ви вже оцінили цей товар.</p>
                             <form id="deleteRatingForm" asp-controller="ProductRatings" asp-action="Delete" method="post">
                                 <input type="hidden" name="productId" value="@Model.Id" />
+                                <input type="hidden" name="returnAll" value="@ViewBag.ReturnAll" />
+                                <input type="hidden" name="returnId" value="@ViewBag.ReturnId" />
+                                <input type="hidden" name="returnName" value="@ViewBag.ReturnName" />
                                 <button type="submit" class="btn btn-danger">Видалити оцінку</button>
                             </form>
                         }
                         else
                         {
-                            <form id="ratingForm" asp-controller="ProductRatings" asp-action="Rate" method="post">
+                            <form id="ratingForm" asp-controller="ProductRatings" asp-action="Rate" method="post" onsubmit="handleRatingSubmit(event)">
                                 <input type="hidden" name="productId" value="@Model.Id" />
+                                <input type="hidden" name="returnAll" value="@ViewBag.ReturnAll" />
+                                <input type="hidden" name="returnId" value="@ViewBag.ReturnId" />
+                                <input type="hidden" name="returnName" value="@ViewBag.ReturnName" />
                                 <div class="mb-3">
                                     <label for="rating" class="form-label">Оцінка (0–5):</label>
                                     <select id="rating" name="rating" class="form-select">
@@ -276,9 +297,9 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
         {
             <text>
-                        document.getElementById('text').value = '';
-                        var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
-                        modal.show();
+                                    document.getElementById('text').value = '';
+                                    var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
+                                    modal.show();
             </text>
         }
         }
@@ -294,10 +315,25 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
         {
             <text>
-                        var modal = new bootstrap.Modal(document.getElementById('ratingModal'));
-                        modal.show();
+                                    var modal = new bootstrap.Modal(document.getElementById('ratingModal'));
+                                    modal.show();
             </text>
         }
+        }
+
+        function handleRatingSubmit(event) {
+            event.preventDefault();
+            var form = document.getElementById('ratingForm');
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => response.text())
+            .then(() => {
+                // Оновлюємо сторінку для відображення нової оцінки
+                location.reload();
+            })
+            .catch(error => console.error('Помилка:', error));
         }
     </script>
 }

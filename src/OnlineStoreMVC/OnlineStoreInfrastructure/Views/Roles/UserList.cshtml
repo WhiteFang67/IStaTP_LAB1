@@ -31,6 +31,11 @@
     <tbody>
         @foreach (var user in Model)
         {
+            // Пропускаємо користувача з поштою admin@store.com
+            if (user.Email.ToLower() == "admin@store.com")
+            {
+                continue;
+            }
             <tr>
                 <td>@user.Email</td>
                 <td>@user.BirthDate?.Year</td>

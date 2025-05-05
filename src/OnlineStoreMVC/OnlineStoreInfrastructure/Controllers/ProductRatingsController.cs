@@ -18,18 +18,18 @@ namespace OnlineStoreInfrastructure.Controllers
 
         [HttpPost]
         [AllowAnonymous] // Дозволяємо неавторизованим бачити помилку
-        public async Task<IActionResult> Rate(int productId, float rating)
+        public async Task<IActionResult> Rate(int productId, float rating, bool returnAll = false, int? returnId = null, string returnName = null)
         {
             if (!User.Identity.IsAuthenticated)
             {
                 TempData["RatingError"] = "Будь ласка, увійдіть, щоб оцінити товар.";
-                return RedirectToAction("Details", "Products", new { id = productId });
+                return RedirectToAction("Details", "Products", new { id = productId, returnAll, returnId, returnName });
             }
 
             if (rating < 0 || rating > 5)
             {
                 TempData["RatingError"] = "Оцінка має бути від 0 до 5.";
-                return RedirectToAction("Details", "Products", new { id = productId });
+                return RedirectToAction("Details", "Products", new { id = productId, returnAll, returnId, returnName });
             }
 
             var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
@@ -38,24 +38,29 @@ namespace OnlineStoreInfrastructure.Controllers
 
             if (existingRating != null)
             {
-                TempData["RatingError"] = "Ви вже оцінили цей товар.";
-                return RedirectToAction("Details", "Products", new { id = productId });
+                // Оновлюємо існуючу оцінку
+                existingRating.Rating = rating;
+                _context.ProductRatings.Update(existingRating);
+            }
+            else
+            {
+                // Додаємо нову оцінку
+                var productRating = new ProductRating
+                {
+                    UserId = userId,
+                    ProductId = productId,
+                    Rating = rating
+                };
+                _context.ProductRatings.Add(productRating);
             }
 
-            var productRating = new ProductRating
-            {
-                UserId = userId,
-                ProductId = productId,
-                Rating = rating
-            };
-
-            _context.ProductRatings.Add(productRating);
+            await _context.SaveChangesAsync();
             await UpdateProductRating(productId);
-            return RedirectToAction("Details", "Products", new { id = productId });
+            return RedirectToAction("Details", "Products", new { id = productId, returnAll, returnId, returnName });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int productId)
+        public async Task<IActionResult> Delete(int productId, bool returnAll = false, int? returnId = null, string returnName = null)
         {
             var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
             var rating = await _context.ProductRatings
@@ -64,12 +69,13 @@ namespace OnlineStoreInfrastructure.Controllers
             if (rating == null)
             {
                 TempData["RatingError"] = "Ви ще не оцінили цей товар.";
-                return RedirectToAction("Details", "Products", new { id = productId });
+                return RedirectToAction("Details", "Products", new { id = productId, returnAll, returnId, returnName });
             }
 
             _context.ProductRatings.Remove(rating);
+            await _context.SaveChangesAsync();
             await UpdateProductRating(productId);
-            return RedirectToAction("Details", "Products", new { id = productId });
+            return RedirectToAction("Details", "Products", new { id = productId, returnAll, returnId, returnName });
         }
 
         private async Task UpdateProductRating(int productId)
