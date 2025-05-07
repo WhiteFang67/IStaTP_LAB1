@@ -4,13 +4,12 @@
     ViewData["Title"] = "Список ролей";
 }
 
-<h2>Список ролей</h2>
+<h2 class="mt-4">Список ролей</h2>
 
 <table class="table">
     <thead>
         <tr>
             <th>Назва ролі</th>
-            <th>Дії</th>
         </tr>
     </thead>
     <tbody>
@@ -18,11 +17,6 @@
         {
             <tr>
                 <td>@role.Name</td>
-                <td>
-                    <form asp-action="Delete" asp-route-id="@role.Id" method="post">
-                        <button type="submit" class="btn btn-sm btn-danger">Видалити</button>
-                    </form>
-                </td>
             </tr>
         }
     </tbody>

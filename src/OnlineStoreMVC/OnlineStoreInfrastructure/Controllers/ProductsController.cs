@@ -43,7 +43,7 @@ namespace OnlineStoreInfrastructure.Controllers
                 ViewBag.CategoryId = null;
                 ViewBag.CategoryName = "Усі товари";
             }
-            return View(await products.ToListAsync());
+            return View(await products.OrderBy(p => p.Category.Name).ThenBy(p => p.Name).ToListAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

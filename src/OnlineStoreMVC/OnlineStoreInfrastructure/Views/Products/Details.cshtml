@@ -64,6 +64,7 @@
                 @if (User.IsInRole("admin"))
                 {
                     <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnTo="Details" asp-route-returnAll="true" class="btn btn-primary me-2">Редагувати</a>
+                    <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteProductModal">Видалити</button>
                 }
                 @if (User.IsInRole("user"))
                 {
@@ -76,6 +77,7 @@
                 @if (User.IsInRole("admin"))
                 {
                     <a asp-action="Edit" asp-route-id="@Model?.Id" asp-route-returnTo="Details" asp-route-returnId="@ViewBag.ReturnId" asp-route-returnName="@ViewBag.ReturnName" class="btn btn-primary me-2">Редагувати</a>
+                    <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteProductModal">Видалити</button>
                 }
                 @if (User.IsInRole("user"))
                 {
@@ -258,6 +260,30 @@
         </div>
     </div>
 
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteProductModalLabel">Підтвердження видалення</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ви впевнені, що хочете видалити товар <strong>@Model.Name</strong>?</p>
+                </div>
+                <div class="modal-footer">
+                    <form asp-action="Delete" asp-controller="Products" method="post">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <input type="hidden" name="returnAll" value="@ViewBag.ReturnAll" />
+                        <input type="hidden" name="returnId" value="@ViewBag.ReturnId" />
+                        <input type="hidden" name="returnName" value="@ViewBag.ReturnName" />
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                        <button type="submit" class="btn btn-danger">Видалити</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -297,9 +323,9 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
         {
             <text>
-                                    document.getElementById('text').value = '';
-                                    var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
-                                    modal.show();
+                                        document.getElementById('text').value = '';
+                                        var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
+                                        modal.show();
             </text>
         }
         }
@@ -315,8 +341,8 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
         {
             <text>
-                                    var modal = new bootstrap.Modal(document.getElementById('ratingModal'));
-                                    modal.show();
+                                        var modal = new bootstrap.Modal(document.getElementById('ratingModal'));
+                                        modal.show();
             </text>
         }
         }

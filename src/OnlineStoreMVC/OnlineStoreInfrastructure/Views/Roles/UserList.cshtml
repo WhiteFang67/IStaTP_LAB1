@@ -4,18 +4,18 @@
     ViewData["Title"] = "Список користувачів";
 }
 
-<h2>Список користувачів</h2>
+<h2 class="mt-4">Список користувачів</h2>
 
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success">
+    <div class="alert alert-success mt-4">
         @TempData["SuccessMessage"]
     </div>
 }
 
 @if (TempData["ErrorMessage"] != null)
 {
-    <div class="alert alert-danger">
+    <div class="alert alert-danger mt-4">
         @TempData["ErrorMessage"]
     </div>
 }
