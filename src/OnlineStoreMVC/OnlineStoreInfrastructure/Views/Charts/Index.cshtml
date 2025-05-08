@@ -2,17 +2,17 @@
     ViewData["Title"] = "Діаграми";
 }
 
-<div class="container mt-4 p-4 bg-light shadow rounded">
+<div class="container-fluid mt-4 p-5 bg-light shadow rounded mb-5">
     <h1 class="mb-4 text-black">Діаграми</h1>
 
     <div class="row">
         <div class="col-md-6">
             <h3>Кількість товарів за категоріями</h3>
-            <div id="productsByCategoryChart" style="width: 100%; height: 400px;"></div>
+            <div id="productsByCategoryChart" style="width: 100%; height: 500px;"></div>
         </div>
         <div class="col-md-6">
             <h3>Кількість одиниць товарів</h3>
-            <div id="productQuantitiesChart" style="width: 100%; height: 400px;"></div>
+            <div id="productQuantitiesChart" style="width: 100%; height: 500px;"></div>
         </div>
     </div>
 </div>
@@ -24,7 +24,7 @@
         google.charts.setOnLoadCallback(drawCharts);
 
         function drawCharts() {
-            // Перша діаграма: Кількість товарів за категоріями
+            // Перша діаграма: Кількість товарів за категоріями (PieChart)
             fetch('/api/charts/productsByCategory')
                 .then(response => response.json())
                 .then(data => {
@@ -39,18 +39,18 @@
                     const options = {
                         title: 'Кількість товарів за категоріями',
                         width: '100%',
-                        height: 400,
-                        legend: { position: 'none' },
-                        hAxis: { title: 'Категорія' },
-                        vAxis: { title: 'Кількість товарів', minValue: 0 }
+                        height: 500,
+                        pieHole: 0,
+                        is3D: false,
+                        colors: ['#4CAF50', '#FF9800', '#2196F3', '#9C27B0', '#F44336']
                     };
 
-                    const chart = new google.visualization.ColumnChart(document.getElementById('productsByCategoryChart'));
+                    const chart = new google.visualization.PieChart(document.getElementById('productsByCategoryChart'));
                     chart.draw(dataTable, options);
                 })
                 .catch(error => console.error('Помилка завантаження даних для категорій:', error));
 
-            // Друга діаграма: Кількість одиниць товарів
+            // Друга діаграма: Кількість одиниць товарів (ColumnChart)
             fetch('/api/charts/productQuantities')
                 .then(response => response.json())
                 .then(data => {
@@ -65,7 +65,7 @@
                     const options = {
                         title: 'Кількість одиниць товарів',
                         width: '100%',
-                        height: 400,
+                        height: 500,
                         legend: { position: 'none' },
                         hAxis: { title: 'Товар', slantedText: true, slantedTextAngle: 45 },
                         vAxis: { title: 'Кількість одиниць', minValue: 0 }

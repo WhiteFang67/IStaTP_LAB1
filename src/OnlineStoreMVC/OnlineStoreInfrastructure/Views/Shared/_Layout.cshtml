@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Лабораторна робота 1. Інтернет-магазин</title>
+    <title>@ViewData["Title"] - Інтернет-магазин</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap_slate.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/OnlineStoreInfrastructure.styles.css" asp-append-version="true" />
@@ -13,31 +13,39 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-dark py-3" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Лабораторна робота 1. Інтернет-магазин</a>
+                <a class="navbar-brand me-3" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item me-3">
                             <a class="nav-link" asp-area="" asp-controller="Categories" asp-action="Index">Категорії</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item me-3">
                             <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index" asp-route-all="true">Товари</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item me-3">
                             <a class="nav-link" asp-area="" asp-controller="Categories" asp-action="Charts">Діаграми</a>
                         </li>
                         @if (User.IsInRole("admin"))
                         {
-                            <li class="nav-item">
+                            <li class="nav-item me-3">
                                 <a class="nav-link" asp-area="" asp-controller="Roles" asp-action="Index">
                                     <i class="bi bi-person-gear"></i> Ролі
                                 </a>
                             </li>
                         }
                     </ul>
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <form asp-controller="Products" asp-action="Index" method="get" class="d-flex align-items-center">
+                                <input type="text" name="search" class="form-control me-2" placeholder="Пошук товарів..." style="width: 500px;" />
+                                <button type="submit" class="btn btn-outline-light"><i class="bi bi-search"></i></button>
+                            </form>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="Index">
                                 <i class="bi bi-list"></i> @(User.IsInRole("admin") ? "Усі замовлення" : "Мої замовлення")
@@ -65,7 +73,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    © 2025 - Лабораторна робота 1. ІСтаТП
+                    © 2025 - ІСтаТП
                 </div>
                 <div class="col text-end">
                     <a class="text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

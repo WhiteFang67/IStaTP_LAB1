@@ -29,7 +29,7 @@ namespace OnlineStoreInfrastructure.Controllers
             _importService = importService;
         }
 
-        public async Task<IActionResult> Index(int? id, string? name, bool all = false)
+        public async Task<IActionResult> Index(int? id, string? name, bool all = false, string? search = null)
         {
             var products = _context.Products.Include(p => p.Category).AsQueryable();
             if (id.HasValue && !all)
@@ -43,6 +43,13 @@ namespace OnlineStoreInfrastructure.Controllers
                 ViewBag.CategoryId = null;
                 ViewBag.CategoryName = "Усі товари";
             }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                products = products.Where(p => p.Name.ToLower().Contains(search.ToLower()));
+                ViewBag.SearchTerm = search;
+            }
+
             return View(await products.OrderBy(p => p.Category.Name).ThenBy(p => p.Name).ToListAsync());
         }
 

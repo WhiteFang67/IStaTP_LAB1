@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\charts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\charts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\roles\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\roles\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\products\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -49,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\viewmodel\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\viewmodel\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\productratingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -77,14 +89,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoreinfrastructure\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{46D0EDAE-BE19-4E24-BD60-524E3CB4B613}|OnlineStoreInfrastructure\\OnlineStoreInfrastructure.csproj|solutionrelative:onlinestoreinfrastructure\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{374A96A2-2F17-47D8-BC03-CB7E98320A9D}|OnlineStoreDomain\\OnlineStoreDomain.csproj|d:\\\u043A\u043D\u0443\\\u043A\u0443\u0440\u04412\\\u0456\u0441\u0442\u0430\u0442\u043F\\\u043B\u0430\u0431\u04301\\src\\onlinestoremvc\\onlinestoredomain\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -206,56 +210,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "RegisterViewModel.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\ViewModel\\RegisterViewModel.cs",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\ViewModel\\RegisterViewModel.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\ViewModel\\RegisterViewModel.cs",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\ViewModel\\RegisterViewModel.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwDQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T16:21:40.261Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Account\\Register.cshtml",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Account\\Register.cshtml",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Account\\Register.cshtml",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAABMAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Charts\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Charts\\Index.cshtml",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Charts\\Index.cshtml",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Charts\\Index.cshtml",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAAE8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-01T17:12:40.794Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductsController.cs*",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\ProductsController.cs*",
-              "ViewState": "AgIAAEoBAAAAAAAAAAAuwHQBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T20:29:46.873Z",
+              "WhenOpened": "2025-05-08T15:12:50.166Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserList.cshtml",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Roles\\UserList.cshtml",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Roles\\UserList.cshtml",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Roles\\UserList.cshtml",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Roles\\UserList.cshtml",
-              "ViewState": "AgIAADQAAAAAAAAAAAAAAE8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-01T19:44:39.512Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Edit.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Edit.cshtml",
@@ -267,32 +235,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Products\\Index.cshtml",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAAAIUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-03T13:20:18.045Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Details.cshtml",
               "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Details.cshtml",
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Products\\Details.cshtml",
-              "ViewState": "AgIAAEIBAAAAAAAAAAAAAGwBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAAAGwBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-02T20:36:10.217Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Roles\\Edit.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Roles\\Edit.cshtml",
@@ -300,12 +268,11 @@
               "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Roles\\Edit.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-01T19:45:17.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T19:45:17.527Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Roles\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Roles\\Index.cshtml",
@@ -317,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Product.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Product.cs",
@@ -325,12 +292,98 @@
               "RelativeToolTip": "OnlineStoreDomain\\Model\\Product.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAwwCoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T15:26:34.72Z",
+              "WhenOpened": "2025-05-05T15:26:34.72Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ReviewsController.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T20:30:04.408Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T16:24:41.967Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAEsAAACAh30rnHYlwCoAAACSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-01T20:41:54.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAAGABAAAAAAAAAAAAAHsBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T20:29:46.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserList.cshtml",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Roles\\UserList.cshtml",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Roles\\UserList.cshtml",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Roles\\UserList.cshtml",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Roles\\UserList.cshtml",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAAE8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-01T19:44:39.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Account\\Register.cshtml",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-01T17:12:40.794Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\ViewModel\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\ViewModel\\RegisterViewModel.cs",
+              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\ViewModel\\RegisterViewModel.cs",
+              "RelativeToolTip": "OnlineStoreInfrastructure\\ViewModel\\RegisterViewModel.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwDQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T16:21:40.261Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "RoleInitializer.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\RoleInitializer.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\RoleInitializer.cs",
@@ -342,7 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "RolesController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\RolesController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\RolesController.cs",
@@ -354,19 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ReviewsController.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\ReviewsController.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAAAGEAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T20:30:04.408Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Home\\Index.cshtml",
@@ -378,7 +419,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Index.cshtml",
@@ -390,7 +431,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "ProductRatingsController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ProductRatingsController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ProductRatingsController.cs",
@@ -402,7 +443,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "ProductRating.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\ProductRating.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\ProductRating.cs",
@@ -414,7 +455,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "OrdersController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\OrdersController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\OrdersController.cs",
@@ -426,7 +467,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Edit.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Edit.cshtml",
@@ -438,31 +479,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADgAAAAAAAAAAAAAAFAAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-01T20:41:54.062Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\AccountController.cs",
-              "ToolTip": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "OnlineStoreInfrastructure\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAYwHgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T16:24:41.967Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\User.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\User.cs",
@@ -474,7 +491,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Review.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Review.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Review.cs",
@@ -486,7 +503,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "OrderItem.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\OrderItem.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\OrderItem.cs",
@@ -498,7 +515,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "Order.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreDomain\\Model\\Order.cs",
               "RelativeDocumentMoniker": "OnlineStoreDomain\\Model\\Order.cs",
@@ -510,7 +527,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "CartController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\CartController.cs",
@@ -522,7 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\CategoriesController.cs",
@@ -534,7 +551,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "ChartsController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\ChartsController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\ChartsController.cs",
@@ -546,7 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "20250505095758_AddUserIdToOrderItem.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Migrations\\20250505095758_AddUserIdToOrderItem.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Migrations\\20250505095758_AddUserIdToOrderItem.cs",
@@ -558,7 +575,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Create.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Create.cshtml",
@@ -570,7 +587,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "OnlineStoreContext.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\OnlineStoreContext.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\OnlineStoreContext.cs",
@@ -582,7 +599,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Cart\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Cart\\Index.cshtml",
@@ -594,7 +611,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Controllers\\HomeController.cs",
@@ -606,7 +623,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\appsettings.json",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\appsettings.json",
@@ -618,7 +635,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Program.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Program.cs",
@@ -630,7 +647,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "IdentityContext.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\IdentityContext.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\IdentityContext.cs",
@@ -642,7 +659,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Account\\Login.cshtml",
@@ -654,7 +671,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Products\\Delete.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Products\\Delete.cshtml",
@@ -666,7 +683,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Categories\\Create.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Categories\\Create.cshtml",
@@ -678,7 +695,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Categories\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Categories\\Index.cshtml",
@@ -690,7 +707,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Views\\Orders\\Details.cshtml",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Views\\Orders\\Details.cshtml",
@@ -702,7 +719,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "20250503123746_UpdateUserFields.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Migrations\\Identity\\20250503123746_UpdateUserFields.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Migrations\\Identity\\20250503123746_UpdateUserFields.cs",
@@ -714,7 +731,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\ViewModel\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\ViewModel\\LoginViewModel.cs",
@@ -726,7 +743,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "ChangeRoleViewModel.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\ViewModel\\ChangeRoleViewModel.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\ViewModel\\ChangeRoleViewModel.cs",
@@ -738,7 +755,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "D:\\\u041A\u041D\u0423\\\u041A\u0443\u0440\u04412\\\u0406\u0421\u0442\u0430\u0422\u041F\\\u041B\u0430\u0431\u04301\\src\\OnlineStoreMVC\\OnlineStoreInfrastructure\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "OnlineStoreInfrastructure\\Models\\ErrorViewModel.cs",

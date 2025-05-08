@@ -43,54 +43,63 @@
         </div>
     }
 
-    <table class="table table-dark table-hover">
-        <thead>
-            <tr>
-                <th style="width: 35%;">@Html.DisplayNameFor(model => model.Name)</th>
-                <th style="width: 23%;">@Html.DisplayNameFor(model => model.Category)</th>
-                <th style="width: 15%;">@Html.DisplayNameFor(model => model.Price)</th>
-                <th style="width: 27%;">Дії</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr class="table-light">
-                    <td style="width: 35%;">@Html.DisplayFor(modelItem => item.Name)</td>
-                    <td style="width: 23%;">@Html.DisplayFor(modelItem => item.Category.Name)</td>
-                    <td style="width: 15%;">@item.Price.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
-                    <td style="width: 27%;">
-                        @if (ViewBag.CategoryId == null)
-                        {
-                            @if (User.IsInRole("admin"))
-                            {
-                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnTo="Index" asp-route-returnAll="true" class="btn btn-sm btn-primary me-1">Редагувати</a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-danger me-1">Видалити</a>
-                            }
-                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-info me-1">Деталі</a>
-                            @if (User.IsInRole("user"))
-                            {
-                                <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { all = true })')">У кошик</button>
-                            }
-                        }
-                        else
-                        {
-                            @if (User.IsInRole("admin"))
-                            {
-                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnTo="Index" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-primary me-1">Редагувати</a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-danger me-1">Видалити</a>
-                            }
-                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-info me-1">Деталі</a>
-                            @if (User.IsInRole("user"))
-                            {
-                                <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { id = ViewBag.CategoryId, name = ViewBag.CategoryName })')">У кошик</button>
-                            }
-                        }
-                    </td>
+    @if (Model.Any())
+    {
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th style="width: 41%;">@Html.DisplayNameFor(model => model.Name)</th>
+                    <th style="width: 23%;">@Html.DisplayNameFor(model => model.Category)</th>
+                    <th style="width: 15%;">@Html.DisplayNameFor(model => model.Price)</th>
+                    <th style="width: 21%;">Дії</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="table-light">
+                        <td style="width: 41%;">@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td style="width: 23%;">@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                        <td style="width: 15%;">@item.Price.ToString("C", new System.Globalization.CultureInfo("uk-UA"))</td>
+                        <td style="width: 21%;">
+                            @if (ViewBag.CategoryId == null)
+                            {
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnTo="Index" asp-route-returnAll="true" class="btn btn-sm btn-primary me-1">Редагувати</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-danger me-1">Видалити</a>
+                                }
+                                <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnAll="true" class="btn btn-sm btn-info me-1">Деталі</a>
+                                @if (User.IsInRole("user"))
+                                {
+                                    <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { all = true })')">У кошик</button>
+                                }
+                            }
+                            else
+                            {
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-returnTo="Index" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-primary me-1">Редагувати</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-danger me-1">Видалити</a>
+                                }
+                                <a asp-action="Details" asp-route-id="@item.Id" asp-route-returnId="@ViewBag.CategoryId" asp-route-returnName="@ViewBag.CategoryName" class="btn btn-sm btn-info me-1">Деталі</a>
+                                @if (User.IsInRole("user"))
+                                {
+                                    <button type="button" class="btn btn-sm btn-success me-1" onclick="showAddToCartModal('@item.Id', '@item.Name', @item.Quantity, '@Url.Action("Index", "Products", new { id = ViewBag.CategoryId, name = ViewBag.CategoryName })')">У кошик</button>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            Товари не знайдено. Спробуйте змінити запит пошуку.
+        </div>
+    }
 
     <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
         <div class="modal-dialog">
