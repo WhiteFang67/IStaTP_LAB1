@@ -31,10 +31,32 @@
     <dl class="row">
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
         <dd class="col-sm-10">@Html.DisplayFor(model => model.Name)</dd>
-        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.GeneralInfo)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.GeneralInfo)</dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Characteristics)</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.Characteristics)</dd>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrWhiteSpace(Model.Characteristics))
+            {
+                var characteristicsLines = Model.Characteristics.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                foreach (var line in characteristicsLines)
+                {
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        var parts = line.Split(new[] { ':' }, 2); // Розбиваємо по першому двокрапкою
+                        if (parts.Length == 2)
+                        {
+                            <div>@parts[0].Trim(): @parts[1].Trim()</div>
+                        }
+                        else
+                        {
+                            <div>@line</div> <!-- Якщо формат не "ключ: значення", просто виводимо рядок -->
+                        }
+                    }
+                }
+            }
+            else
+            {
+                <span>Без характеристик</span>
+            }
+        </dd>
         <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Ratings)</dt>
         <dd class="col-sm-10">
             @if (Model.Ratings.HasValue)
@@ -323,9 +345,9 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
         {
             <text>
-                                        document.getElementById('text').value = '';
-                                        var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
-                                        modal.show();
+                                            document.getElementById('text').value = '';
+                                            var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
+                                            modal.show();
             </text>
         }
         }
@@ -341,8 +363,8 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("user"))
         {
             <text>
-                                        var modal = new bootstrap.Modal(document.getElementById('ratingModal'));
-                                        modal.show();
+                                            var modal = new bootstrap.Modal(document.getElementById('ratingModal'));
+                                            modal.show();
             </text>
         }
         }

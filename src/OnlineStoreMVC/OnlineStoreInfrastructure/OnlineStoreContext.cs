@@ -105,7 +105,6 @@ namespace OnlineStoreInfrastructure
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.Property(e => e.Characteristics).HasMaxLength(1000);
-                entity.Property(e => e.GeneralInfo).HasMaxLength(400);
                 entity.Property(e => e.Name).HasMaxLength(50);
                 entity.Property(e => e.Price).HasColumnType("decimal(18,2)");
 

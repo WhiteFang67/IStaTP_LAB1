@@ -35,8 +35,8 @@ namespace OnlineStoreInfrastructure.Services
                 using var workbook = new XLWorkbook();
                 var worksheet = workbook.Worksheets.Add("Products");
 
-                // Write headers (Ukrainian localized names)
-                var headers = new[] { "Категорія", "Назва", "Огляд", "Характеристики", "Рейтинг", "Кількість", "Ціна" };
+                // Write headers (Ukrainian localized names, excluding Ratings)
+                var headers = new[] { "Категорія", "Назва", "Характеристики", "Кількість", "Ціна" };
                 for (int i = 0; i < headers.Length; i++)
                 {
                     worksheet.Cell(1, i + 1).Value = headers[i];
@@ -49,11 +49,9 @@ namespace OnlineStoreInfrastructure.Services
                 {
                     worksheet.Cell(row, 1).Value = product.Category?.Name ?? "Невідома категорія";
                     worksheet.Cell(row, 2).Value = product.Name;
-                    worksheet.Cell(row, 3).Value = product.GeneralInfo ?? "";
-                    worksheet.Cell(row, 4).Value = product.Characteristics ?? "";
-                    worksheet.Cell(row, 5).Value = product.Ratings?.ToString() ?? "";
-                    worksheet.Cell(row, 6).Value = product.Quantity;
-                    worksheet.Cell(row, 7).Value = product.Price;
+                    worksheet.Cell(row, 3).Value = product.Characteristics ?? "";
+                    worksheet.Cell(row, 4).Value = product.Quantity;
+                    worksheet.Cell(row, 5).Value = product.Price;
 
                     row++;
                 }

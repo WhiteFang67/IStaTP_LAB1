@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using OnlineStoreInfrastructure.Controllers;
 
 namespace OnlineStoreInfrastructure.ViewModel
 {
@@ -32,21 +33,25 @@ namespace OnlineStoreInfrastructure.ViewModel
 
         [Required(ErrorMessage = "Поле День народження обов'язкове")]
         [Range(1, 31, ErrorMessage = "День має бути між 1 і 31")]
+        [ValidDay(ErrorMessage = "Некоректний день для вказаного місяця.")]
         [Display(Name = "День народження")]
         public int BirthDay { get; set; }
 
         [Required(ErrorMessage = "Поле Ім’я обов’язкове")]
         [StringLength(50, ErrorMessage = "Ім’я не може перевищувати 50 символів")]
+        [AlphabetValidation(ErrorMessage = "Поле може містити лише літери, пробіл, апостроф або дефіс.")]
         [Display(Name = "Ім’я")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Поле Прізвище обов’язкове")]
         [StringLength(50, ErrorMessage = "Прізвище не може перевищувати 50 символів")]
+        [AlphabetValidation(ErrorMessage = "Поле може містити лише літери, пробіл, апостроф або дефіс.")]
         [Display(Name = "Прізвище")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Поле Телефон обов’язкове")]
-        [Phone(ErrorMessage = "Невірний формат телефону")]
+        [DigitsOnlyValidation(ErrorMessage = "Номер телефону може містити лише цифри.")]
+        [StringLength(10, ErrorMessage = "Номер телефону має містити рівно 10 цифр.", MinimumLength = 10)]
         [Display(Name = "Телефон")]
         public string PhoneNumber { get; set; }
     }

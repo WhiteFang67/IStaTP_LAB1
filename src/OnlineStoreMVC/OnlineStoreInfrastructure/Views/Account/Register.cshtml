@@ -5,69 +5,74 @@
 }
 
 <div class="container mt-4 p-4 bg-light shadow rounded">
-    <h1 class="mb-4 text-black">Реєстрація</h1>
+    <div style="max-height: 650px; overflow-y: auto; overflow-x: hidden; position: relative;">
+        <h1 class="mb-4 text-black" style="position: sticky; top: 0; background-color: #f8f9fa; z-index: 1; padding: 10px 0;">Реєстрація</h1>
 
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-    }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
 
-    <form asp-action="Register" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="form-group mb-3">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <label asp-for="BirthYear" class="control-label"></label>
-                    <input asp-for="BirthYear" class="form-control" type="number" />
-                    <span asp-validation-for="BirthYear" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <label asp-for="BirthMonth" class="control-label"></label>
-                    <input asp-for="BirthMonth" class="form-control" type="number" />
-                    <span asp-validation-for="BirthMonth" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <label asp-for="BirthDay" class="control-label"></label>
-                    <input asp-for="BirthDay" class="form-control" type="number" />
-                    <span asp-validation-for="BirthDay" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <label asp-for="FirstName" class="control-label"></label>
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <label asp-for="LastName" class="control-label"></label>
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <label asp-for="PhoneNumber" class="control-label"></label>
-                    <input asp-for="PhoneNumber" class="form-control" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <label asp-for="Password" class="control-label"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group mb-3">
-                    <label asp-for="ConfirmPassword" class="control-label"></label>
-                    <input asp-for="ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </div>
-                <div class="form-group mt-3">
-                    <input type="submit" value="Зареєструватися" class="btn btn-primary" />
-                    <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Назад</a>
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row" style="margin-left: 0; margin-right: 0;">
+                <div class="col-md-6 offset-md-3" style="padding-left: 15px; padding-right: 15px;">
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="BirthYear" class="control-label"></label>
+                        <input asp-for="BirthYear" class="form-control" type="number" />
+                        <span asp-validation-for="BirthYear" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="BirthMonth" class="control-label"></label>
+                        <input asp-for="BirthMonth" class="form-control" type="number" />
+                        <span asp-validation-for="BirthMonth" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="BirthDay" class="control-label"></label>
+                        <input asp-for="BirthDay" class="form-control" type="number" />
+                        <span asp-validation-for="BirthDay" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="PhoneNumber" class="control-label"></label>
+                        <div class="input-group">
+                            <span class="input-group-text">+38</span>
+                            <input asp-for="PhoneNumber" class="form-control" type="text" placeholder="Введіть номер телефону" />
+                        </div>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="submit" value="Зареєструватися" class="btn btn-primary" />
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Назад</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 @section Scripts {

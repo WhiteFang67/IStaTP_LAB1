@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineStoreDomain.Models;
 using OnlineStoreInfrastructure.ViewModel;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace OnlineStoreInfrastructure.Controllers
 {
@@ -53,7 +55,7 @@ namespace OnlineStoreInfrastructure.Controllers
                         BirthDate = birthDate,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-                        PhoneNumber = model.PhoneNumber
+                        PhoneNumber = "+38" + model.PhoneNumber // Додаємо префікс +38 до номера
                     };
 
                     var result = await _userManager.CreateAsync(user, model.Password);
@@ -116,6 +118,102 @@ namespace OnlineStoreInfrastructure.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+    }
+
+    public class AlphabetValidationAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value == null)
+            {
+                return ValidationResult.Success;
+            }
+
+            var input = value.ToString();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return new ValidationResult("Поле є обов'язковим.");
+            }
+
+            // Регулярний вираз: дозволяємо літери будь-якої мови (\p{L}), пробіли, апостроф і дефіс,
+            // виключаємо цифри та інші символи
+            var regex = new Regex(@"^[\p{L} '\-]+$", RegexOptions.None);
+            if (!regex.IsMatch(input))
+            {
+                return new ValidationResult("Поле може містити лише літери, пробіл, апостроф або дефіс.");
+            }
+
+            return ValidationResult.Success;
+        }
+    }
+
+    public class DigitsOnlyValidationAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value == null)
+            {
+                return ValidationResult.Success;
+            }
+
+            var input = value.ToString();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return new ValidationResult("Поле є обов'язковим.");
+            }
+
+            // Регулярний вираз: дозволяємо лише цифри
+            var regex = new Regex(@"^\d+$", RegexOptions.None);
+            if (!regex.IsMatch(input))
+            {
+                return new ValidationResult("Номер телефону може містити лише цифри.");
+            }
+
+            return ValidationResult.Success;
+        }
+    }
+
+    public class ValidDayAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            if (value == null)
+            {
+                return ValidationResult.Success;
+            }
+
+            var model = (RegisterViewModel)validationContext.ObjectInstance;
+            int day = (int)value;
+            int month = model.BirthMonth;
+            int year = model.BirthYear;
+
+            if (month < 1 || month > 12 || year < 1900 || year > 2025 || day < 1)
+            {
+                return new ValidationResult("Некоректна дата народження.");
+            }
+
+            int[] daysInMonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+            // Перевірка на високосний рік для лютого
+            if (month == 2 && IsLeapYear(year))
+            {
+                if (day > 29)
+                {
+                    return new ValidationResult("У високосному році лютий має максимум 29 днів.");
+                }
+            }
+            else if (day > daysInMonth[month])
+            {
+                return new ValidationResult($"Місяць {month} має максимум {daysInMonth[month]} днів.");
+            }
+
+            return ValidationResult.Success;
+        }
+
+        private bool IsLeapYear(int year)
+        {
+            return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
         }
     }
 }

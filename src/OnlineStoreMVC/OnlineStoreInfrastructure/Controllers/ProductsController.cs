@@ -96,7 +96,7 @@ namespace OnlineStoreInfrastructure.Controllers
             {
                 Console.WriteLine($"{key}: {Request.Form[key]}");
             }
-            Console.WriteLine($"Product: CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Quantity={product.Quantity}, Price={product.Price}");
+            Console.WriteLine($"Product: CategoryId={product.CategoryId}, Name={product.Name}, Characteristics={product.Characteristics}, Quantity={product.Quantity}, Price={product.Price}");
 
             ModelState.Clear();
 
@@ -191,7 +191,7 @@ namespace OnlineStoreInfrastructure.Controllers
             {
                 Console.WriteLine($"{key}: {Request.Form[key]}");
             }
-            Console.WriteLine($"Product: Id={product.Id}, CategoryId={product.CategoryId}, Name={product.Name}, GeneralInfo={product.GeneralInfo}, Characteristics={product.Characteristics}, Quantity={product.Quantity}, Price={product.Price}");
+            Console.WriteLine($"Product: Id={product.Id}, CategoryId={product.CategoryId}, Name={product.Name}, Characteristics={product.Characteristics}, Quantity={product.Quantity}, Price={product.Price}");
 
             ModelState.Clear();
 
@@ -243,7 +243,6 @@ namespace OnlineStoreInfrastructure.Controllers
 
                 existingProduct.CategoryId = product.CategoryId;
                 existingProduct.Name = product.Name;
-                existingProduct.GeneralInfo = product.GeneralInfo;
                 existingProduct.Characteristics = product.Characteristics;
                 existingProduct.Quantity = product.Quantity;
                 existingProduct.Price = product.Price;

@@ -14,8 +14,7 @@ public partial class Product : Entity
     [Display(Name = "Назва")]
     public string Name { get; set; } = null!;
 
-    [Display(Name = "Огляд")]
-    public string? GeneralInfo { get; set; }
+
 
     [Display(Name = "Характеристики")]
     public string? Characteristics { get; set; }
